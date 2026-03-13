@@ -74,7 +74,7 @@ export default function PackageDetail() {
           <div className="sec-label"><span>Treatment Package</span></div>
           <h1>[Package Name]</h1>
           <p className="pkg-hero-desc">[A clear description of what this package covers, who it is designed for, and the intended outcome. Written in plain language for patients.]</p>
-          <div className="pkg-hero-price">[₹XX,XXX - ₹XX,XXX]</div>
+          <div className="pkg-hero-price">[Rs.XX,XXX - Rs.XX,XXX]</div>
           <p className="pkg-hero-note">Estimate only -- final cost confirmed after consultation and assessment.</p>
           <div className="pkg-hero-actions">
             <a href="/appointment" className="pkg-cta-primary">

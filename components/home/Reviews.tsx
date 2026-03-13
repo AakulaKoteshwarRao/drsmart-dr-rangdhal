@@ -24,7 +24,7 @@ export default function Reviews({
           <div className="reviews-rating">
             <span className="reviews-score">{summary.score}</span>
             <div>
-              <span className="reviews-stars">★★★★★</span>
+              <span className="reviews-stars">*****</span>
               <span className="reviews-count">{summary.count}</span>
             </div>
           </div>
@@ -38,7 +38,7 @@ export default function Reviews({
                   <span className="review-name">{review.name}</span>
                   <span className="review-date">{review.date}</span>
                 </div>
-                <span className="review-stars">★★★★★</span>
+                <span className="review-stars">*****</span>
               </div>
               <p>&ldquo;{review.text}&rdquo;</p>
             </div>

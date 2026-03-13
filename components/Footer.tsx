@@ -116,7 +116,7 @@ export default function Footer({ clinic }: { clinic: ClinicInfo }) {
       {/* Bottom bar */}
       <div className="footer-bottom">
         <div className="footer-bottom-inner">
-          <p>© {year} {clinic.name}. All rights reserved.</p>
+          <p>&copy; {year} {clinic.name}. All rights reserved.</p>
           <div className="footer-legal">
             <a href="/terms">Terms & Conditions</a>
             <a href="/privacy">Privacy Policy</a>

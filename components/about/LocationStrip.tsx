@@ -20,7 +20,7 @@ export default function LocationStrip({ clinic }: { clinic: ClinicInfo }) {
             <div>
               <h4>Address</h4>
               <p>{clinic.address}</p>
-              <a href={clinic.mapUrl} target="_blank" rel="noreferrer">Get Directions →</a>
+              <a href={clinic.mapUrl} target="_blank" rel="noreferrer">Get Directions &rarr;</a>
             </div>
           </div>
           <div className="loc-item">

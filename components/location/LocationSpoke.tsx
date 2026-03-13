@@ -24,7 +24,7 @@ const services = (d.services?.conditions || []).slice(0, 3).map((s: any, i: numb
 }))
 
 const intLinks = [
-  { label: '← All Locations', href: '/locations' },
+  { label: '&larr; All Locations', href: '/locations' },
   { label: 'Doctor Profile', href: '/doctor' },
   { label: 'All Services', href: '/services' },
   ...(d.services?.conditions || []).slice(0, 3).map((s: any) => ({ label: s.title, href: `/services/${s.slug}` })),

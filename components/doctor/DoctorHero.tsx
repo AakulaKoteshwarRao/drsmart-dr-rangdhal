@@ -30,7 +30,7 @@ export default function DoctorHero({ doctor, clinic }: { doctor: DoctorInfo; cli
           <div className="doc-info">
             <div className="sec-label"><span style={{ color: '#F97316' }}>Meet the Doctor</span></div>
             <h1 className="doc-name">{doctor.name}</h1>
-            <p className="doc-degree">{doctor.qualifications.join(' · ')}</p>
+            <p className="doc-degree">{doctor.qualifications.join(' &middot; ')}</p>
             <div className="doc-specialty-tags">
               {doctor.specialties.map((s, i) => <span key={i} className="doc-spec-tag">{s}</span>)}
             </div>
@@ -59,7 +59,7 @@ export default function DoctorHero({ doctor, clinic }: { doctor: DoctorInfo; cli
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ width: 18, height: 18, color: '#F97316', flexShrink: 0 }}>
                   <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
                 </svg>
-                <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>{doctor.languages.join(' · ')}</span>
+                <span style={{ color: 'rgba(255,255,255,0.7)', fontSize: '0.9rem' }}>{doctor.languages.join(' &middot; ')}</span>
               </div>
             </div>
             <a href="/appointment" className="doc-cta-btn">

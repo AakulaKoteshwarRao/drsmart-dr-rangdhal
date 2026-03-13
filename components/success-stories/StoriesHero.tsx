@@ -7,7 +7,7 @@ export default function StoriesHero({ videoCount, conditionCount, rating }: { vi
       <div className="stories-hero-stats">
         <div className="shs"><span className="shs-num">{videoCount}</span><span className="shs-label">Video Stories</span></div>
         <div className="shs"><span className="shs-num">{conditionCount}</span><span className="shs-label">Conditions Covered</span></div>
-        <div className="shs"><span className="shs-num">{rating}★</span><span className="shs-label">Patient Rating</span></div>
+        <div className="shs"><span className="shs-num">{rating}*</span><span className="shs-label">Patient Rating</span></div>
       </div>
     </section>
   )
