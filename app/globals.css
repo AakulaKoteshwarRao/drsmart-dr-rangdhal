@@ -1,4 +1,4 @@
-/* ── BRAND COLOR VARIABLES ── */
+/* -- BRAND COLOR VARIABLES -- */
 /* Override these in layout.tsx style prop from default.json brand config */
 :root {
   --primary:         #F97316;
@@ -16,7 +16,7 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color: #1A202C; }
 
-/* ── Section background utilities ── */
+/* -- Section background utilities -- */
 .section-teal-tint { background: var(--primary-light); }
 .section-cool-grey { background: #F8FAFC; }
 .section-warm-grey { background: #FAFAFA; }
@@ -28,7 +28,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
   padding-right: calc((100% - 1216px) / 2);
 }
 
-/* ── HEADER ── */
+/* -- HEADER -- */
 .header {
   background: #FFFFFF; position: sticky; top: 0; z-index: 300;
   box-shadow: 0 1px 4px rgba(0,0,0,0.05);
@@ -47,7 +47,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .nav a:hover { color: var(--secondary-dark); background: var(--secondary-light); }
 .nav a.active { color: #111111; font-weight: 700; }
 
-/* ── SHARED: SECTION HEADER ── */
+/* -- SHARED: SECTION HEADER -- */
 .sec-label { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
 .sec-label::before {
   content: ''; width: 40px; height: 4px;
@@ -64,7 +64,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .sec-sub { font-size: 1.02rem; color: #374151; line-height: 1.65; max-width: 640px; }
 .sec-header { margin-bottom: 2.5rem; }
 
-/* ── SECTION 1: HERO ── */
+/* -- SECTION 1: HERO -- */
 .hero {
   max-width: 1280px; margin: 0 auto; padding: 3.5rem 2rem 2.5rem;
   display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
@@ -127,7 +127,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .floating-chip.chip-patients svg { color: var(--secondary); }
 @keyframes chipFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 
-/* ── SECTION 2: TRUST STRIP ── */
+/* -- SECTION 2: TRUST STRIP -- */
 .trust-strip {
   background: #F3F4F6; border-top: 1px solid #D1D5DB;
   border-bottom: 1px solid #D1D5DB; padding: 1.35rem 0; overflow: hidden;
@@ -146,7 +146,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .trust-divider { width: 5px; height: 5px; border-radius: 50%; background: #9CA3AF; flex-shrink: 0; }
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-/* ── SECTION 3: WHY CHOOSE ── */
+/* -- SECTION 3: WHY CHOOSE -- */
 .why-section { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem; }
 .why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
 .why-card {
@@ -169,7 +169,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .why-card h3 { font-size: 1.1rem; font-weight: 800; color: #111111; margin-bottom: 0.5rem; }
 .why-card p { font-size: 0.88rem; color: #374151; line-height: 1.65; }
 
-/* ── CARD SECTIONS ── */
+/* -- CARD SECTIONS -- */
 .card-section { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem; }
 .card-section.alt { max-width: 100%; background: #F3F4F6; }
 .card-section.alt > .card-section-inner { max-width: 1280px; margin: 0 auto; }
@@ -257,7 +257,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .sec-cta a:hover { border-color: var(--primary); background: #FFF3E0; color: var(--secondary-deep); }
 .sec-cta a svg { width: 16px; height: 16px; }
 
-/* ── SECTION 7: HOW WE WORK ── */
+/* -- SECTION 7: HOW WE WORK -- */
 .process-section { max-width: 100%; }
 .process-inner { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem; }
 .steps-flow {
@@ -294,7 +294,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .sf-arrow-h svg { width: 22px; height: 22px; color: var(--primary); }
 .sf-arrow-v { display: none; }
 
-/* ── SECTION 8: MEET DOCTOR ── */
+/* -- SECTION 8: MEET DOCTOR -- */
 .doc-hero-section { max-width: 100%; background: linear-gradient(160deg, var(--secondary-deep) 0%, #0B1A3E 100%); }
 .doc-hero-inner { max-width: 1280px; margin: 0 auto; padding: 4rem 2rem; }
 .doc-hero-grid {
@@ -333,7 +333,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 }
 .doc-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.25); }
 
-/* ── SECTION 9: CLINICAL ── */
+/* -- SECTION 9: CLINICAL -- */
 .clinical-section { max-width: 100%; background: #F3F4F6; }
 .clinical-inner { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem; }
 .clinical-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
@@ -360,7 +360,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .clinical-card p { font-size: 0.88rem; color: #374151; line-height: 1.7; margin-bottom: 0.75rem; }
 .cl-note { font-size: 0.78rem; color: #6B7280; font-style: italic; display: block; padding-top: 0.75rem; border-top: 1px solid #F3F4F6; }
 
-/* ── SECTION 10: PATIENT STORIES ── */
+/* -- SECTION 10: PATIENT STORIES -- */
 .stories-section-dark { background: var(--secondary-deep); }
 .stories-section-dark .sec-label span { color: var(--primary); }
 .stories-section-dark .sec-title { color: #FFFFFF; }
@@ -419,7 +419,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .carousel-prev { left: -16px; transform: translateY(-50%); }
 .carousel-next { right: -16px; transform: translateY(-50%); }
 
-/* ── SECTION 11: PRICING ── */
+/* -- SECTION 11: PRICING -- */
 .pricing-section { max-width: 100%; background: var(--secondary-deep); }
 .pricing-inner { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem; }
 .pricing-inner .sec-label span { color: var(--primary); }
@@ -466,7 +466,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 }
 .acc-panel ul li::before { content: "✓"; font-weight: 800; font-size: 0.92rem; color: var(--primary); }
 
-/* ── SECTION 12: REVIEWS ── */
+/* -- SECTION 12: REVIEWS -- */
 .reviews-section { max-width: 100%; padding: 5rem 0; }
 .reviews-inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
 .reviews-rating { display: flex; align-items: center; gap: 1rem; margin-top: 1rem; }
@@ -503,7 +503,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .rev-write { color: #111111; background: #FFFFFF; border: 2px solid #D1D5DB; }
 .rev-write:hover { border-color: var(--primary); background: #FFF3E0; }
 
-/* ── SECTION 13: LOCAL AREAS ── */
+/* -- SECTION 13: LOCAL AREAS -- */
 .areas-section { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem; }
 .areas-grid-8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
 .area-tag {
@@ -515,7 +515,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .area-tag:hover { background: #FFF3E0; border-color: var(--primary); color: var(--secondary-deep); }
 .areas-sub { margin-top: 1.5rem; font-size: 0.92rem; color: #374151; line-height: 1.7; max-width: 720px; }
 
-/* ── SECTION 14: FAQ ── */
+/* -- SECTION 14: FAQ -- */
 .faq-section { max-width: 100%; background: #F3F4F6; }
 .faq-inner { max-width: 800px; margin: 0 auto; padding: 5rem 2rem; }
 .faq-header { text-align: center; }
@@ -543,7 +543,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .faq-item.open .faq-a { max-height: 250px; padding: 0 1.5rem 1.25rem; }
 .faq-a p { font-size: 0.9rem; color: #374151; line-height: 1.7; }
 
-/* ── SECTION 15: BLOG ── */
+/* -- SECTION 15: BLOG -- */
 .blog-section-scroll { max-width: 100%; padding: 5rem 0; }
 .blog-scroll-inner { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
 .blog-header-row {
@@ -583,7 +583,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .blog-prev svg, .blog-next svg { color: #374151; }
 .blog-prev:hover, .blog-next:hover { background: rgba(0,0,0,0.1); border-color: rgba(0,0,0,0.15); }
 
-/* ── SECTION 16: CTA BAND ── */
+/* -- SECTION 16: CTA BAND -- */
 .cta-band { background: linear-gradient(135deg, var(--secondary-deep) 0%, var(--secondary) 50%, var(--primary) 100%); }
 .cta-band-inner { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
 .cta-band-content h2 { font-size: 2rem; font-weight: 800; color: #FFFFFF; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
@@ -606,7 +606,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .cta-secondary:hover { border-color: rgba(255,255,255,0.6); background: rgba(255,255,255,0.08); }
 .cta-band-info { display: flex; justify-content: center; gap: 2rem; font-size: 0.88rem; color: rgba(255,255,255,0.7); }
 
-/* ── STICKY BAR ── */
+/* -- STICKY BAR -- */
 .sticky-bar {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
   display: flex; justify-content: center; background: #FFFFFF;
@@ -626,7 +626,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .sticky-bar .appointment { color: var(--primary); }
 .bar-divider { width: 1px; height: 20px; background: #D1D5DB; }
 
-/* ── RESPONSIVE ── */
+/* -- RESPONSIVE -- */
 @media (max-width: 1024px) {
   .hero { grid-template-columns: 1fr; gap: 2rem; }
   .hero-image { order: -1; }
