@@ -1,15 +1,15 @@
 {
   "clinic": {
     "name": "Dr Arjun Neuro Care",
-    "tagline": "Neurology · Hyderabad",
+    "tagline": "Neurology . Hyderabad",
     "phone": "+91-9123456789",
     "whatsapp": "919123456789",
     "email": "contact@drarjunneurocare.com",
     "address": "Plot 45, 2nd Floor, Kondapur Main Road, Kondapur, Hyderabad",
     "city": "Hyderabad",
     "mapUrl": "https://maps.google.com/?q=Dr+Arjun+Neuro+Care+Kondapur+Hyderabad",
-    "hours": "Mon–Sat · 9:00 AM – 7:00 PM",
-    "languages": "English · Hindi · Telugu",
+    "hours": "Mon-Sat . 9:00 AM - 7:00 PM",
+    "languages": "English . Hindi . Telugu",
     "mapEmbedUrl": "",
     "area": "Kondapur",
     "street": "Plot 45, 2nd Floor, Kondapur Main Road",
@@ -34,7 +34,7 @@
   },
   "doctor": {
     "name": "Dr Arjun Reddy",
-    "degrees": "MBBS · MD General Medicine · DM Neurology",
+    "degrees": "MBBS . MD General Medicine . DM Neurology",
     "photo": "",
     "gender": "Male",
     "specialties": [
@@ -58,7 +58,7 @@
         "label": "Procedures"
       },
       {
-        "number": "4.8★",
+        "number": "4.8*",
         "label": "Rating"
       }
     ],
@@ -70,11 +70,11 @@
       },
       {
         "icon": "clock",
-        "text": "Mon–Sat · 9:00 AM – 7:00 PM"
+        "text": "Mon-Sat . 9:00 AM - 7:00 PM"
       },
       {
         "icon": "language",
-        "text": "English · Hindi · Telugu"
+        "text": "English . Hindi . Telugu"
       }
     ],
     "ctaLabel": "Book Appointment",
@@ -94,11 +94,11 @@
     ],
     "fellowships": [
       {
-        "title": "Fellow — Clinical Neurology",
+        "title": "Fellow -- Clinical Neurology",
         "institution": "Indian Academy of Neurology, New Delhi"
       },
       {
-        "title": "Fellow — Stroke Medicine",
+        "title": "Fellow -- Stroke Medicine",
         "institution": "Apollo Hospitals, Hyderabad"
       }
     ],
@@ -108,7 +108,7 @@
         "hospital": "Dr Arjun Neuro Care, Kondapur"
       },
       {
-        "role": "Senior Resident — Neurology",
+        "role": "Senior Resident -- Neurology",
         "hospital": "Nizam's Institute of Medical Sciences, Hyderabad"
       },
       {
@@ -117,7 +117,7 @@
       }
     ],
     "certifications": [
-      "NMC Registered — TSMC-99882",
+      "NMC Registered -- TSMC-99882",
       "Certified in Advanced EEG Interpretation"
     ],
     "workshops": [
@@ -126,7 +126,7 @@
         "location": "Hyderabad, 2022"
       },
       {
-        "title": "CME — Epilepsy Update 2023",
+        "title": "CME -- Epilepsy Update 2023",
         "location": "Mumbai, 2023"
       },
       {
@@ -196,12 +196,12 @@
     ]
   },
   "hero": {
-    "label": "Trusted Neurology Clinic · Hyderabad",
+    "label": "Trusted Neurology Clinic . Hyderabad",
     "heading": "Advanced Neurology Care for",
     "headingEm": "Migraine, Stroke & Epilepsy",
     "subtext": "Dr Arjun Reddy provides expert diagnosis and treatment for neurological disorders using modern techniques and a patient-first approach.",
     "tags": [
-      "MBBS · MD · DM Neurology",
+      "MBBS . MD . DM Neurology",
       "9+ Years Experience",
       "10,000+ Patients Treated"
     ],
@@ -221,7 +221,7 @@
         "label": "Procedures Done"
       },
       {
-        "number": "4.8★",
+        "number": "4.8*",
         "label": "Google Rating"
       }
     ],
@@ -246,20 +246,20 @@
       "text": "NMC Registered"
     },
     {
-      "icon": "★★★★★",
+      "icon": "*****",
       "text": "4.8 Google Rating (182+ Reviews)"
     },
     {
-      "icon": "🏥",
+      "icon": "hospital",
       "text": "Dr Arjun Neuro Care"
     },
     {
-      "icon": "🎓",
-      "text": "NIMHANS · Bengaluru"
+      "icon": "education",
+      "text": "NIMHANS . Bengaluru"
     },
     {
-      "icon": "🏅",
-      "text": "Fellow — Indian Academy of Neurology"
+      "icon": "award",
+      "text": "Fellow -- Indian Academy of Neurology"
     }
   ],
   "whyChoose": [
@@ -363,7 +363,7 @@
       "iconType": "box",
       "title": "Comprehensive Migraine Care",
       "description": "Full diagnosis and ongoing management plan for chronic and episodic migraine patients.",
-      "price": "₹4,500 – ₹9,000",
+      "price": "Rs.4,500 - Rs.9,000",
       "tags": [
         "Consultation",
         "EEG if needed",
@@ -377,7 +377,7 @@
       "iconType": "tool",
       "title": "Stroke Rehabilitation Package",
       "description": "Comprehensive post-stroke recovery programme including neurological assessment and therapy sessions.",
-      "price": "₹8,500 – ₹25,000",
+      "price": "Rs.8,500 - Rs.25,000",
       "tags": [
         "Neuro assessment",
         "Physio sessions",
@@ -391,7 +391,7 @@
       "iconType": "briefcase",
       "title": "Epilepsy Management Programme",
       "description": "Complete epilepsy workup and long-term management with regular follow-up and EEG monitoring.",
-      "price": "₹6,000 – ₹15,000",
+      "price": "Rs.6,000 - Rs.15,000",
       "tags": [
         "EEG",
         "MRI referral",
@@ -405,7 +405,7 @@
       "iconType": "zap",
       "title": "Neuro Wellness Check",
       "description": "Preventive neurological assessment for individuals with family history of brain or nerve disorders.",
-      "price": "₹2,500 – ₹5,000",
+      "price": "Rs.2,500 - Rs.5,000",
       "tags": [
         "Full neuro exam",
         "Cognitive screen",
@@ -425,13 +425,13 @@
       "badge": "Step 02",
       "iconType": "search",
       "title": "Clinical Diagnosis",
-      "description": "Targeted investigations — EEG, NCS, or MRI referral — to identify the exact nature and severity of your condition."
+      "description": "Targeted investigations -- EEG, NCS, or MRI referral -- to identify the exact nature and severity of your condition."
     },
     {
       "badge": "Step 03",
       "iconType": "file",
       "title": "Personalised Plan",
-      "description": "A treatment plan built around your diagnosis, lifestyle, and recovery timeline — no generic protocols."
+      "description": "A treatment plan built around your diagnosis, lifestyle, and recovery timeline -- no generic protocols."
     },
     {
       "badge": "Step 04",
@@ -445,7 +445,7 @@
       "colorClass": "cl-green",
       "iconType": "pulse",
       "title": "Success Rates",
-      "description": "Botox for chronic migraine achieves 70–80% reduction in headache days. Epilepsy management achieves seizure control in over 70% of patients with appropriate medications. A personalised estimate is provided at your first consultation.",
+      "description": "Botox for chronic migraine achieves 70-80% reduction in headache days. Epilepsy management achieves seizure control in over 70% of patients with appropriate medications. A personalised estimate is provided at your first consultation.",
       "note": "Results may vary based on individual diagnosis and clinical response."
     },
     {
@@ -468,35 +468,35 @@
       "gradClass": "grad-teal",
       "duration": "3:24",
       "title": "Ravi's Migraine Recovery",
-      "tag": "Success Story · Migraine Treatment",
+      "tag": "Success Story . Migraine Treatment",
       "videoUrl": ""
     },
     {
       "gradClass": "",
       "duration": "2:45",
-      "title": "Epilepsy Controlled — Sneha's Story",
-      "tag": "Success Story · Epilepsy Management",
+      "title": "Epilepsy Controlled -- Sneha's Story",
+      "tag": "Success Story . Epilepsy Management",
       "videoUrl": ""
     },
     {
       "gradClass": "",
       "duration": "4:10",
-      "title": "Stroke Rehab at 58 — Full Recovery",
-      "tag": "Success Story · Stroke Rehabilitation",
+      "title": "Stroke Rehab at 58 -- Full Recovery",
+      "tag": "Success Story . Stroke Rehabilitation",
       "videoUrl": ""
     },
     {
       "gradClass": "",
       "duration": "3:52",
       "title": "Living Well with Parkinson's",
-      "tag": "Success Story · Parkinson's Disease",
+      "tag": "Success Story . Parkinson's Disease",
       "videoUrl": ""
     },
     {
       "gradClass": "",
       "duration": "2:18",
-      "title": "Neuropathy Diagnosed Early — Back to Work",
-      "tag": "Success Story · Neuropathy",
+      "title": "Neuropathy Diagnosed Early -- Back to Work",
+      "tag": "Success Story . Neuropathy",
       "videoUrl": ""
     }
   ],
@@ -555,7 +555,7 @@
       "initials": "PM",
       "name": "Priya Mehta",
       "date": "2 months ago",
-      "text": "Brought my father after his stroke. Dr Arjun was patient and thorough — gave us a very realistic recovery plan. The rehab guidance has been invaluable."
+      "text": "Brought my father after his stroke. Dr Arjun was patient and thorough -- gave us a very realistic recovery plan. The rehab guidance has been invaluable."
     }
   ],
   "reviewSummary": {
@@ -636,7 +636,7 @@
     },
     {
       "question": "What are the clinic hours and location?",
-      "answer": "We are open Monday to Saturday, 9:00 AM – 7:00 PM. Located at Plot 45, Kondapur Main Road, Kondapur, Hyderabad — easily accessible from Gachibowli, Miyapur, and Madhapur."
+      "answer": "We are open Monday to Saturday, 9:00 AM - 7:00 PM. Located at Plot 45, Kondapur Main Road, Kondapur, Hyderabad -- easily accessible from Gachibowli, Miyapur, and Madhapur."
     }
   ],
   "blog": [
@@ -678,25 +678,25 @@
   ],
   "ctaBand": {
     "heading": "Ready to take the first step?",
-    "subtext": "Book a consultation with Dr Arjun Reddy today. Get a clear neurological diagnosis, a personalised treatment plan, and expert care — all under one roof.",
+    "subtext": "Book a consultation with Dr Arjun Reddy today. Get a clear neurological diagnosis, a personalised treatment plan, and expert care -- all under one roof.",
     "primaryLabel": "Book Appointment",
     "primaryHref": "/appointment",
     "secondaryLabel": "WhatsApp Us",
     "secondaryHref": "https://wa.me/919123456789",
     "infoItems": [
-      "📍 Kondapur, Hyderabad",
-      "🕐 Mon–Sat: 9:00 AM – 7:00 PM"
+      " Kondapur, Hyderabad",
+      " Mon-Sat: 9:00 AM - 7:00 PM"
     ],
     "info": [
-      "📍 Kondapur, Hyderabad",
-      "🕐 Mon–Sat: 9:00 AM – 7:00 PM"
+      " Kondapur, Hyderabad",
+      " Mon-Sat: 9:00 AM - 7:00 PM"
     ]
   },
   "services": {
     "conditions": [
       {
         "title": "Migraine",
-        "description": "Recurring severe headaches with nausea and light sensitivity — accurately diagnosed and effectively managed.",
+        "description": "Recurring severe headaches with nausea and light sensitivity -- accurately diagnosed and effectively managed.",
         "slug": "migraine",
         "gradient": "linear-gradient(145deg,var(--secondary-deep),var(--secondary))"
       },
@@ -752,7 +752,7 @@
       "description": "Full diagnosis and ongoing management plan for chronic and episodic migraine patients.",
       "slug": "migraine-care",
       "gradient": "linear-gradient(145deg,var(--secondary-deep),var(--secondary))",
-      "price": "₹4,500 – ₹9,000",
+      "price": "Rs.4,500 - Rs.9,000",
       "includes": [
         "Initial consultation",
         "EEG if clinically indicated",
@@ -766,7 +766,7 @@
       "description": "Comprehensive post-stroke recovery programme including neurological assessment and therapy sessions.",
       "slug": "stroke-rehabilitation",
       "gradient": "linear-gradient(145deg,var(--secondary),var(--primary))",
-      "price": "₹8,500 – ₹25,000",
+      "price": "Rs.8,500 - Rs.25,000",
       "includes": [
         "Full neurological assessment",
         "8 physiotherapy sessions",
@@ -780,7 +780,7 @@
       "description": "Complete epilepsy workup and long-term management with regular follow-up and EEG monitoring.",
       "slug": "epilepsy-management",
       "gradient": "linear-gradient(145deg,var(--primary),var(--primary-dark))",
-      "price": "₹6,000 – ₹15,000",
+      "price": "Rs.6,000 - Rs.15,000",
       "includes": [
         "Detailed EEG",
         "MRI referral if needed",
@@ -794,7 +794,7 @@
       "description": "Preventive neurological assessment for individuals with family history of brain or nerve disorders.",
       "slug": "neuro-wellness",
       "gradient": "linear-gradient(145deg,var(--secondary-dark),var(--primary-dark))",
-      "price": "₹2,500 – ₹5,000",
+      "price": "Rs.2,500 - Rs.5,000",
       "includes": [
         "Full neurological examination",
         "Cognitive screening",
@@ -828,7 +828,7 @@
         "gradient": "linear-gradient(145deg,var(--primary),var(--primary-dark))",
         "name": "Priya Mehta",
         "date": "2 months ago",
-        "text": "Brought my father after his stroke. Dr Arjun was patient and thorough — gave us a very realistic recovery plan. The rehab guidance has been invaluable."
+        "text": "Brought my father after his stroke. Dr Arjun was patient and thorough -- gave us a very realistic recovery plan. The rehab guidance has been invaluable."
       },
       {
         "initials": "AT",
@@ -849,7 +849,7 @@
         "gradient": "linear-gradient(145deg,var(--secondary-deep),var(--primary))",
         "name": "Kiran Naidu",
         "date": "3 months ago",
-        "text": "Honest, clear communication and no unnecessary tests. Dr Arjun recommended a conservative approach first — it worked. I trust him completely."
+        "text": "Honest, clear communication and no unnecessary tests. Dr Arjun recommended a conservative approach first -- it worked. I trust him completely."
       }
     ]
   },
@@ -877,7 +877,7 @@
         "tag": "Epilepsy Management",
         "tagType": "procedure",
         "category": "epilepsy",
-        "title": "Seizure-Free for 18 Months — Sneha's Story",
+        "title": "Seizure-Free for 18 Months -- Sneha's Story",
         "description": "26-year-old teacher from Kondapur was having monthly seizures. Correct EEG diagnosis and medication adjustment achieved full seizure control."
       },
       {
@@ -886,7 +886,7 @@
         "tag": "Stroke Rehabilitation",
         "tagType": "procedure",
         "category": "stroke",
-        "title": "Walking Again at 58 — Post-Stroke Recovery",
+        "title": "Walking Again at 58 -- Post-Stroke Recovery",
         "description": "58-year-old from Miyapur suffered a moderate stroke. Structured rehabilitation over 3 months restored walking ability and partial speech."
       },
       {
@@ -971,40 +971,40 @@
   "team": [
     {
       "name": "Dr Arjun Reddy",
-      "designation": "Lead Consultant — Neurology",
+      "designation": "Lead Consultant -- Neurology",
       "qualifications": [
         "MBBS",
         "MD General Medicine",
         "DM Neurology"
       ],
       "experience": "9+",
-      "schedule": "Mon–Sat · 9:00 AM – 7:00 PM",
+      "schedule": "Mon-Sat . 9:00 AM - 7:00 PM",
       "gradient": "linear-gradient(160deg,var(--secondary-deep) 0%,var(--secondary) 40%,var(--primary) 100%)",
       "isLead": true
     },
     {
       "name": "Dr Meena Krishnan",
-      "designation": "Consultant — Paediatric Neurology",
+      "designation": "Consultant -- Paediatric Neurology",
       "qualifications": [
         "MBBS",
         "MD Paediatrics",
         "Fellowship in Child Neurology"
       ],
       "experience": "7+",
-      "schedule": "Tue, Thu, Sat · 10:00 AM – 4:00 PM",
+      "schedule": "Tue, Thu, Sat . 10:00 AM - 4:00 PM",
       "gradient": "linear-gradient(160deg,var(--secondary) 0%,var(--secondary-dark) 40%,var(--primary) 100%)",
       "isLead": false
     },
     {
       "name": "Dr Suresh Babu",
-      "designation": "Consultant — Neurorehabilitation",
+      "designation": "Consultant -- Neurorehabilitation",
       "qualifications": [
         "MBBS",
         "MD Physical Medicine",
         "DNB Rehabilitation Medicine"
       ],
       "experience": "6+",
-      "schedule": "Mon, Wed, Fri · 9:00 AM – 2:00 PM",
+      "schedule": "Mon, Wed, Fri . 9:00 AM - 2:00 PM",
       "gradient": "linear-gradient(160deg,var(--primary) 0%,var(--primary-dark) 40%,var(--secondary) 100%)",
       "isLead": false
     }
@@ -1013,9 +1013,9 @@
     {
       "name": "Kondapur",
       "slug": "kondapur",
-      "address": "Plot 45, 2nd Floor, Kondapur Main Road, Kondapur, Hyderabad — 500084",
+      "address": "Plot 45, 2nd Floor, Kondapur Main Road, Kondapur, Hyderabad -- 500084",
       "phone": "+91-9123456789",
-      "hours": "Mon–Sat: 9:00 AM – 7:00 PM",
+      "hours": "Mon-Sat: 9:00 AM - 7:00 PM",
       "mapUrl": "https://maps.google.com/?q=Dr+Arjun+Neuro+Care+Kondapur",
       "mapEmbedUrl": "",
       "isPrimary": true
