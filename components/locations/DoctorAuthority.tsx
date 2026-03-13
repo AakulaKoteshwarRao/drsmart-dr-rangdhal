@@ -14,7 +14,7 @@ export default function DoctorAuthority({ doctor }: { doctor: DoctorInfo }) {
         </div>
         <div className="doc-auth-text">
           <h3>{doctor.name}</h3>
-          <p>{doctor.name} — {doctor.degrees}. {doctor.stats[0]?.number} years of experience specialising in {(d.doctor.specialties || []).slice(0, 3).join(', ')}.</p>
+          <p>{doctor.name} -- {doctor.degrees}. {doctor.stats[0]?.number} years of experience specialising in {(d.doctor.specialties || []).slice(0, 3).join(', ')}.</p>
           <a href="/doctor" className="doc-auth-link">
             View Full Profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>

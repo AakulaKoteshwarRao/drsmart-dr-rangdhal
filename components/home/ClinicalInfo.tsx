@@ -13,7 +13,7 @@ export default function ClinicalInfo({ cards }: { cards: ClinicalCard[] }) {
         <div className="sec-header">
           <div className="sec-label"><span>Clinical Transparency</span></div>
           <h2 className="sec-title">What you should know before any procedure.</h2>
-          <p className="sec-sub">We believe informed patients make better decisions. Here are the facts — clearly.</p>
+          <p className="sec-sub">We believe informed patients make better decisions. Here are the facts -- clearly.</p>
         </div>
         <div className="clinical-grid">
           {cards.map((card, i) => (

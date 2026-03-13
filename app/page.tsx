@@ -29,7 +29,7 @@ export default function HomePage() {
     meta: {
       path:          '/',
       name:          `${schemaConfig.clinic.name} | ${schemaConfig.clinic.alternateName}`,
-      description:   `${schemaConfig.clinic.name} — ${schemaConfig.clinic.description}`,
+      description:   `${schemaConfig.clinic.name} -- ${schemaConfig.clinic.description}`,
       image:         schemaConfig.clinic.image,
       datePublished: '2024-01-01',
       breadcrumb:    [{ name: 'Home', url: schemaConfig.site.url, path: '/' }],
@@ -47,7 +47,7 @@ export default function HomePage() {
         <CardGrid
           label="Conditions We Treat"
           title="What we treat."
-          subtitle="From common to complex conditions — each diagnosis is approached with precision and care."
+          subtitle="From common to complex conditions -- each diagnosis is approached with precision and care."
           items={cfg.conditions}
           viewAllHref="/conditions"
           viewAllLabel="View All Conditions"

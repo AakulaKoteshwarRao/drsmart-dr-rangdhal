@@ -14,7 +14,7 @@ export default function TestimonialsHero({ rating, reviewCount }: { rating: stri
     <section className="testi-hero">
       <div className="sec-label"><span>Testimonials</span></div>
       <h1>Trusted by patients. <em>Rated on Google.</em></h1>
-      <p className="testi-hero-text">Every review is from a verified patient on Google. We believe in transparency — real feedback from real people who trusted us with their care.</p>
+      <p className="testi-hero-text">Every review is from a verified patient on Google. We believe in transparency -- real feedback from real people who trusted us with their care.</p>
       <div className="google-rating-card">
         <div className="google-logo">
           {googleLogo}

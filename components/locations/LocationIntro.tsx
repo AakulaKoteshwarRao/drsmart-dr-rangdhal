@@ -22,7 +22,7 @@ export default function LocationIntro({ clinic, doctor }: { clinic: ClinicInfo; 
           <div className="intro-content">
             <h2>Your trusted {d.entity?.medicalSpecialty || 'specialist'} clinic in {clinic.city}</h2>
             <p>Led by {doctor.name}, a {doctor.experience?.[0]?.role || 'specialist'} with {doctor.stats[0]?.number} years of experience and over {doctor.stats[1]?.number} patients treated. The clinic offers comprehensive services from consultation to treatment and rehabilitation.</p>
-            <p>Located at {clinic.street}, {clinic.area} — one of {clinic.city}'s most accessible and well-connected healthcare hubs.</p>
+            <p>Located at {clinic.street}, {clinic.area} -- one of {clinic.city}'s most accessible and well-connected healthcare hubs.</p>
             <div className="intro-highlights">
               {serviceChips.map((chip, i) => (
                 <span key={i} className="intro-chip">{chip}</span>

@@ -2,7 +2,7 @@ import type { ClinicInfo } from '@/lib/types'
 
 export default function Affiliations({ clinic }: { clinic: ClinicInfo }) {
   const affiliations = [
-    { bg: 'var(--secondary-deep)', initials: 'CH', name: (clinic.name || 'Clinic') + ' — Consulting Hospital', type: 'Consulting Hospital' },
+    { bg: 'var(--secondary-deep)', initials: 'CH', name: (clinic.name || 'Clinic') + ' -- Consulting Hospital', type: 'Consulting Hospital' },
     { bg: '#1E8449', initials: 'IAN', name: 'Indian Academy of Neurology', type: 'Academic Affiliation' },
     { bg: '#D68910', initials: 'IMA', name: 'Indian Medical Association', type: 'Professional Body' },
     { bg: 'var(--secondary)', initials: 'NMC', name: 'National Medical Commission', type: 'Regulatory Body' },

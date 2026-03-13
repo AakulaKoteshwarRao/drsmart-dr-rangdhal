@@ -7,7 +7,7 @@ import defaultData from '../data/default.json'
 
 const brand = (defaultData as any).brand || {}
 
-// Validate hex — fallback to defaults if placeholder or malformed
+// Validate hex -- fallback to defaults if placeholder or malformed
 const isHex = (v: any) => typeof v === 'string' && /^#[0-9A-Fa-f]{6}$/.test(v)
 const primaryColor   = isHex(brand.primaryColor)   ? brand.primaryColor   : '#F97316'
 const secondaryColor = isHex(brand.secondaryColor) ? brand.secondaryColor : '#1E3A8A'

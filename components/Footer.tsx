@@ -20,7 +20,7 @@ const quickLinks = [
   { label: 'Book Appointment', href: '/appointment' },
 ]
 
-// Service links pulled from default.json — specialty agnostic
+// Service links pulled from default.json -- specialty agnostic
 const serviceLinks = [
   ...(d.services?.conditions || []).slice(0, 4).map((s: any) => ({
     label: s.title, href: `/services/${s.slug}`

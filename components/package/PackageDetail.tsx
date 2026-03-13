@@ -52,7 +52,7 @@ const faqs = [
   { q: 'Is the price fixed or can it change?', a: 'The package price is an estimate based on standard cases. After your initial consultation and assessment, a final fixed cost is confirmed before any treatment commences.' },
   { q: 'Is insurance accepted for this package?', a: 'Yes. We work with all major insurance providers. Cashless facility and pre-authorisation support are available. Our team will assist with the insurance process from start to finish.' },
   { q: 'Is EMI available?', a: 'EMI options are available on request. Please raise this during your consultation and our team will help you with available financing options.' },
-  { q: 'Can the package be customised for my condition?', a: 'Every treatment plan is personalised. The listed package is a starting point — the doctor will tailor the approach based on your specific condition, health status, and clinical findings.' },
+  { q: 'Can the package be customised for my condition?', a: 'Every treatment plan is personalised. The listed package is a starting point -- the doctor will tailor the approach based on your specific condition, health status, and clinical findings.' },
 ]
 
 export default function PackageDetail() {
@@ -74,8 +74,8 @@ export default function PackageDetail() {
           <div className="sec-label"><span>Treatment Package</span></div>
           <h1>[Package Name]</h1>
           <p className="pkg-hero-desc">[A clear description of what this package covers, who it is designed for, and the intended outcome. Written in plain language for patients.]</p>
-          <div className="pkg-hero-price">[₹XX,XXX – ₹XX,XXX]</div>
-          <p className="pkg-hero-note">Estimate only — final cost confirmed after consultation and assessment.</p>
+          <div className="pkg-hero-price">[₹XX,XXX - ₹XX,XXX]</div>
+          <p className="pkg-hero-note">Estimate only -- final cost confirmed after consultation and assessment.</p>
           <div className="pkg-hero-actions">
             <a href="/appointment" className="pkg-cta-primary">
               Book Consultation
@@ -154,7 +154,7 @@ export default function PackageDetail() {
           <div className="pricing-note-inner">
             <h2>Transparent pricing. No surprises.</h2>
             <div className="pricing-points">
-              {['Price range is an estimate based on standard presentations', 'Final cost confirmed after assessment — before treatment begins', 'Insurance and cashless options are supported', 'EMI available on request'].map((pt, i) => (
+              {['Price range is an estimate based on standard presentations', 'Final cost confirmed after assessment -- before treatment begins', 'Insurance and cashless options are supported', 'EMI available on request'].map((pt, i) => (
                 <div key={i} className="pricing-point">{checkIcon}{pt}</div>
               ))}
             </div>

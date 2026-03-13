@@ -27,7 +27,7 @@ export default function HowWeWork({ steps }: { steps: StepItem[] }) {
         <div className="sec-header">
           <div className="sec-label"><span>How We Work</span></div>
           <h2 className="sec-title">Four steps that put you in control.</h2>
-          <p className="sec-sub">No surprises. No unexplained decisions. You know what&apos;s happening and why — at every stage.</p>
+          <p className="sec-sub">No surprises. No unexplained decisions. You know what&apos;s happening and why -- at every stage.</p>
         </div>
         <div className="steps-flow">
           {steps.map((step, i) => (

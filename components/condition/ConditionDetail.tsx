@@ -16,7 +16,7 @@ const types = [
     grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))',
     icon: medIcon,
     title: 'Primary Form',
-    desc: 'The most common presentation. Develops gradually and may have few noticeable symptoms in the early stages — making regular screening and early detection especially important.',
+    desc: 'The most common presentation. Develops gradually and may have few noticeable symptoms in the early stages -- making regular screening and early detection especially important.',
   },
   {
     label: 'Type B',
@@ -35,8 +35,8 @@ const types = [
 ]
 
 const symptoms = [
-  { color: 'var(--primary)', icon: pulseIcon, title: 'Early Symptoms', items: ['[Symptom 1] — often subtle and easily overlooked', '[Symptom 2] — may come and go initially', '[Symptom 3] — typically the first sign patients report'] },
-  { color: 'var(--secondary)', icon: warnIcon, title: 'Advanced Symptoms', items: ['[Symptom 4] — indicates progression', '[Symptom 5] — more persistent and noticeable', '[Symptom 6] — affecting daily function'] },
+  { color: 'var(--primary)', icon: pulseIcon, title: 'Early Symptoms', items: ['[Symptom 1] -- often subtle and easily overlooked', '[Symptom 2] -- may come and go initially', '[Symptom 3] -- typically the first sign patients report'] },
+  { color: 'var(--secondary)', icon: warnIcon, title: 'Advanced Symptoms', items: ['[Symptom 4] -- indicates progression', '[Symptom 5] -- more persistent and noticeable', '[Symptom 6] -- affecting daily function'] },
   { color: 'var(--primary-dark)', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/></svg>, title: 'Seek Urgent Review If', items: ['Sudden or severe worsening of symptoms', 'New symptoms developing rapidly', 'Pain, significant discomfort, or functional impairment'] },
 ]
 
@@ -46,7 +46,7 @@ const treatments = [
     title: 'Conservative Management',
     subtitle: 'First-Line Approach',
     body: 'Medication and lifestyle modification are the most common starting points. The aim is to control the condition and slow progression without more invasive intervention.',
-    items: ['[Medication type] — to manage the primary mechanism', '[Lifestyle change] — reduces contributing factors', 'Regular monitoring — to track response to treatment'],
+    items: ['[Medication type] -- to manage the primary mechanism', '[Lifestyle change] -- reduces contributing factors', 'Regular monitoring -- to track response to treatment'],
     warn: ['[Warning sign 1]', '[Warning sign 2]'],
   },
   {
@@ -54,7 +54,7 @@ const treatments = [
     title: 'Procedural Treatment',
     subtitle: 'When Conservative Management Is Insufficient',
     body: 'When medications or lifestyle changes do not achieve adequate control, procedural or surgical intervention may be recommended.',
-    items: ['[Procedure type A] — minimally invasive option', '[Procedure type B] — more definitive intervention', 'Hospital or clinic-based depending on the approach'],
+    items: ['[Procedure type A] -- minimally invasive option', '[Procedure type B] -- more definitive intervention', 'Hospital or clinic-based depending on the approach'],
     warn: ['[Contraindication or risk to watch for]'],
   },
   {
@@ -70,7 +70,7 @@ const treatments = [
 const tests = [
   { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>, title: 'Clinical Examination', desc: '[Description of primary clinical assessment performed at the first visit]' },
   { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/></svg>, title: 'Imaging / Diagnostic Test', desc: '[Description of imaging or diagnostic investigation used to assess the condition]' },
-  { grad: 'linear-gradient(135deg,var(--secondary-deep),#0A1A3E)', icon: pulseIcon, title: 'Functional Assessment', desc: '[Assessment of how the condition is affecting function — e.g. field tests, mobility, pain scores]' },
+  { grad: 'linear-gradient(135deg,var(--secondary-deep),#0A1A3E)', icon: pulseIcon, title: 'Functional Assessment', desc: '[Assessment of how the condition is affecting function -- e.g. field tests, mobility, pain scores]' },
   { grad: 'linear-gradient(135deg,var(--primary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>, title: 'Lab Tests / Blood Work', desc: '[Relevant blood tests, biomarkers, or pathology investigations where applicable]' },
 ]
 
@@ -225,8 +225,8 @@ export default function ConditionDetail() {
                   <li>Sudden or rapidly worsening symptoms</li>
                   <li>Severe pain or significant discomfort that is new or unusual</li>
                   <li>Loss of function or ability to perform normal activities</li>
-                  <li>Acute angle-closure emergency — symptoms that appear without warning</li>
-                  <li>Any symptom that concerns you — do not wait for a scheduled appointment</li>
+                  <li>Acute angle-closure emergency -- symptoms that appear without warning</li>
+                  <li>Any symptom that concerns you -- do not wait for a scheduled appointment</li>
                 </ul>
               </div>
             </div>

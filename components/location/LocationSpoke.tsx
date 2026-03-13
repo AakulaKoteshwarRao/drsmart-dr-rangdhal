@@ -44,16 +44,16 @@ export default function LocationSpoke(props?: any) {
 
   const qfCards = [
     { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: pinIcon, label: 'Location', val: props?.clinic?.hospital || clinicAddress },
-    { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: clockIcon, label: 'Travel Time', val: '10–15 min' },
-    { grad: 'linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>, label: 'Distance', val: '3–5 km' },
+    { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: clockIcon, label: 'Travel Time', val: '10-15 min' },
+    { grad: 'linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>, label: 'Distance', val: '3-5 km' },
     { grad: 'linear-gradient(135deg,var(--primary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>, label: 'Parking', val: 'Available' },
   ]
 
   const reasons = [
-    { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: pinIcon, text: `Located at ${clinicAddress} — easily accessible from the local area` },
-    { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: clockIcon, text: `Clinic hours ${clinicHours} — convenient for patients in the area` },
+    { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: pinIcon, text: `Located at ${clinicAddress} -- easily accessible from the local area` },
+    { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: clockIcon, text: `Clinic hours ${clinicHours} -- convenient for patients in the area` },
     { grad: 'linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep))', icon: checkIcon, text: `${doctorName} has extensive experience in ${specialty} and complex case management` },
-    { grad: 'linear-gradient(135deg,var(--primary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, text: 'Modern diagnostic equipment — all under one roof' },
+    { grad: 'linear-gradient(135deg,var(--primary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, text: 'Modern diagnostic equipment -- all under one roof' },
     { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>, text: `Hundreds of successful outcomes for patients from ${areaName} and surrounding neighbourhoods` },
   ]
 
@@ -62,10 +62,10 @@ export default function LocationSpoke(props?: any) {
   }))
 
   const faqs = [
-    { q: `How do I reach the clinic?`, a: `${clinicAddress} — easily accessible from most parts of the area.` },
+    { q: `How do I reach the clinic?`, a: `${clinicAddress} -- easily accessible from most parts of the area.` },
     { q: 'What are the clinic hours?', a: `${doctorName} consults ${clinicHours}. Please call ahead to confirm your slot.` },
     { q: 'Is parking available at the clinic?', a: 'Yes, parking is available near the clinic. Public transport options are also within walking distance.' },
-    { q: `What conditions are treated at this location?`, a: `All major conditions are treated — ${(d.conditions || []).slice(0, 4).map((c: any) => c.title || c.label).join(', ')}, and more. Full diagnostic workups are available on-site.` },
+    { q: `What conditions are treated at this location?`, a: `All major conditions are treated -- ${(d.conditions || []).slice(0, 4).map((c: any) => c.title || c.label).join(', ')}, and more. Full diagnostic workups are available on-site.` },
     { q: 'Can I book an appointment online?', a: 'Yes. You can book via our appointment page or WhatsApp us directly. Same-week appointments are typically available for new patients.' },
   ]
 
@@ -84,7 +84,7 @@ export default function LocationSpoke(props?: any) {
       <section className="spoke-hero">
         <div className="sec-label"><span>Location</span></div>
         <h1>{specialty} Near <em>{areaName}</em></h1>
-        <p className="spoke-hero-desc">Looking for a trusted {specialty.toLowerCase()} near {areaName}? {doctorName} consults at {clinicAddress} — easily reachable from the surrounding area.</p>
+        <p className="spoke-hero-desc">Looking for a trusted {specialty.toLowerCase()} near {areaName}? {doctorName} consults at {clinicAddress} -- easily reachable from the surrounding area.</p>
         <a href="/appointment" className="spoke-hero-cta">
           Book Appointment {arrowIcon}
         </a>
@@ -156,7 +156,7 @@ export default function LocationSpoke(props?: any) {
             <div className="doc-mini-info">
               <h3>{doctorName}</h3>
               <div className="doc-spec">{d.doctor.degrees}</div>
-              <p>{doctorName} brings extensive expertise in {specialty}, consulting at {clinicAddress} — {clinicHours}.</p>
+              <p>{doctorName} brings extensive expertise in {specialty}, consulting at {clinicAddress} -- {clinicHours}.</p>
               <a href="/doctor" className="doc-mini-link">View full profile {arrowIcon}</a>
             </div>
           </div>

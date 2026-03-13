@@ -24,7 +24,7 @@ export default function EarlyTreatment() {
           <div className="early-content">
             <div className="sec-label"><span style={{ color: '#F97316' }}>Why It Matters</span></div>
             <h2>Early treatment leads to better outcomes.</h2>
-            <p>Many conditions are progressive. What starts as mild discomfort can escalate into serious, harder-to-treat problems if left unaddressed. Timely diagnosis and intervention often means simpler, less invasive treatment — and significantly better recovery.</p>
+            <p>Many conditions are progressive. What starts as mild discomfort can escalate into serious, harder-to-treat problems if left unaddressed. Timely diagnosis and intervention often means simpler, less invasive treatment -- and significantly better recovery.</p>
             <ul className="early-points">
               {points.map((pt, i) => (
                 <li key={i}>

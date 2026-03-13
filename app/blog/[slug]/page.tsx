@@ -63,7 +63,7 @@ export default function BlogPostPage({ params }: { params?: { slug?: string } })
 
   <!-- SECTION 3: POST CONTENT -->
   <div class="post-content">
-    <p>Knee arthritis is one of the most common conditions, affecting millions of people over the age of 50. But it's also one of the most misunderstood — many patients either ignore early symptoms or assume surgery is the only option. The truth is somewhere in between.</p>
+    <p>Knee arthritis is one of the most common conditions, affecting millions of people over the age of 50. But it's also one of the most misunderstood -- many patients either ignore early symptoms or assume surgery is the only option. The truth is somewhere in between.</p>
 
     <h2>What is knee arthritis?</h2>
     <p>Knee arthritis is a degenerative condition where the cartilage that cushions the joint gradually wears down. As the protective layer thins, bones begin to rub against each other, causing pain, stiffness, and reduced mobility. The most common form is osteoarthritis, which develops over time due to age, wear and tear, or previous injuries.</p>
@@ -71,7 +71,7 @@ export default function BlogPostPage({ params }: { params?: { slug?: string } })
     <h2>Early warning signs</h2>
     <p>Recognising the early signs can make a significant difference in treatment outcomes. Pay attention to:</p>
     <ul>
-      <li>Stiffness in the morning that lasts more than 15–20 minutes</li>
+      <li>Stiffness in the morning that lasts more than 15-20 minutes</li>
       <li>Pain that worsens after prolonged sitting or climbing stairs</li>
       <li>Swelling around the knee joint, especially after activity</li>
       <li>A grinding or crunching sensation during movement</li>
@@ -79,11 +79,11 @@ export default function BlogPostPage({ params }: { params?: { slug?: string } })
     </ul>
 
     <blockquote>
-      <p>Most patients wait too long to seek help. By the time they come in, the damage is often advanced. Early consultation opens up more treatment options — and better outcomes.</p>
+      <p>Most patients wait too long to seek help. By the time they come in, the damage is often advanced. Early consultation opens up more treatment options -- and better outcomes.</p>
     </blockquote>
 
     <h2>When does knee arthritis need surgery?</h2>
-    <p>Not every case of knee arthritis requires surgery. In fact, many patients respond well to conservative treatments — especially when the condition is caught early.</p>
+    <p>Not every case of knee arthritis requires surgery. In fact, many patients respond well to conservative treatments -- especially when the condition is caught early.</p>
 
     <h3>Conservative treatments that work</h3>
     <p>For early to moderate arthritis, the following approaches are often effective:</p>
@@ -96,7 +96,7 @@ export default function BlogPostPage({ params }: { params?: { slug?: string } })
     </ul>
 
     <h3>When surgery becomes the right option</h3>
-    <p>Surgery — typically <a href="/services/knee-replacement">total knee replacement</a> — is recommended when:</p>
+    <p>Surgery -- typically <a href="/services/knee-replacement">total knee replacement</a> -- is recommended when:</p>
     <ul>
       <li>Pain significantly affects daily life and sleep</li>
       <li>Conservative treatments no longer provide adequate relief</li>
@@ -113,7 +113,7 @@ export default function BlogPostPage({ params }: { params?: { slug?: string } })
     </a>
 
     <h2>The importance of early consultation</h2>
-    <p>The single most important takeaway is this: early consultation gives you more options. Whether it's physiotherapy, PRP, or a carefully planned surgery — the sooner you have an accurate diagnosis, the better your outcome will be.</p>
+    <p>The single most important takeaway is this: early consultation gives you more options. Whether it's physiotherapy, PRP, or a carefully planned surgery -- the sooner you have an accurate diagnosis, the better your outcome will be.</p>
     <p>If you're experiencing any of the symptoms mentioned above, don't wait for the pain to become unbearable. A 20-minute consultation can give you clarity about your condition and a clear path forward.</p>
   </div>
 
@@ -172,7 +172,7 @@ export default function BlogPostPage({ params }: { params?: { slug?: string } })
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q"><span>At what age does knee arthritis usually start?</span><div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
-        <div class="faq-a"><p>While it's most common after age 50, knee arthritis can develop earlier — especially in people with previous injuries, obesity, or a family history. Symptoms at any age warrant a consultation.</p></div>
+        <div class="faq-a"><p>While it's most common after age 50, knee arthritis can develop earlier -- especially in people with previous injuries, obesity, or a family history. Symptoms at any age warrant a consultation.</p></div>
       </div>
       <div class="faq-item" onclick="toggleFaq(this)">
         <div class="faq-q"><span>Is walking good or bad for knee arthritis?</span><div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div>
@@ -200,7 +200,7 @@ export default function BlogPostPage({ params }: { params?: { slug?: string } })
     </div>
     <div class="cta-band-info">
       <span>📍 {config.clinic.hospital}, {config.clinic.city}</span>
-      <span>🕐 Mon–Sat: 6:00 PM – 9:00 PM</span>
+      <span>🕐 Mon-Sat: 6:00 PM - 9:00 PM</span>
     </div>
   </div>
 </section>

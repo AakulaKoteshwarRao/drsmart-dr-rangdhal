@@ -9,7 +9,7 @@ const playIcon = (
   <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
 )
 
-// Filters built from conditions in default.json — specialty agnostic
+// Filters built from conditions in default.json -- specialty agnostic
 const conditionFilters = (d.conditions || []).slice(0, 5).map((c: any) => ({
   label: c.title || c.label,
   value: (c.slug || (c.label || '').toLowerCase().replace(/\s+/g, '-')),

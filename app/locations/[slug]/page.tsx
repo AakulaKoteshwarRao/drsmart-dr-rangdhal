@@ -48,12 +48,12 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
 </nav>
 
 <!-- ============================================================
-     S1: H1 — semantic variation
+     S1: H1 -- semantic variation
      ============================================================ -->
 <section class="spoke-hero">
   <div class="sec-label"><span>Location</span></div>
   <h1>{config.entity?.medicalSpecialty || config.doctor?.experience?.[0]?.role || 'Specialist'} Near <em>{config.clinic.area}</em></h1>
-  <p class="spoke-hero-desc">Looking for a trusted specialist near {config.clinic.area}? {config.doctor.name} is available for consultations — contact us for directions and timing.</p>
+  <p class="spoke-hero-desc">Looking for a trusted specialist near {config.clinic.area}? {config.doctor.name} is available for consultations -- contact us for directions and timing.</p>
   <a href="/appointment" class="spoke-hero-cta">Book Appointment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
 </section>
 
@@ -76,12 +76,12 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
       <div class="qf-card">
         <div class="qf-icon" style="background:linear-gradient(135deg,var(--secondary),var(--secondary-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
         <h3>Travel Time</h3>
-        <div class="qf-val">5–10 min</div>
+        <div class="qf-val">5-10 min</div>
       </div>
       <div class="qf-card">
         <div class="qf-icon" style="background:linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
         <h3>Distance</h3>
-        <div class="qf-val">2–3 km</div>
+        <div class="qf-val">2-3 km</div>
       </div>
       <div class="qf-card">
         <div class="qf-icon" style="background:linear-gradient(135deg,var(--accent),var(--accent-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
@@ -122,7 +122,7 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
 </div>
 
 <!-- ============================================================
-     S6: WHY PATIENTS FROM [AREA] VISIT — unique reasons
+     S6: WHY PATIENTS FROM [AREA] VISIT -- unique reasons
      ============================================================ -->
 <div class="sec-teal">
   <div class="sec-pad">
@@ -131,17 +131,17 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
       <h2 class="sec-title">Why patients from {config.clinic.area} choose us.</h2>
     </div>
     <div class="reasons-list">
-      <div class="reason-row"><div class="reason-icon" style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><span>Located at {config.clinic.address} — just minutes from {config.clinic.area}</span></div>
-      <div class="reason-row"><div class="reason-icon" style="background:linear-gradient(135deg,var(--secondary),var(--secondary-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span>5–10 minute drive from most parts of {config.clinic.area} — convenient for follow-up visits</span></div>
+      <div class="reason-row"><div class="reason-icon" style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><span>Located at {config.clinic.address} -- just minutes from {config.clinic.area}</span></div>
+      <div class="reason-row"><div class="reason-icon" style="background:linear-gradient(135deg,var(--secondary),var(--secondary-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><span>5-10 minute drive from most parts of {config.clinic.area} -- convenient for follow-up visits</span></div>
       <div class="reason-row"><div class="reason-icon" style="background:linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><span>{config.doctor.name} has extensive experience serving patients from {config.clinic.area} and surrounding areas</span></div>
-      <div class="reason-row"><div class="reason-icon" style="background:linear-gradient(135deg,var(--accent),var(--accent-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span>Modern diagnostic equipment — complete workup available in a single visit</span></div>
+      <div class="reason-row"><div class="reason-icon" style="background:linear-gradient(135deg,var(--accent),var(--accent-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><span>Modern diagnostic equipment -- complete workup available in a single visit</span></div>
       <div class="reason-row"><div class="reason-icon" style="background:linear-gradient(135deg,var(--primary),var(--primary-dark));"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div><span>Hundreds of successful outcomes for patients from {config.clinic.area} and neighbouring localities</span></div>
     </div>
   </div>
 </div>
 
 <!-- ============================================================
-     S7: ABOUT THE DOCTOR — mini card with link
+     S7: ABOUT THE DOCTOR -- mini card with link
      ============================================================ -->
 <div class="sec-white">
   <div class="sec-pad">
@@ -162,7 +162,7 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
 </div>
 
 <!-- ============================================================
-     S8: NEARBY AREAS — adjacent spoke links
+     S8: NEARBY AREAS -- adjacent spoke links
      ============================================================ -->
 <div class="sec-grey">
   <div class="sec-pad">
@@ -180,7 +180,7 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
 </div>
 
 <!-- ============================================================
-     S9: FAQ — area-specific unique questions
+     S9: FAQ -- area-specific unique questions
      ============================================================ -->
 <div class="sec-white">
   <div class="sec-pad">
@@ -189,7 +189,7 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
       <h2 class="sec-title">Questions from {config.clinic.area} patients.</h2>
     </div>
     <div class="faq-list">
-      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>How far is {config.clinic.name} from {config.clinic.area}?</span><div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p>{config.clinic.name} is located right on {config.clinic.area}, {config.clinic.area} itself — just 2–3 km from most parts of the area. Travel time is typically 5–10 minutes by car.</p></div></div>
+      <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>How far is {config.clinic.name} from {config.clinic.area}?</span><div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p>{config.clinic.name} is located right on {config.clinic.area}, {config.clinic.area} itself -- just 2-3 km from most parts of the area. Travel time is typically 5-10 minutes by car.</p></div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>Is parking available at the hospital?</span><div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p>Bike and car parking available on Street No. 1 outside {config.clinic.hospital}.</p></div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>What services are available for {config.clinic.area} residents?</span><div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p>We offer {config.services?.slice(0,3).map(s=>s.name).join(', ')} and more. All consultations are performed at {config.clinic.address}.</p></div></div>
       <div class="faq-item" onclick="toggleFaq(this)"><div class="faq-q"><span>Can I book an appointment online from {config.clinic.area}?</span><div class="faq-toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div></div><div class="faq-a"><p>Yes. You can book online through our <a href="/appointment" style="color:var(--secondary);font-weight:600;">appointment page</a> or message us directly on <a href="https://wa.me/{config.clinic.whatsapp}" style="color:var(--secondary);font-weight:600;">WhatsApp</a>. Same-day appointments are often available.</p></div></div>
@@ -198,7 +198,7 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
 </div>
 
 <!-- ============================================================
-     S10: INTERNAL LINKS — hub link, spoke links, service links
+     S10: INTERNAL LINKS -- hub link, spoke links, service links
      ============================================================ -->
 <div class="sec-teal">
   <div class="sec-pad">
@@ -228,7 +228,7 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
   <div class="cta-band-inner">
     <div class="cta-band-content">
       <h2>Need a specialist? Don't wait.</h2>
-      <p>Book a consultation near {config.clinic.area}. Expert diagnosis, honest advice, and a clear treatment plan — all in your first visit.</p>
+      <p>Book a consultation near {config.clinic.area}. Expert diagnosis, honest advice, and a clear treatment plan -- all in your first visit.</p>
     </div>
     <div class="cta-band-actions">
       <a href="/appointment" class="cta-primary">Book Appointment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
@@ -236,7 +236,7 @@ export default function LocationSpokePage({ params }: { params?: { slug?: string
     </div>
     <div class="cta-band-info">
       <span>📍 {config.clinic.address} {config.clinic.area}, {config.clinic.city}</span>
-      <span>🕐 {config.clinic.hours || "Mon–Sat: 9:00 AM – 8:00 PM"}</span>
+      <span>🕐 {config.clinic.hours || "Mon-Sat: 9:00 AM - 8:00 PM"}</span>
     </div>
   </div>
 </section>

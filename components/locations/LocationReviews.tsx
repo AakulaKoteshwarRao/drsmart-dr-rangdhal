@@ -20,7 +20,7 @@ export default function LocationReviews() {
               {[0,1,2,3,4].map(j => <svg key={j} viewBox="0 0 24 24"><path d={starPath}/></svg>)}
             </div>
             <p className="loc-review-text">"{r.quote}"</p>
-            <span className="loc-review-name">— {r.author}</span>
+            <span className="loc-review-name">-- {r.author}</span>
           </div>
         ))}
       </div>

@@ -5,7 +5,7 @@ import type { ClinicInfo } from '@/lib/types'
 
 const d = defaultData
 
-// Reasons pulled from conditions + procedures in default.json — specialty agnostic
+// Reasons pulled from conditions + procedures in default.json -- specialty agnostic
 const reasons = [
   ...(d.conditions || []).slice(0, 4).map((c: any) => c.title || c.label),
   ...(d.procedures || []).slice(0, 3).map((p: any) => p.title || p.label),
@@ -14,7 +14,7 @@ const reasons = [
   'Other',
 ]
 
-const times = ['9:00 AM – 11:00 AM', '11:00 AM – 1:00 PM', '2:00 PM – 4:00 PM', '4:00 PM – 5:00 PM']
+const times = ['9:00 AM - 11:00 AM', '11:00 AM - 1:00 PM', '2:00 PM - 4:00 PM', '4:00 PM - 5:00 PM']
 
 const waIcon = (
   <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: '20px', height: '20px' }}>

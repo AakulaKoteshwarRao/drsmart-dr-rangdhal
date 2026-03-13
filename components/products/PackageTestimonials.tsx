@@ -23,7 +23,7 @@ const testimonials = reviews.length > 0
   : [
       { initials: 'RK', grad: grads[0], name: 'Rajesh K.', pkg: packages[0]?.title || 'Consultation Package', quote: 'The package was clearly explained. I knew exactly what was included and the total cost. No surprises at all.' },
       { initials: 'SP', grad: grads[1], name: 'Sunitha P.', pkg: packages[1]?.title || 'Treatment Package',    quote: 'I was worried about costs but the package was affordable and the results were excellent. Everything explained upfront.' },
-      { initials: 'VM', grad: grads[2], name: 'Venkat M.', pkg: packages[2]?.title || 'Follow-up Package',    quote: 'The package covered everything — from tests to treatment to follow-up. A very smooth experience overall.' },
+      { initials: 'VM', grad: grads[2], name: 'Venkat M.', pkg: packages[2]?.title || 'Follow-up Package',    quote: 'The package covered everything -- from tests to treatment to follow-up. A very smooth experience overall.' },
     ]
 
 const stars = Array(5).fill(null)

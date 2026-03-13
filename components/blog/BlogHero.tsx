@@ -9,7 +9,7 @@ export default function BlogHero() {
       <div className="sec-label"><span>{d.clinic.name} Resources</span></div>
       <h1>Expert insights on <em>{specialty.toLowerCase()}.</em></h1>
       <p className="blog-hero-text">
-        Articles, guides, and patient resources written by {d.doctor?.name || 'our specialist'} — covering {specialty.toLowerCase()}, treatment options, and everything in between.
+        Articles, guides, and patient resources written by {d.doctor?.name || 'our specialist'} -- covering {specialty.toLowerCase()}, treatment options, and everything in between.
       </p>
     </section>
   )
