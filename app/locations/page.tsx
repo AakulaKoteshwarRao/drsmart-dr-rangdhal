@@ -22,7 +22,7 @@ import '../styles/locations.css'
 export default async function LocationsPage() {
   const cfg = await loadConfig()
   const sc = buildSchemaConfig(cfg)
-  const pageSchemas = generatePageSchemas(schemaConfig, {
+  const pageSchemas = generatePageSchemas(sc, {
     pageType: 'home',
     meta: {
       path:        '/locations',

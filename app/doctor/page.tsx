@@ -14,7 +14,7 @@ import '../styles/doctor.css'
 export default async function DoctorPage() {
   const cfg = await loadConfig()
   const sc = buildSchemaConfig(cfg)
-  const pageSchemas = generatePageSchemas(schemaConfig, {
+  const pageSchemas = generatePageSchemas(sc, {
     pageType: 'doctor',
     meta: {
       path:        '/doctor',

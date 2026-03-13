@@ -15,7 +15,7 @@ import '../styles/appointment.css'
 export default async function AppointmentPage() {
   const cfg = await loadConfig()
   const sc = buildSchemaConfig(cfg)
-  const pageSchemas = generatePageSchemas(schemaConfig, {
+  const pageSchemas = generatePageSchemas(sc, {
     pageType: 'home',
     meta: {
       path:        '/appointment',

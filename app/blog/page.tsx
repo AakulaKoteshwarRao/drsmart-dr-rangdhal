@@ -14,7 +14,7 @@ import '../styles/blog.css'
 export default async function BlogPage() {
   const cfg = await loadConfig()
   const sc = buildSchemaConfig(cfg)
-  const pageSchemas = generatePageSchemas(schemaConfig, {
+  const pageSchemas = generatePageSchemas(sc, {
     pageType: 'home',
     meta: {
       path:        '/blog',
