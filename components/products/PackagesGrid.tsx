@@ -12,7 +12,7 @@ const starIcon = (
   </svg>
 )
 
-export default function PackagesGrid({ packages }: { packages: PackageItem[] }) {
+export default function PackagesGrid({ packages }: { packages: any[] }) {
   return (
     <section className="packages-section" style={{ background: 'var(--primary-light)' }}>
       <div className="sec-header">
