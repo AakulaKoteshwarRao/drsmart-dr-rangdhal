@@ -51,7 +51,7 @@ export default function VideoGrid({ stories }: { stories: VideoStory[] }) {
               </div>
               <div className="video-info">
                 <h3>{s.title}</h3>
-                <p>{s.excerpt}</p>
+                <p>{(s as any).excerpt}</p>
               </div>
             </div>
           ))}
