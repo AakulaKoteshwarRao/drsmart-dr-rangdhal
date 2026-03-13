@@ -13,7 +13,7 @@ export default async function TermsPage() {
       <main style={{ paddingBottom: '64px' }}>
         <LegalPage
           badge="Legal"
-          title="Terms & Conditions"
+          title={'Terms & Conditions'}
           updated="March 1, 2026"
           sections={[
             { title: 'Acceptance of Terms', content: 'By accessing and using this website, you accept and agree to be bound by these terms and conditions. If you do not agree with any part of these terms, please do not use this website.' },
