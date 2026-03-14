@@ -88,7 +88,7 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
       try {
         const wRes = await fetch(
           `${SB_URL}/rest/v1/websites?select=photos&client_id=eq.${CLIENT_ID}&limit=1`,
-          { headers: { apikey: SB_KEY!, Authorization: `Bearer ${SB_KEY}` }, cache: 'no-store' }
+          { headers: { apikey: SB_KEY!, Authorization: `Bearer ${SB_KEY}` }, cache: 'force-cache' }
         )
         const wRows = await wRes.json()
         const uploadedPhotos: Record<string, string> = wRows?.[0]?.photos || {}
