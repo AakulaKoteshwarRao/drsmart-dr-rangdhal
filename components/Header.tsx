@@ -3,20 +3,36 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import type { ClinicInfo } from '@/lib/types'
 
-const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/doctor', label: 'Doctor' },
-  { href: '/team', label: 'Team' },
-  { href: '/services', label: 'Services' },
-  { href: '/products', label: 'Products' },
-  { href: '/testimonials', label: 'Testimonials' },
-  { href: '/locations', label: 'Locations' },
-  { href: '/blog', label: 'Blog' },
-]
+const ALL_LINKS: Record<string, { href: string; label: string }> = {
+  home:         { href: '/',            label: 'Home' },
+  about:        { href: '/about',       label: 'About' },
+  doctor:       { href: '/doctor',      label: 'Doctor' },
+  team:         { href: '/team',        label: 'Team' },
+  services:     { href: '/services',    label: 'Services' },
+  products:     { href: '/products',    label: 'Products' },
+  testimonials: { href: '/testimonials',label: 'Testimonials' },
+  locations:    { href: '/locations',   label: 'Locations' },
+  blog:         { href: '/blog',        label: 'Blog' },
+  contact:      { href: '/contact',     label: 'Contact' },
+  reviews:      { href: '/reviews',     label: 'Reviews' },
+  conditions:   { href: '/conditions',  label: 'Conditions' },
+  procedures:   { href: '/procedures',  label: 'Procedures' },
+}
 
-export default function Header({ clinic }: { clinic: ClinicInfo }) {
+const MENU_BY_ENTITY: Record<string, string[]> = {
+  'Physician':          ['home', 'about', 'doctor', 'conditions', 'procedures', 'reviews', 'contact'],
+  'Solo Clinic':        ['home', 'about', 'doctor', 'services', 'products', 'blog', 'reviews', 'contact'],
+  'Multi-Doctor Clinic':['home', 'about', 'team', 'services', 'products', 'blog', 'reviews', 'contact'],
+  'Group Practice':     ['home', 'locations', 'services', 'about', 'blog', 'reviews', 'contact'],
+}
+
+const DEFAULT_MENU = ['home', 'about', 'doctor', 'services', 'blog', 'contact']
+
+export default function Header({ clinic, entityType }: { clinic: ClinicInfo; entityType?: string }) {
   const pathname = usePathname()
+  const menuKeys = (entityType && MENU_BY_ENTITY[entityType]) || DEFAULT_MENU
+  const navLinks = menuKeys.map(k => ALL_LINKS[k]).filter(Boolean)
+
   return (
     <header className="header">
       <div className="header-inner">
