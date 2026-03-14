@@ -24,7 +24,7 @@ export default async function ProductsPage() {
         <GuidanceSection clinic={cfg.clinic} />
         <ProductsFAQ />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

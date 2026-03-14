@@ -43,7 +43,7 @@ export default async function BlogPage() {
         <FeaturedPost post={featured} />
         <BlogGrid posts={rest} conditions={cfg.conditions} />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

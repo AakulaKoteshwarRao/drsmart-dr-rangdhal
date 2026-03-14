@@ -37,7 +37,7 @@ export default async function DoctorPage() {
         <CredentialsGrid doctor={cfg.doctor} clinic={cfg.clinic} />
         <DoctorFAQ faqs={cfg.doctor.faqs} />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

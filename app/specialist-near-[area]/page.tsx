@@ -14,7 +14,7 @@ export default async function LocationSpokePage() {
       <main style={{ paddingBottom: '64px' }}>
         <LocationSpoke />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

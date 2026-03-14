@@ -74,7 +74,7 @@ export default async function HomePage() {
         <FAQ items={cfg.faq} />
         <BlogPreview posts={cfg.blog} />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

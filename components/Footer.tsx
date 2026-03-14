@@ -1,40 +1,74 @@
-import defaultData from '../data/default.json'
-import type { ClinicInfo } from '@/lib/types'
-
-const d = defaultData
+import type { ClinicInfo, ClinicConfig } from '@/lib/types'
 
 const pinIcon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
 const phoneIcon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.11 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
 const mailIcon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
 const clockIcon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
 
-const quickLinks = [
+const QUICK_LINKS_BY_ENTITY: Record<string, { label: string; href: string }[]> = {
+  'Physician': [
+    { label: 'About', href: '/about' },
+    { label: 'Doctor', href: '/doctor' },
+    { label: 'Conditions', href: '/conditions' },
+    { label: 'Procedures', href: '/procedures' },
+    { label: 'Reviews', href: '/reviews' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Book Appointment', href: '/appointment' },
+  ],
+  'Solo Clinic': [
+    { label: 'About', href: '/about' },
+    { label: 'Doctor', href: '/doctor' },
+    { label: 'Services', href: '/services' },
+    { label: 'Products', href: '/products' },
+    { label: 'Reviews', href: '/reviews' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Book Appointment', href: '/appointment' },
+  ],
+  'Multi-Doctor Clinic': [
+    { label: 'About', href: '/about' },
+    { label: 'Team', href: '/team' },
+    { label: 'Services', href: '/services' },
+    { label: 'Products', href: '/products' },
+    { label: 'Reviews', href: '/reviews' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Book Appointment', href: '/appointment' },
+  ],
+  'Group Practice': [
+    { label: 'About', href: '/about' },
+    { label: 'Locations', href: '/locations' },
+    { label: 'Services', href: '/services' },
+    { label: 'Reviews', href: '/reviews' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Book Appointment', href: '/appointment' },
+  ],
+}
+
+const DEFAULT_QUICK_LINKS = [
   { label: 'About', href: '/about' },
   { label: 'Doctor', href: '/doctor' },
-  { label: 'Team', href: '/team' },
-  { label: 'Packages', href: '/products' },
-  { label: 'Success Stories', href: '/success-stories' },
-  { label: 'Testimonials', href: '/testimonials' },
-  { label: 'Locations', href: '/locations' },
+  { label: 'Services', href: '/services' },
   { label: 'Blog', href: '/blog' },
   { label: 'Book Appointment', href: '/appointment' },
 ]
 
-// Service links pulled from default.json -- specialty agnostic
-const serviceLinks = [
-  ...(d.services?.conditions || []).slice(0, 4).map((s: any) => ({
-    label: s.title, href: `/services/${s.slug}`
-  })),
-  ...(d.services?.procedures || []).slice(0, 2).map((p: any) => ({
-    label: p.title, href: `/procedures/${p.slug}`
-  })),
-  { label: 'View All Services', href: '/services' },
-]
-
-export default function Footer({ clinic }: { clinic: ClinicInfo }) {
+export default function Footer({ clinic, config }: { clinic: ClinicInfo; config?: Partial<ClinicConfig> }) {
   const year = new Date().getFullYear()
   const social = clinic.social || {}
-  const insurers = clinic.insurers
+  const entityType = clinic.type || ''
+
+  const quickLinks = QUICK_LINKS_BY_ENTITY[entityType] || DEFAULT_QUICK_LINKS
+
+  // Service links from real config
+  const serviceLinks = [
+    ...((config?.services?.conditions || []).slice(0, 4).map((s: any) => ({
+      label: s.title, href: `/conditions/${s.slug}`
+    }))),
+    ...((config?.procedures || []).slice(0, 2).map((p: any) => ({
+      label: p.title, href: `/procedures/${p.slug}`
+    }))),
+    { label: 'View All Services', href: '/services' },
+  ]
+
   return (
     <footer className="footer" style={{ marginBottom: '64px' }}>
       <div className="footer-inner">
@@ -51,7 +85,7 @@ export default function Footer({ clinic }: { clinic: ClinicInfo }) {
         <div>
           <h4>Services</h4>
           <div className="footer-links">
-            {serviceLinks.map((l, i) => <a key={i} href={l.href}>{l.label}</a>)}
+            {serviceLinks.map((l, i) => <a key={i} href={(l as any).href}>{(l as any).label}</a>)}
           </div>
         </div>
 

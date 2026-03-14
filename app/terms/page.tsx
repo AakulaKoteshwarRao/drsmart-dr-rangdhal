@@ -35,7 +35,7 @@ export default async function TermsPage() {
             { title: 'Contact', content: 'For any questions about these terms, please contact us at our clinic or via WhatsApp at the number listed on this page.' },
           ]}
         />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

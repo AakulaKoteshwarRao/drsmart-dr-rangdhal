@@ -18,7 +18,7 @@ export default async function TeamPage() {
         <TeamCarousel members={cfg.team} />
         <TeamFAQ clinic={cfg.clinic} />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

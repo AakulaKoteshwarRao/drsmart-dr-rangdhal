@@ -39,7 +39,7 @@ export default async function AppointmentPage() {
         <ClinicStrip clinic={cfg.clinic} />
         <WhatToExpect />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

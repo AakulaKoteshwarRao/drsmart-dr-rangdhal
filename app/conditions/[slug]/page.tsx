@@ -36,7 +36,7 @@ export default async function ConditionDetailPage({ params }: { params?: { slug?
       <main style={{ paddingBottom: '64px' }}>
         <ConditionDetail />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

@@ -28,7 +28,7 @@ export default async function DisclaimerPage() {
             { title: 'Contact', content: 'If you have questions about the information on this website or wish to schedule a consultation, please contact us at our clinic or via WhatsApp.' },
           ]}
         />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

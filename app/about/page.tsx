@@ -49,7 +49,7 @@ export default async function AboutPage() {
         <AboutFAQ clinic={cfg.clinic} />
         <LocationStrip clinic={cfg.clinic} />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

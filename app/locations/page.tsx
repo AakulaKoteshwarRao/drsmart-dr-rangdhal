@@ -53,7 +53,7 @@ export default async function LocationsPage() {
         <LocationFAQ />
         <InternalLinks areas={cfg.areas} doctorName={cfg.doctor.name} />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

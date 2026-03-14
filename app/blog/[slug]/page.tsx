@@ -135,7 +135,7 @@ export default async function BlogPostPage({ params }: { params?: { slug?: strin
           </div>
         </section>
 
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

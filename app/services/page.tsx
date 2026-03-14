@@ -41,7 +41,7 @@ export default async function ServicesPage() {
         <ProceduresGrid procedures={cfg.services.procedures} />
         <ServicesFAQ />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

@@ -16,7 +16,7 @@ export default async function GalleryPage() {
         <GalleryHero />
         <GalleryGrid />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

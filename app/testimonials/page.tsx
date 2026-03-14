@@ -20,7 +20,7 @@ export default async function TestimonialsPage() {
           <ReviewsGrid reviews={cfg.testimonials.reviews} googleUrl={cfg.testimonials.googleUrl} />
           <TestimonialsFAQ />
           <CTABand cta={cfg.ctaBand} />
-          <Footer clinic={cfg.clinic} />
+          <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       ) : (
         <PageDisabled title="Testimonials" clinic={cfg.clinic} />

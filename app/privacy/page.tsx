@@ -49,7 +49,7 @@ export default async function PrivacyPage() {
             { title: 'Contact', content: 'For any privacy-related queries, please contact us at our clinic or via WhatsApp at {clinic phone}.' },
           ]}
         />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

@@ -36,7 +36,7 @@ export default async function ProcedureDetailPage({ params }: { params?: { slug?
       <main style={{ paddingBottom: '64px' }}>
         <ProcedureDetail />
         <CTABand cta={cfg.ctaBand} />
-        <Footer clinic={cfg.clinic} />
+        <Footer clinic={cfg.clinic} config={cfg} />
       </main>
       <StickyBar clinic={cfg.clinic} />
     </>

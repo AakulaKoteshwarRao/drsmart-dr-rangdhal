@@ -50,7 +50,7 @@ export default async function LocationSpokePage({ params }: { params?: { slug?: 
           }}
         />
       </main>
-      <Footer clinic={cfg.clinic} />
+      <Footer clinic={cfg.clinic} config={cfg} />
       <StickyBar clinic={cfg.clinic} />
     </>
   )
