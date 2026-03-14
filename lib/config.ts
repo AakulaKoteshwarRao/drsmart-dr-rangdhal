@@ -102,6 +102,7 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
           heroImage:  uploadedPhotos['hero_image'] || '',
           aboutImage: uploadedPhotos['about']      || '',
         }
+        console.log('[photos] clinic.logo after inject:', transformed.clinic.logo)
         transformed.doctor = {
           ...transformed.doctor,
           photo: uploadedPhotos['doctor_card'] || transformed.doctor.photo || '',
