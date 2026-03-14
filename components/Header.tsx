@@ -39,7 +39,7 @@ export default function Header({ clinic }: { clinic: ClinicInfo }) {
         <Link href="/" className="logo">
           {clinic.logo ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={clinic.logo} alt={clinic.name} style={{ height: 44, width: 'auto', maxWidth: 160, objectFit: 'contain', display: 'block' }} />
+            <img src={clinic.logo} alt={clinic.name} style={{ height: 56, width: 'auto', maxWidth: 200, objectFit: 'contain', display: 'block' }} />
           ) : (
             <div style={{
               width: 44, height: 44, borderRadius: 10,

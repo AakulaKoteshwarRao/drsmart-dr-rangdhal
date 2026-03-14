@@ -91,8 +91,6 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
           { headers: { apikey: SB_KEY!, Authorization: `Bearer ${SB_KEY}` }, cache: 'force-cache' }
         )
         const wRows = await wRes.json()
-        console.log('[photos] wRes status:', wRes.status, 'CLIENT_ID:', CLIENT_ID)
-        console.log('[photos] wRows:', JSON.stringify(wRows).slice(0, 200))
         const uploadedPhotos: Record<string, string> = wRows?.[0]?.photos || {}
         transformed.photos = uploadedPhotos
         // Inject into clinic and doctor — spread to avoid frozen object mutation
@@ -102,7 +100,6 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
           heroImage:  uploadedPhotos['hero_image'] || '',
           aboutImage: uploadedPhotos['about']      || '',
         }
-        console.log('[photos] clinic.logo after inject:', transformed.clinic.logo)
         transformed.doctor = {
           ...transformed.doctor,
           photo: uploadedPhotos['doctor_card'] || transformed.doctor.photo || '',
@@ -162,5 +159,3 @@ export function getConfig(): ClinicConfig {
 export async function loadConfig(): Promise<ClinicConfig> {
   return initConfig()
 }
-// cache bust Sat Mar 14 16:16:11 IST 2026
-// rls fix Sat Mar 14 16:25:39 IST 2026
