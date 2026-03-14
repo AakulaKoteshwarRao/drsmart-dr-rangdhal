@@ -95,13 +95,17 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
         console.log('[photos] wRows:', JSON.stringify(wRows).slice(0, 200))
         const uploadedPhotos: Record<string, string> = wRows?.[0]?.photos || {}
         transformed.photos = uploadedPhotos
-        // Inject into clinic and doctor
-        console.log('[photos] uploadedPhotos keys:', Object.keys(uploadedPhotos))
-        console.log('[photos] logo URL:', uploadedPhotos['logo'])
-        transformed.clinic.logo       = uploadedPhotos['logo']       || ''
-        transformed.clinic.heroImage  = uploadedPhotos['hero_image'] || ''
-        transformed.clinic.aboutImage = uploadedPhotos['about']      || ''
-        transformed.doctor.photo      = uploadedPhotos['doctor_card'] || transformed.doctor.photo || ''
+        // Inject into clinic and doctor — spread to avoid frozen object mutation
+        transformed.clinic = {
+          ...transformed.clinic,
+          logo:       uploadedPhotos['logo']       || '',
+          heroImage:  uploadedPhotos['hero_image'] || '',
+          aboutImage: uploadedPhotos['about']      || '',
+        }
+        transformed.doctor = {
+          ...transformed.doctor,
+          photo: uploadedPhotos['doctor_card'] || transformed.doctor.photo || '',
+        }
         // Inject photos into conditions
         transformed.conditions = transformed.conditions.map((c: any) => ({
           ...c,
