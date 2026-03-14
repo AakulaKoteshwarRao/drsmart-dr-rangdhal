@@ -94,6 +94,8 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
         const uploadedPhotos: Record<string, string> = wRows?.[0]?.photos || {}
         transformed.photos = uploadedPhotos
         // Inject into clinic and doctor
+        console.log('[photos] uploadedPhotos keys:', Object.keys(uploadedPhotos))
+        console.log('[photos] logo URL:', uploadedPhotos['logo'])
         transformed.clinic.logo       = uploadedPhotos['logo']       || ''
         transformed.clinic.heroImage  = uploadedPhotos['hero_image'] || ''
         transformed.clinic.aboutImage = uploadedPhotos['about']      || ''
