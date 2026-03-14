@@ -28,9 +28,9 @@ const MENU_BY_ENTITY: Record<string, string[]> = {
 
 const DEFAULT_MENU = ['home', 'about', 'doctor', 'services', 'blog', 'contact']
 
-export default function Header({ clinic, entityType }: { clinic: ClinicInfo; entityType?: string }) {
+export default function Header({ clinic }: { clinic: ClinicInfo }) {
   const pathname = usePathname()
-  const menuKeys = (entityType && MENU_BY_ENTITY[entityType]) || DEFAULT_MENU
+  const menuKeys = (clinic.type && MENU_BY_ENTITY[clinic.type]) || DEFAULT_MENU
   const navLinks = menuKeys.map(k => ALL_LINKS[k]).filter(Boolean)
 
   return (

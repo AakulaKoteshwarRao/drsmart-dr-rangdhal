@@ -108,6 +108,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
   const clinic: ClinicInfo = {
     name:        s(s02.name, 'Clinic'),
     tagline:     s(s02.alternateName, ''),
+    type:        s(s00.entityType, ''),
     phone,
     whatsapp,
     email:       s(s02.email, ''),
@@ -135,9 +136,16 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
   const doctorName    = s(s03.name, 'Doctor')
   const doctorDegrees = a(s03.degrees).join(', ')
 
-  const yearsExp       = s(s03.stats?.[0]?.number ?? s02.ratingValue, '')
-  const patientCount   = s(s03.stats?.[1]?.number, '')
-  const procedureCount = s(s03.stats?.[2]?.number, '')
+  const statsList = a(s03.stats)
+  const findStat = (keywords: string[]) => {
+    const found = statsList.find((st: any) =>
+      keywords.some(k => s(st.label, '').toLowerCase().includes(k.toLowerCase()))
+    )
+    return found ? s(found.number, '') : ''
+  }
+  const yearsExp       = findStat(['year', 'experience', 'exp'])
+  const patientCount   = findStat(['patient', 'happy', 'treated'])
+  const procedureCount = findStat(['surgery', 'surgeries', 'procedure', 'operation'])
   const googleRating   = s(s02.ratingValue, '5.0')
   const reviewCount    = s(s02.reviewCount, '')
 
