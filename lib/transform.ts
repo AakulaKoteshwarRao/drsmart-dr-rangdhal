@@ -250,6 +250,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
       label,
       title:       label,
       description: s(c.descriptionShort ?? c.description, ''),
+      image:       '',
     }
   })
 
@@ -278,6 +279,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
       label,
       title:       label,
       description: s(p.descriptionShort ?? p.description, ''),
+      image:       '',
     }
   })
 
@@ -473,6 +475,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     schedule:       s(m.schedule, ''),
     gradient:       gt(i),
     isLead:         Boolean(m.isLead),
+    photo:          '',
   }))
 
   // ── Locations ─────────────────────────────────────────────────────────────
@@ -532,5 +535,6 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     team,
     locations,
     optionalPages,
+    photos:       {},
   }
 }

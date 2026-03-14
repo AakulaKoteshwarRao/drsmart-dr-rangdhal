@@ -42,7 +42,7 @@ export default async function HomePage() {
       <SchemaMarkup graphs={[pageSchemas]} />
       <Header clinic={cfg.clinic} />
       <main style={{ paddingBottom: '64px' }}>
-        <Hero hero={cfg.hero} />
+        <Hero hero={cfg.hero} clinic={cfg.clinic} />
         <TrustStrip items={cfg.trustStrip} />
         <WhyChoose cards={cfg.whyChoose} />
         <CardGrid

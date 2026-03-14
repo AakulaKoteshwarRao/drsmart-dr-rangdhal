@@ -1,4 +1,4 @@
-import type { HeroSection } from '@/lib/types'
+import type { HeroSection, ClinicInfo } from '@/lib/types'
 
 const StarIcon = () => (
   <svg viewBox="0 0 24 24" fill="currentColor">
@@ -30,7 +30,7 @@ const PersonIcon = () => (
   </svg>
 )
 
-export default function Hero({ hero }: { hero: HeroSection }) {
+export default function Hero({ hero, clinic }: { hero: HeroSection; clinic: ClinicInfo }) {
   return (
     <section className="hero">
       <div className="hero-content">
@@ -59,10 +59,15 @@ export default function Hero({ hero }: { hero: HeroSection }) {
 
       <div className="hero-image">
         <div className="doctor-photo-wrapper">
-          <div className="doctor-photo-placeholder">
-            <PersonIcon />
-            Doctor Photo
-          </div>
+          {clinic.heroImage ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={clinic.heroImage} alt={clinic.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '16px' }} />
+          ) : (
+            <div className="doctor-photo-placeholder">
+              <PersonIcon />
+              Doctor Photo
+            </div>
+          )}
           <div className="floating-chip chip-rating">
             <StarIcon />
             {hero.chips.find(c => c.type === 'rating')?.text}

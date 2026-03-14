@@ -32,9 +32,13 @@ export default function TeamCarousel({ members }: { members: TeamMember[] }) {
           <div className="team-carousel" ref={ref}>
             {members.map((m, i) => (
               <div key={i} className="team-card">
-                <div className="team-card-photo" style={{ background: m.gradient }}>
-                  {personIcon}
-                  <span>Photo</span>
+                <div className="team-card-photo" style={{ background: m.gradient, position: 'relative', overflow: 'hidden' }}>
+                  {m.photo ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img src={m.photo} alt={m.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                  ) : (
+                    <>{personIcon}<span>Photo</span></>
+                  )}
                 </div>
                 <div className="team-card-body" style={{ padding: '1.5rem' }}>
                   {m.isLead && <div className="team-card-badge">* Lead Doctor</div>}

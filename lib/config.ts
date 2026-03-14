@@ -20,9 +20,11 @@ import type { ClinicConfig } from './types'
 import { transformConfig }   from './transform'
 import defaultConfig         from '../data/default.json'
 
-const SLUG   = process.env.NEXT_PUBLIC_CLINIC_SLUG
-const SB_URL = process.env.NEXT_PUBLIC_SUPABASE_URL
-const SB_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+const SLUG      = process.env.NEXT_PUBLIC_CLINIC_SLUG
+const SB_URL    = process.env.NEXT_PUBLIC_SUPABASE_URL
+const SB_KEY    = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID
+const BUCKET    = 'website-assets'
 
 // Module-level cache — resolved once per build/request cycle
 let _config: ClinicConfig | null = null
@@ -67,7 +69,59 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
     }
 
     console.log(`[config] Loaded Supabase config for: ${SLUG}`)
-    return transformConfig(configJson)
+    const transformed = transformConfig(configJson)
+
+    // Inject photo URLs from Supabase Storage
+    if (CLIENT_ID && SB_URL) {
+      const base = `${SB_URL}/storage/v1/object/public/${BUCKET}/${CLIENT_ID}`
+      const photoKeys = [
+        'logo', 'hero_image', 'doctor_card', 'about',
+        ...Array.from({ length: 10 }, (_, i) => `team_member_${i + 1}`),
+        ...Array.from({ length: 6 }, (_, i) => `clinic_${i + 1}`),
+        ...Array.from({ length: 6 }, (_, i) => `equipment_${i + 1}`),
+        ...Array.from({ length: 4 }, (_, i) => `doctor_${i + 1}`),
+        ...Array.from({ length: 4 }, (_, i) => `awards_${i + 1}`),
+        ...Array.from({ length: 4 }, (_, i) => `conference_${i + 1}`),
+        ...Array.from({ length: 4 }, (_, i) => `result_${i + 1}`),
+      ]
+      // Fetch websites row to get uploaded photo URLs
+      try {
+        const wRes = await fetch(
+          `${SB_URL}/rest/v1/websites?select=photos&client_id=eq.${CLIENT_ID}&limit=1`,
+          { headers: { apikey: SB_KEY!, Authorization: `Bearer ${SB_KEY}` }, cache: 'no-store' }
+        )
+        const wRows = await wRes.json()
+        const uploadedPhotos: Record<string, string> = wRows?.[0]?.photos || {}
+        transformed.photos = uploadedPhotos
+        // Inject into clinic and doctor
+        transformed.clinic.logo       = uploadedPhotos['logo']       || ''
+        transformed.clinic.heroImage  = uploadedPhotos['hero_image'] || ''
+        transformed.clinic.aboutImage = uploadedPhotos['about']      || ''
+        transformed.doctor.photo      = uploadedPhotos['doctor_card'] || transformed.doctor.photo || ''
+        // Inject photos into conditions
+        transformed.conditions = transformed.conditions.map((c: any) => ({
+          ...c,
+          image: uploadedPhotos[`condition_${c.href.split('/').pop()}`] || '',
+        }))
+        // Inject photos into procedures
+        transformed.procedures = transformed.procedures.map((p: any) => ({
+          ...p,
+          image: uploadedPhotos[`procedure_${p.href.split('/').pop()}`] || '',
+        }))
+        // Inject photos into team
+        transformed.team = transformed.team.map((m: any) => ({
+          ...m,
+          photo: uploadedPhotos[`team_member_${m.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`] || '',
+        }))
+      } catch (e) {
+        console.error('[config] Failed to fetch photos:', e)
+        transformed.photos = {}
+      }
+    } else {
+      transformed.photos = {}
+    }
+
+    return transformed
 
   } catch (err) {
     console.error('[config] Fetch error:', err)

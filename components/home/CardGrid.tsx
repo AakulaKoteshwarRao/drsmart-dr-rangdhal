@@ -42,11 +42,16 @@ export default function CardGrid({
       <div className="card-grid">
         {items.map((item, i) => (
           <a key={i} href={item.href} className="img-card">
-            <div className={`img-card-visual ${item.gradClass}`}>
-              <div className="card-visual-icon">
-                {icons[item.iconType] || icons.info}
-              </div>
-              <span className="card-visual-label">{item.label}</span>
+            <div className={`img-card-visual ${item.gradClass}`} style={{ position: 'relative', overflow: 'hidden' }}>
+              {item.image ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={item.image} alt={item.title} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+              ) : (
+                <div className="card-visual-icon">
+                  {icons[item.iconType] || icons.info}
+                </div>
+              )}
+              <span className="card-visual-label" style={{ position: 'relative', zIndex: 1 }}>{item.label}</span>
             </div>
             <div className="img-card-body" style={{ padding: "1.25rem" }}>
               <h3>{item.title}</h3>

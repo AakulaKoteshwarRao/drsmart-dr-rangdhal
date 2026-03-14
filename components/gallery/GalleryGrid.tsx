@@ -9,20 +9,25 @@ const nextIcon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stro
 const imgIcon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
 const docIcon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
 
-const items = [
-  { cat: 'clinic',      tag: 'Clinic',        grad: 'linear-gradient(145deg,var(--secondary),var(--secondary))',     title: 'Clinic -- Reception Area',          src: '' },
-  { cat: 'clinic',      tag: 'Clinic',        grad: 'linear-gradient(145deg,var(--secondary-deep),var(--secondary))', title: 'Consultation Room',               src: '' },
-  { cat: 'equipment',   tag: 'Equipment',     grad: 'linear-gradient(145deg,var(--primary),var(--primary-dark))',                        title: 'Diagnostic Equipment',           src: '' },
-  { cat: 'equipment',   tag: 'Equipment',     grad: 'linear-gradient(145deg,var(--secondary),#3CB8AF)',               title: 'Examination Unit',               src: '' },
-  { cat: 'equipment',   tag: 'Equipment',     grad: 'linear-gradient(145deg,var(--secondary-deep),#3CB8AF)',          title: 'Advanced Scanning Equipment',    src: '' },
-  { cat: 'doctor',      tag: 'Doctor',        grad: 'linear-gradient(145deg,var(--secondary),var(--primary))',        title: 'Doctor -- Consultation',          src: '' },
-  { cat: 'doctor',      tag: 'Doctor',        grad: 'linear-gradient(145deg,var(--secondary),var(--secondary-dark))', title: 'Doctor -- Procedure Prep',        src: '' },
-  { cat: 'awards',      tag: 'Awards',        grad: 'linear-gradient(145deg,var(--primary-dark),var(--secondary-deep))',                        title: 'Healthcare Excellence Recognition', src: '' },
-  { cat: 'conferences', tag: 'Conferences',   grad: 'linear-gradient(145deg,var(--secondary-deep),var(--secondary-dark))',                        title: 'National Medical Conference',    src: '' },
-  { cat: 'conferences', tag: 'Conferences',   grad: 'linear-gradient(145deg,var(--secondary-deep),var(--secondary-dark))',                        title: 'Annual Conference -- Presentation', src: '' },
-  { cat: 'results',     tag: 'Before & After', grad: 'linear-gradient(145deg,var(--primary),var(--primary-dark))',                       title: 'Treatment Outcome -- Case Study', src: '' },
-  { cat: 'results',     tag: 'Before & After', grad: 'linear-gradient(145deg,var(--secondary-deep),#3CB8AF)',         title: 'Patient Recovery -- Post Treatment', src: '' },
-]
+function buildItems(photos: Record<string, string>) {
+  const p = (key: string) => photos[key] || ''
+  return [
+    { cat: 'clinic',      tag: 'Clinic',         grad: 'linear-gradient(145deg,var(--secondary),var(--secondary))',            title: 'Clinic -- Reception Area',           src: p('clinic_1') },
+    { cat: 'clinic',      tag: 'Clinic',         grad: 'linear-gradient(145deg,var(--secondary-deep),var(--secondary))',       title: 'Consultation Room',                  src: p('clinic_2') },
+    { cat: 'clinic',      tag: 'Clinic',         grad: 'linear-gradient(145deg,var(--secondary),var(--secondary-dark))',       title: 'Clinic Interior',                    src: p('clinic_3') },
+    { cat: 'equipment',   tag: 'Equipment',      grad: 'linear-gradient(145deg,var(--primary),var(--primary-dark))',           title: 'Diagnostic Equipment',               src: p('equipment_1') },
+    { cat: 'equipment',   tag: 'Equipment',      grad: 'linear-gradient(145deg,var(--secondary),#3CB8AF)',                     title: 'Examination Unit',                   src: p('equipment_2') },
+    { cat: 'equipment',   tag: 'Equipment',      grad: 'linear-gradient(145deg,var(--secondary-deep),#3CB8AF)',                title: 'Advanced Scanning Equipment',        src: p('equipment_3') },
+    { cat: 'doctor',      tag: 'Doctor',         grad: 'linear-gradient(145deg,var(--secondary),var(--primary))',              title: 'Doctor -- Consultation',             src: p('doctor_1') },
+    { cat: 'doctor',      tag: 'Doctor',         grad: 'linear-gradient(145deg,var(--secondary),var(--secondary-dark))',       title: 'Doctor -- Procedure Prep',           src: p('doctor_2') },
+    { cat: 'awards',      tag: 'Awards',         grad: 'linear-gradient(145deg,var(--primary-dark),var(--secondary-deep))',    title: 'Healthcare Excellence Recognition',  src: p('awards_1') },
+    { cat: 'awards',      tag: 'Awards',         grad: 'linear-gradient(145deg,var(--secondary-deep),var(--primary-dark))',    title: 'Award Recognition',                  src: p('awards_2') },
+    { cat: 'conferences', tag: 'Conferences',    grad: 'linear-gradient(145deg,var(--secondary-deep),var(--secondary-dark))', title: 'National Medical Conference',         src: p('conference_1') },
+    { cat: 'conferences', tag: 'Conferences',    grad: 'linear-gradient(145deg,var(--secondary-deep),var(--secondary-dark))', title: 'Annual Conference -- Presentation',   src: p('conference_2') },
+    { cat: 'results',     tag: 'Before & After', grad: 'linear-gradient(145deg,var(--primary),var(--primary-dark))',           title: 'Treatment Outcome -- Case Study',    src: p('result_1') },
+    { cat: 'results',     tag: 'Before & After', grad: 'linear-gradient(145deg,var(--secondary-deep),#3CB8AF)',                title: 'Patient Recovery -- Post Treatment', src: p('result_2') },
+  ].filter(item => item.src !== '' || true) // show all, gradient fallback for empty
+}
 
 const tabs = [
   { label: 'All',            cat: 'all' },
@@ -34,7 +39,8 @@ const tabs = [
   { label: 'Before & After', cat: 'results' },
 ]
 
-export default function GalleryGrid() {
+export default function GalleryGrid({ photos = {} }: { photos?: Record<string, string> }) {
+  const items = buildItems(photos)
   const [active, setActive] = useState('all')
   const [lightbox, setLightbox] = useState<number | null>(null)
 

@@ -1,4 +1,5 @@
 export interface ClinicConfig {
+  photos: Record<string, string>
   services: ServicesConfig
   productPackages: ProductPackage[]
   testimonials: TestimonialsConfig
@@ -33,6 +34,9 @@ export interface ClinicInfo {
   tagline: string
   phone: string
   whatsapp: string
+  logo?: string
+  heroImage?: string
+  aboutImage?: string
   mapEmbedUrl?: string
   email: string
   address: string
@@ -144,6 +148,7 @@ export interface CardItem {
   label: string
   title: string
   description: string
+  image?: string
 }
 
 export interface PackageItem {
