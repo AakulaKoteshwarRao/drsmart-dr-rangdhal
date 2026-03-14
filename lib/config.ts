@@ -91,6 +91,8 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
           { headers: { apikey: SB_KEY!, Authorization: `Bearer ${SB_KEY}` }, cache: 'force-cache' }
         )
         const wRows = await wRes.json()
+        console.log('[photos] wRes status:', wRes.status, 'CLIENT_ID:', CLIENT_ID)
+        console.log('[photos] wRows:', JSON.stringify(wRows).slice(0, 200))
         const uploadedPhotos: Record<string, string> = wRows?.[0]?.photos || {}
         transformed.photos = uploadedPhotos
         // Inject into clinic and doctor
