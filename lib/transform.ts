@@ -244,6 +244,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     const label = s(c.name ?? c.title, `condition-${i}`)
     const slug = s(c.slug, slugify(label))
     return {
+      slug,
       href:        `/conditions/${slug}`,
       gradClass:   g(i),
       iconType:    ['activity', 'shield', 'pulse', 'droplet'][i % 4],
@@ -273,6 +274,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     const label = s(p.name ?? p.title, `procedure-${i}`)
     const slug = s(p.slug, slugify(label))
     return {
+      slug,
       href:        `/procedures/${slug}`,
       gradClass:   g(i),
       iconType:    PROC_ICONS[i % PROC_ICONS.length],
@@ -302,6 +304,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     const label = s(p.name ?? p.title, `package-${i}`)
     const slug = s(p.slug, slugify(label))
     return {
+      slug,
       href:        `/packages/${slug}`,
       gradClass:   g(i),
       iconType:    PKG_ICONS[i % PKG_ICONS.length],
