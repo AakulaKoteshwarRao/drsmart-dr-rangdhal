@@ -34,7 +34,7 @@ export default async function PackageDetailPage({ params }: PageParams) {
       <Header />
       <StickyBar />
       <PackageDetail pkg={mapped} config={config} />
-      <CTABand />
+      <CTABand cta={config.ctaBand} />
       <Footer />
     </>
   )

@@ -34,7 +34,7 @@ export default async function ConditionDetailPage({ params }: PageParams) {
       <Header />
       <StickyBar />
       <ConditionDetail condition={mapped} config={config} />
-      <CTABand />
+      <CTABand cta={config.ctaBand} />
       <Footer />
     </>
   )

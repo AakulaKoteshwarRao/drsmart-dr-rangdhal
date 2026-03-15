@@ -34,7 +34,7 @@ export default async function ProcedureDetailPage({ params }: PageParams) {
       <Header />
       <StickyBar />
       <ProcedureDetail procedure={mapped} config={config} />
-      <CTABand />
+      <CTABand cta={config.ctaBand} />
       <Footer />
     </>
   )
