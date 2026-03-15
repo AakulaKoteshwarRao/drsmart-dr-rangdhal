@@ -538,3 +538,367 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     photos:       {},
   }
 }
+
+// Auto-appended by install_final.sh
+// ─────────────────────────────────────────────────────────────
+// ADDITIONS TO transform.ts  (append after existing exports)
+// File: ~/Desktop/drsmart-website-template/lib/transform.ts
+// ─────────────────────────────────────────────────────────────
+//
+// These three functions read from the same `config` object your
+// existing transformConfig() already produces.  Call them after
+// you have a full config, or call them independently with the
+// raw Supabase JSONB.
+// ─────────────────────────────────────────────────────────────
+
+// ── Types ────────────────────────────────────────────────────
+
+export interface ConditionPageProps {
+  // Hero
+  name: string
+  slug: string
+  description: string
+  shortDescription: string
+  pills: string[]           // up to 3 keyword pills
+  heroStats: { label: string; value: string }[]  // up to 3
+  heroImage: string | null
+
+  // Content sections (AI-generated, stored in s07 per item)
+  icd10Code: string
+  prevalence: string
+  progressionType: string
+  diagnosisMethod: string
+  types: { name: string; description: string }[]       // 3 tabs
+  causes: string[]                                      // pill cloud
+  symptoms: {
+    early: string[]
+    moderate: string[]
+    advanced: string[]
+  }
+  treatments: {
+    name: string
+    description: string
+    expanded?: boolean
+  }[]                                                   // 3 cards
+  howWeHandle: { step: string; title: string; description: string }[] // 4 steps
+  recoveryPhases: { phase: string; title: string; description: string }[] // 3 tabs
+  outcomes: { title: string; description: string }[]   // 4 cards
+  ifNotTreated: string
+  whenToSeeDoctor: string
+  relatedProcedureSlugs: string[]                      // auto-linked from s08
+  faqs: { question: string; answer: string }[]         // 5 items
+
+  // Clinic context (from existing config sections)
+  clinicName: string
+  doctorName: string
+  phone: string
+  address: string
+  city: string
+  mapUrl: string | null
+}
+
+export interface ProcedurePageProps {
+  // Hero
+  name: string
+  slug: string
+  description: string
+  shortDescription: string
+  pills: string[]
+  heroImage: string | null
+
+  // Quick facts
+  anaesthesia: string
+  duration: string
+  hospitalStay: string
+  recoveryTime: string
+  costRange: string
+  insuranceCoverage: string
+  icd10Code: string
+
+  // Content sections
+  whoNeedsIt: string
+  successRate: string
+  risks: string[]
+  sideEffects: string[]
+  preParation: string[]                                 // pre-procedure steps
+  howItWorks: { step: string; title: string; description: string }[]  // 4-5 steps
+  howWeHandle: { step: string; title: string; description: string }[] // 4 steps
+  durationMilestones: {
+    label: string
+    duration: string
+  }[]                                                   // 6 milestones
+  estimatedTimeline: string
+  recoveryPhases: { phase: string; title: string; description: string }[]
+  outcomes: { title: string; description: string }[]
+  misconceptions: { myth: string; reality: string }[]
+  ifNotTreated: string
+  whenToSeeDoctor: string
+  relatedConditionSlugs: string[]
+  faqs: { question: string; answer: string }[]
+
+  // Clinic context
+  clinicName: string
+  doctorName: string
+  phone: string
+  address: string
+  city: string
+  mapUrl: string | null
+}
+
+export interface PackagePageProps {
+  // Hero
+  name: string
+  slug: string
+  description: string
+  shortDescription: string
+  price: string
+  heroImage: string | null
+
+  // Content
+  whatsIncluded: {
+    category: string
+    items: string[]
+  }[]                                                   // 4 categories
+  howItWorks: { step: string; title: string; description: string }[]
+  whoIsItFor: string
+  pricingBreakdown: {
+    item: string
+    price: string
+  }[]
+  exclusions: string[]
+  insuranceCoverage: string
+  estimatedTimeline: string
+  paymentOptions: string[]
+  testimonials: {
+    name: string
+    text: string
+    rating: number
+  }[]
+  faqs: { question: string; answer: string }[]
+
+  // Clinic context
+  clinicName: string
+  doctorName: string
+  phone: string
+  address: string
+  city: string
+  mapUrl: string | null
+}
+
+// ── Helpers ──────────────────────────────────────────────────
+
+/** Pull clinic context fields shared by all three page types */
+function clinicContext(config: any) {
+  const s02 = config?.s02 ?? {}
+  const s03 = config?.s03 ?? {}
+  const s17 = config?.s17 ?? {}
+  const s23 = config?.s23 ?? {}
+
+  const doctor = s03
+  const prefix = doctor.honorificPrefix ?? 'Dr'
+  const firstName = doctor.firstName ?? ''
+  const lastName = doctor.lastName ?? ''
+  const doctorName =
+    [prefix, firstName, lastName].filter(Boolean).join(' ').trim() ||
+    'Our Doctor'
+
+  return {
+    clinicName: s02.brandName ?? '',
+    doctorName,
+    phone: s02.phone ?? s02.mobilePhone ?? '',
+    address:
+      [s02.addressLine1, s02.addressLine2, s02.city, s02.state]
+        .filter(Boolean)
+        .join(', '),
+    city: s02.city ?? '',
+    mapUrl: s23.googleDirections ?? s02.googleMapsUrl ?? null,
+  }
+}
+
+/** Safely get a string field with a fallback */
+function str(val: any, fallback = ''): string {
+  return typeof val === 'string' ? val : fallback
+}
+
+/** Safely get an array field */
+function arr<T>(val: any): T[] {
+  return Array.isArray(val) ? val : []
+}
+
+// ── mapCondition ─────────────────────────────────────────────
+
+/**
+ * Map a single condition item from s07 + full config → ConditionPageProps
+ *
+ * @param conditionItem   One item from config.s07.conditions[]
+ * @param config          Full config JSONB from Supabase
+ * @param photoUrl        Optional uploaded photo URL from websites.photos
+ */
+export function mapCondition(
+  conditionItem: any,
+  config: any,
+  photoUrl: string | null = null
+): ConditionPageProps {
+  const c = conditionItem ?? {}
+  const s08 = config?.s08 ?? {}
+  const procedures: any[] = arr(s08.procedures)
+
+  // Auto-link related procedures: match by slug or keyword in name
+  const relatedProcedureSlugs = procedures
+    .filter((p) => {
+      const relatedNames: string[] = arr(c.relatedProcedures)
+      return relatedNames.some(
+        (rn) =>
+          p.slug === rn ||
+          p.name?.toLowerCase().includes(rn.toLowerCase())
+      )
+    })
+    .map((p) => p.slug)
+    .slice(0, 4)
+
+  return {
+    // Hero
+    name: str(c.name),
+    slug: str(c.slug),
+    description: str(c.description),
+    shortDescription: str(c.shortDescription),
+    pills: arr<string>(c.pills).slice(0, 3),
+    heroStats: arr(c.heroStats).slice(0, 3),
+    heroImage: photoUrl ?? str(c.heroImage) || null,
+
+    // Quick facts
+    icd10Code: str(c.icd10Code),
+    prevalence: str(c.prevalence),
+    progressionType: str(c.progressionType),
+    diagnosisMethod: str(c.diagnosisMethod),
+
+    // Sections
+    types: arr(c.types).slice(0, 3),
+    causes: arr<string>(c.causes),
+    symptoms: {
+      early: arr<string>(c.symptoms?.early),
+      moderate: arr<string>(c.symptoms?.moderate),
+      advanced: arr<string>(c.symptoms?.advanced),
+    },
+    treatments: arr(c.treatments).slice(0, 3),
+    howWeHandle: arr(c.howWeHandle).slice(0, 4),
+    recoveryPhases: arr(c.recoveryPhases).slice(0, 3),
+    outcomes: arr(c.outcomes).slice(0, 4),
+    ifNotTreated: str(c.ifNotTreated),
+    whenToSeeDoctor: str(c.whenToSeeDoctor),
+    relatedProcedureSlugs,
+    faqs: arr(c.faqs).slice(0, 5),
+
+    ...clinicContext(config),
+  }
+}
+
+// ── mapProcedure ─────────────────────────────────────────────
+
+/**
+ * Map a single procedure item from s08 + full config → ProcedurePageProps
+ *
+ * @param procedureItem   One item from config.s08.procedures[]
+ * @param config          Full config JSONB from Supabase
+ * @param photoUrl        Optional uploaded photo URL from websites.photos
+ */
+export function mapProcedure(
+  procedureItem: any,
+  config: any,
+  photoUrl: string | null = null
+): ProcedurePageProps {
+  const p = procedureItem ?? {}
+  const s07 = config?.s07 ?? {}
+  const conditions: any[] = arr(s07.conditions)
+
+  // Auto-link related conditions
+  const relatedConditionSlugs = conditions
+    .filter((c) => {
+      const relatedNames: string[] = arr(p.relatedConditions)
+      return relatedNames.some(
+        (rn) =>
+          c.slug === rn ||
+          c.name?.toLowerCase().includes(rn.toLowerCase())
+      )
+    })
+    .map((c) => c.slug)
+    .slice(0, 4)
+
+  return {
+    // Hero
+    name: str(p.name),
+    slug: str(p.slug),
+    description: str(p.description),
+    shortDescription: str(p.shortDescription),
+    pills: arr<string>(p.pills).slice(0, 3),
+    heroImage: photoUrl ?? str(p.heroImage) || null,
+
+    // Quick facts
+    anaesthesia: str(p.anaesthesia),
+    duration: str(p.duration),
+    hospitalStay: str(p.hospitalStay),
+    recoveryTime: str(p.recoveryTime),
+    costRange: str(p.costRange),
+    insuranceCoverage: str(p.insuranceCoverage),
+    icd10Code: str(p.icd10Code),
+
+    // Sections
+    whoNeedsIt: str(p.whoNeedsIt),
+    successRate: str(p.successRate),
+    risks: arr<string>(p.risks),
+    sideEffects: arr<string>(p.sideEffects),
+    preParation: arr<string>(p.preparation),
+    howItWorks: arr(p.howItWorks).slice(0, 5),
+    howWeHandle: arr(p.howWeHandle).slice(0, 4),
+    durationMilestones: arr(p.durationMilestones).slice(0, 6),
+    estimatedTimeline: str(p.estimatedTimeline),
+    recoveryPhases: arr(p.recoveryPhases).slice(0, 3),
+    outcomes: arr(p.outcomes).slice(0, 4),
+    misconceptions: arr(p.misconceptions),
+    ifNotTreated: str(p.ifNotTreated),
+    whenToSeeDoctor: str(p.whenToSeeDoctor),
+    relatedConditionSlugs,
+    faqs: arr(p.faqs).slice(0, 5),
+
+    ...clinicContext(config),
+  }
+}
+
+// ── mapPackage ───────────────────────────────────────────────
+
+/**
+ * Map a single package/product item from s09 + full config → PackagePageProps
+ *
+ * @param packageItem   One item from config.s09.products[]
+ * @param config        Full config JSONB from Supabase
+ * @param photoUrl      Optional uploaded photo URL from websites.photos
+ */
+export function mapPackage(
+  packageItem: any,
+  config: any,
+  photoUrl: string | null = null
+): PackagePageProps {
+  const pk = packageItem ?? {}
+
+  return {
+    name: str(pk.name),
+    slug: str(pk.slug),
+    description: str(pk.description),
+    shortDescription: str(pk.shortDescription),
+    price: str(pk.price),
+    heroImage: photoUrl ?? str(pk.heroImage) || null,
+
+    whatsIncluded: arr(pk.whatsIncluded).slice(0, 4),
+    howItWorks: arr(pk.howItWorks).slice(0, 4),
+    whoIsItFor: str(pk.whoIsItFor),
+    pricingBreakdown: arr(pk.pricingBreakdown),
+    exclusions: arr<string>(pk.exclusions),
+    insuranceCoverage: str(pk.insuranceCoverage),
+    estimatedTimeline: str(pk.estimatedTimeline),
+    paymentOptions: arr<string>(pk.paymentOptions),
+    testimonials: arr(pk.testimonials).slice(0, 3),
+    faqs: arr(pk.faqs).slice(0, 5),
+
+    ...clinicContext(config),
+  }
+}
