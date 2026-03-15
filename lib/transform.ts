@@ -691,222 +691,377 @@ export interface PackagePageProps {
 // ── Helpers ──────────────────────────────────────────────────
 
 /** Pull clinic context fields shared by all three page types */
-function clinicContext(config: any) {
-  const s02 = config?.s02 ?? {}
-  const s03 = config?.s03 ?? {}
-  const s17 = config?.s17 ?? {}
-  const s23 = config?.s23 ?? {}
+// ─────────────────────────────────────────────────────────────
+// REPLACE the three map functions at the bottom of lib/transform.ts
+// Replace from the line: "export function mapCondition("
+// through to the end of the file
+// ─────────────────────────────────────────────────────────────
 
-  const doctor = s03
-  const prefix = doctor.honorificPrefix ?? 'Dr'
-  const firstName = doctor.firstName ?? ''
-  const lastName = doctor.lastName ?? ''
-  const doctorName =
-    [prefix, firstName, lastName].filter(Boolean).join(' ').trim() ||
-    'Our Doctor'
+// ── Helpers ──────────────────────────────────────────────────
+
+/** Pull clinic context fields shared by all three page types */
+function clinicContext(rawConfig: any) {
+  const s02 = rawConfig?.s02 ?? {}
+  const s03 = rawConfig?.s03 ?? {}
+  const s23 = rawConfig?.s23 ?? {}
+
+  const prefix    = s(s03.honorificPrefix ?? 'Dr')
+  const firstName = s(s03.firstName, '')
+  const lastName  = s(s03.lastName, '')
+  const doctorName = [prefix, firstName, lastName].filter(Boolean).join(' ').trim() || 'Our Doctor'
+
+  const phone      = s(s02.telephone ?? s02.phone ?? s02.mobilePhone, '')
+  const whatsapp   = s(s02.whatsapp, phone.replace(/\D/g, ''))
+  const clinicName = s(s02.brandName ?? s02.name, '')
+  const city       = s(s02.city, '')
+  const address    = [s(s02.buildingName,''), s(s02.street,''), city].filter(Boolean).join(', ')
+  const hours      = typeof s02.hours === 'string' ? s02.hours
+                   : (s02.hours && typeof s02.hours === 'object') ? 'Mon–Sat: 9:00 AM – 8:00 PM'
+                   : ''
 
   return {
-    clinicName: s02.brandName ?? '',
-    doctorName,
-    phone: s02.phone ?? s02.mobilePhone ?? '',
-    address:
-      [s02.addressLine1, s02.addressLine2, s02.city, s02.state]
-        .filter(Boolean)
-        .join(', '),
-    city: s02.city ?? '',
-    mapUrl: s23.googleDirections ?? s02.googleMapsUrl ?? null,
+    clinicName,
+    clinicAddress: address,
+    clinicHours:   hours,
+    whatsappNumber: whatsapp || phone.replace(/\D/g, ''),
+    appointmentUrl: '/appointment',
   }
 }
 
-/** Safely get a string field with a fallback */
-function str(val: any, fallback = ''): string {
-  return typeof val === 'string' ? val : fallback
+/** Safely get string */
+function s(val: any, fallback = ''): string {
+  return typeof val === 'string' && val.trim() ? val.trim() : fallback
 }
 
-/** Safely get an array field */
-function arr<T>(val: any): T[] {
+/** Safely get array */
+function a<T = any>(val: any): T[] {
   return Array.isArray(val) ? val : []
 }
 
-// ── mapCondition ─────────────────────────────────────────────
+/** Strip <cite ...>...</cite> tags from AI-generated content */
+function stripCite(val: any): string {
+  if (typeof val !== 'string') return ''
+  return val.replace(/<cite[^>]*>(.*?)<\/cite>/gs, '$1').trim()
+}
 
+// ── mapCondition ─────────────────────────────────────────────
 /**
- * Map a single condition item from s07 + full config → ConditionPageProps
- *
- * @param conditionItem   One item from config.s07.conditions[]
- * @param config          Full config JSONB from Supabase
- * @param photoUrl        Optional uploaded photo URL from websites.photos
+ * Maps one item from s07.conditions[] + full rawConfig
+ * → props for ConditionDetail component
  */
 export function mapCondition(
   conditionItem: any,
-  config: any,
+  rawConfig: any,
   photoUrl: string | null = null
-): ConditionPageProps {
-  const c = conditionItem ?? {}
-  const s08 = config?.s08 ?? {}
-  const procedures: any[] = arr(s08.procedures)
+) {
+  const c    = conditionItem ?? {}
+  const s08  = rawConfig?.s08 ?? {}
+  const procs: any[] = a(s08.procedures)
 
-  // Auto-link related procedures: match by slug or keyword in name
-  const relatedProcedureSlugs = procedures
-    .filter((p) => {
-      const relatedNames: string[] = arr(c.relatedProcedures)
-      return relatedNames.some(
-        (rn) =>
-          p.slug === rn ||
-          p.name?.toLowerCase().includes(rn.toLowerCase())
-      )
+  // Auto-link related procedures by slug or name match
+  const relatedProcedures = procs
+    .filter(p => {
+      const related: string[] = a(c.relatedProcedures)
+      return related.some(rn => p.slug === rn || p.name?.toLowerCase().includes(rn.toLowerCase()))
     })
-    .map((p) => p.slug)
+    .map(p => ({ name: s(p.name), slug: s(p.slug) }))
     .slice(0, 4)
 
+  // treatments: map to new shape {name, description, invasiveness, invasivenessStyle, items}
+  const treatments = a(c.treatments).slice(0, 4).map((t: any) => ({
+    name:        s(t.name),
+    description: s(t.shortDescription ?? t.description),
+    invasiveness: s(t.invasiveness ?? t.type),
+    invasivenessStyle: t.invasivenessStyle ?? undefined,
+    items: a<string>(t.items ?? t.bullets ?? t.details),
+  }))
+
+  // howWeHandle: map to {title, description}
+  const howWeHandle = a(c.howWeHandle).slice(0, 4).map((h: any) => ({
+    title:       s(h.title ?? h.step),
+    description: s(h.description),
+  }))
+
+  // recoveryPhases: map to {label, title, description, timeline[], warnings[]}
+  const recoveryPhases = a(c.recoveryPhases ?? c.recovery).slice(0, 3).map((r: any) => ({
+    label:       s(r.label ?? r.phase),
+    title:       s(r.title ?? r.phase),
+    description: stripCite(r.description),
+    timeline: a(r.timeline).map((row: any) => ({
+      badge: s(row.badge ?? row.label),
+      text:  s(row.text),
+    })),
+    warnings: a<string>(r.warnings),
+  }))
+
+  // whenToSeeDoctor: old shape was string, new shape is {intro?, items?[]}
+  const wtsRaw = c.whenToSeeDoctor
+  const whenToSeeDoctor = typeof wtsRaw === 'string'
+    ? { intro: stripCite(wtsRaw), items: [] }
+    : wtsRaw && typeof wtsRaw === 'object'
+    ? { intro: stripCite(wtsRaw.intro), items: a<string>(wtsRaw.items) }
+    : undefined
+
   return {
-    // Hero
-    name: str(c.name),
-    slug: str(c.slug),
-    description: stripCite(c.description),
-    shortDescription: stripCite(c.shortDescription),
-    pills: arr<string>(c.pills).slice(0, 3),
-    heroStats: arr(c.heroStats).slice(0, 3),
-    heroImage: (photoUrl ?? str(c.heroImage)) || null,
-
-    // Quick facts
-    icd10Code: str(c.icd10Code ?? c.icd10),
-    prevalence: stripCite(c.prevalence),
-    progressionType: str(c.progressionType),
-    diagnosisMethod: str(c.diagnosisMethod),
-
-    // Sections
-    types: arr(c.types).slice(0, 3).map((t: any) => ({ name: str(t.name), description: stripCite(t.description) })),
-    causes: arr<string>(c.causes),
+    name:        s(c.name),
+    slug:        s(c.slug),
+    description: stripCite(c.description ?? c.descriptionLong),
+    heroImage:   photoUrl ?? s(c.heroImage) ?? null,
+    pills:       a<string>(c.pills).slice(0, 3),
+    heroStats:   a(c.heroStats).slice(0, 3).map((st: any) => ({
+      label: s(st.label), value: s(st.value),
+    })),
+    types: a(c.types).slice(0, 3).map((t: any) => ({
+      name:        s(t.name),
+      description: stripCite(t.description),
+    })),
+    causes:      a<string>(c.causes),
     symptoms: {
-      early: arr<string>(c.symptoms?.early),
-      moderate: arr<string>(c.symptoms?.moderate),
-      advanced: arr<string>(c.symptoms?.advanced),
+      early:    a<string>(c.symptoms?.early),
+      moderate: a<string>(c.symptoms?.moderate),
+      advanced: a<string>(c.symptoms?.advanced),
     },
-    treatments: arr(c.treatments).slice(0, 3).map((t: any) => ({ name: str(t.name), description: stripCite(t.description), risks: arr(t.risks) })),
-    howWeHandle: arr(c.howWeHandle).slice(0, 4).map((h: any) => ({ step: str(h.step), title: str(h.title ?? h.step), description: str(h.description) })),
-    ifNotTreated: stripCite(c.ifNotTreated),
-    whenToSeeDoctor: stripCite(c.whenToSeeDoctor),
-    relatedProcedureSlugs,
-    recoveryPhases: arr(c.recoveryPhases ?? c.recovery).slice(0, 3).map((r: any) => ({ phase: str(r.phase), title: str(r.title ?? r.phase), description: stripCite(r.description) })),
-    faqs: arr(c.faqs).slice(0, 5).map((f: any) => ({ question: str(f.question), answer: stripCite(f.answer) })),
-
-    ...clinicContext(config),
+    treatments,
+    howWeHandle,
+    recoveryPhases,
+    outcomes: a(c.outcomes).slice(0, 4).map((o: any) => ({
+      title:       s(o.title),
+      description: s(o.description),
+    })),
+    ifNotTreated:    stripCite(c.ifNotTreated) || undefined,
+    whenToSeeDoctor,
+    relatedProcedures,
+    faqs: a(c.faqs).slice(0, 5).map((f: any) => ({
+      question: s(f.question ?? f.q),
+      answer:   stripCite(f.answer ?? f.a),
+    })),
+    ...clinicContext(rawConfig),
   }
 }
 
 // ── mapProcedure ─────────────────────────────────────────────
-
 /**
- * Map a single procedure item from s08 + full config → ProcedurePageProps
- *
- * @param procedureItem   One item from config.s08.procedures[]
- * @param config          Full config JSONB from Supabase
- * @param photoUrl        Optional uploaded photo URL from websites.photos
+ * Maps one item from s08.procedures[] + full rawConfig
+ * → props for ProcedureDetail component
  */
 export function mapProcedure(
   procedureItem: any,
-  config: any,
+  rawConfig: any,
   photoUrl: string | null = null
-): ProcedurePageProps {
-  const p = procedureItem ?? {}
-  const s07 = config?.s07 ?? {}
-  const conditions: any[] = arr(s07.conditions)
+) {
+  const p   = procedureItem ?? {}
+  const s07 = rawConfig?.s07 ?? {}
+  const conds: any[] = a(s07.conditions)
 
   // Auto-link related conditions
-  const relatedConditionSlugs = conditions
-    .filter((c) => {
-      const relatedNames: string[] = arr(p.relatedConditions)
-      return relatedNames.some(
-        (rn) =>
-          c.slug === rn ||
-          c.name?.toLowerCase().includes(rn.toLowerCase())
-      )
+  const relatedConditions = conds
+    .filter(c => {
+      const related: string[] = a(p.relatedConditions)
+      return related.some(rn => c.slug === rn || c.name?.toLowerCase().includes(rn.toLowerCase()))
     })
-    .map((c) => c.slug)
+    .map(c => ({ name: s(c.name), slug: s(c.slug) }))
     .slice(0, 4)
 
+  // quickFacts: build from individual fields
+  const quickFacts = [
+    p.anaesthesia   && { label: 'Anaesthesia',      value: s(p.anaesthesia) },
+    p.duration      && { label: 'Procedure Duration',value: s(p.duration) },
+    p.hospitalStay  && { label: 'Hospital Stay',     value: s(p.hospitalStay) },
+    p.recoveryTime  && { label: 'Return to Work',    value: s(p.recoveryTime) },
+    p.fullRecovery  && { label: 'Full Recovery',     value: s(p.fullRecovery) },
+    p.successRate   && { label: 'Success Rate',      value: s(p.successRate) },
+  ].filter(Boolean) as { label: string; value: string }[]
+
+  // candidacy: could be string[] or string
+  const candidacy = Array.isArray(p.candidacy)
+    ? a<string>(p.candidacy)
+    : typeof p.whoNeedsIt === 'string' && p.whoNeedsIt
+    ? [p.whoNeedsIt]
+    : []
+
+  // successRateItems / risksItems / sideEffectsItems
+  const successRateItems = Array.isArray(p.successRateItems)
+    ? a<string>(p.successRateItems)
+    : typeof p.successRate === 'string' && p.successRate
+    ? [p.successRate]
+    : []
+
+  const risksItems     = a<string>(p.risks ?? p.risksItems)
+  const sideEffectsItems = a<string>(p.sideEffects ?? p.sideEffectsItems)
+
+  // steps (How It Works numbered stepper): {title, description}
+  const steps = a(p.howItWorks ?? p.steps).slice(0, 5).map((st: any) => ({
+    title:       s(st.title ?? st.step),
+    description: s(st.description),
+  }))
+
+  // timelines (Duration cards): {label, value, description}
+  const timelines = a(p.durationMilestones ?? p.timelines).slice(0, 6).map((tl: any) => ({
+    label:       s(tl.label),
+    value:       s(tl.duration ?? tl.value),
+    description: s(tl.description),
+  }))
+
+  // howWeHandle: {title, description}
+  const howWeHandle = a(p.howWeHandle).slice(0, 4).map((h: any) => ({
+    title:       s(h.title ?? h.step),
+    description: s(h.description),
+  }))
+
+  // recoveryPhases: {label, title, description, timeline[], warnings[]}
+  const recoveryPhases = a(p.recoveryPhases ?? p.recovery).slice(0, 3).map((r: any) => ({
+    label:       s(r.label ?? r.phase),
+    title:       s(r.title ?? r.phase),
+    description: s(r.description),
+    timeline: a(r.timeline).map((row: any) => ({
+      badge: s(row.badge ?? row.label),
+      text:  s(row.text),
+    })),
+    warnings: a<string>(r.warnings),
+  }))
+
+  // myths: {myth, fact} — old shape was misconceptions: {myth, reality}
+  const myths = a(p.misconceptions ?? p.myths).slice(0, 5).map((m: any) => ({
+    myth: s(m.myth),
+    fact: s(m.fact ?? m.reality),
+  }))
+
+  // ifDelayed
+  const ifd = p.ifNotTreated ?? p.ifDelayed
+  const ifDelayed = ifd
+    ? typeof ifd === 'string'
+      ? { items: ifd.split('\n').map((l: string) => l.trim()).filter(Boolean) }
+      : { title: s(ifd.title), intro: s(ifd.intro), items: a<string>(ifd.items) }
+    : undefined
+
   return {
-    // Hero
-    name: str(p.name),
-    slug: str(p.slug),
-    description: str(p.description),
-    shortDescription: str(p.shortDescription),
-    pills: arr<string>(p.pills).slice(0, 3),
-    heroImage: (photoUrl ?? str(p.heroImage)) || null,
-
-    // Quick facts
-    anaesthesia: str(p.anaesthesia),
-    duration: str(p.duration),
-    hospitalStay: str(p.hospitalStay),
-    recoveryTime: str(p.recoveryTime),
-    costRange: str(p.costRange),
-    insuranceCoverage: str(p.insuranceCoverage),
-    icd10Code: str(p.icd10Code),
-
-    // Sections
-    whoNeedsIt: str(p.whoNeedsIt),
-    successRate: str(p.successRate),
-    risks: arr<string>(p.risks),
-    sideEffects: arr<string>(p.sideEffects),
-    preParation: arr<string>(p.preparation),
-    howItWorks: arr(p.howItWorks).slice(0, 5),
-    howWeHandle: arr(p.howWeHandle).slice(0, 4),
-    durationMilestones: arr(p.durationMilestones).slice(0, 6),
-    estimatedTimeline: str(p.estimatedTimeline),
-    recoveryPhases: arr(p.recoveryPhases).slice(0, 3),
-    outcomes: arr(p.outcomes).slice(0, 4),
-    misconceptions: arr(p.misconceptions),
-    ifNotTreated: str(p.ifNotTreated),
-    whenToSeeDoctor: str(p.whenToSeeDoctor),
-    relatedConditionSlugs,
-    faqs: arr(p.faqs).slice(0, 5),
-
-    ...clinicContext(config),
+    name:        s(p.name),
+    slug:        s(p.slug),
+    description: stripCite(p.description ?? p.descriptionLong),
+    heroImage:   photoUrl ?? s(p.heroImage) ?? null,
+    pills:       a<string>(p.pills).slice(0, 3),
+    heroStats:   a(p.heroStats).slice(0, 3).map((st: any) => ({
+      label: s(st.label), value: s(st.value),
+    })),
+    quickFacts,
+    candidacy,
+    candidacyIntro: s(p.candidacyIntro),
+    successRateItems,
+    risksItems,
+    sideEffectsItems,
+    riskNote:    s(p.riskNote),
+    steps,
+    timelines,
+    howWeHandle,
+    recoveryPhases,
+    outcomes: a(p.outcomes).slice(0, 4).map((o: any) => ({
+      title:       s(o.title),
+      description: s(o.description),
+    })),
+    myths,
+    ifDelayed,
+    relatedConditions,
+    faqs: a(p.faqs).slice(0, 5).map((f: any) => ({
+      question: s(f.question ?? f.q),
+      answer:   s(f.answer ?? f.a),
+    })),
+    ...clinicContext(rawConfig),
   }
 }
 
 // ── mapPackage ───────────────────────────────────────────────
-
 /**
- * Map a single package/product item from s09 + full config → PackagePageProps
- *
- * @param packageItem   One item from config.s09.products[]
- * @param config        Full config JSONB from Supabase
- * @param photoUrl      Optional uploaded photo URL from websites.photos
+ * Maps one item from s10.packages[] + full rawConfig
+ * → props for PackageDetail component
  */
 export function mapPackage(
   packageItem: any,
-  config: any,
+  rawConfig: any,
   photoUrl: string | null = null
-): PackagePageProps {
-  const pk = packageItem ?? {}
+) {
+  const pk  = packageItem ?? {}
+  const s08 = rawConfig?.s08 ?? {}
+  const procs: any[] = a(s08.procedures)
+
+  // Related procedures: match by slug or name
+  const relatedProcedures = procs
+    .filter(p => {
+      const related: string[] = a(pk.relatedProcedures)
+      return related.some(rn => p.slug === rn || p.name?.toLowerCase().includes(rn.toLowerCase()))
+    })
+    .map(p => ({ name: s(p.name), slug: s(p.slug) }))
+    .slice(0, 4)
+
+  // inclusions: old shape whatsIncluded[{category, items[]}] — same shape, just ensure arrays
+  const inclusions = a(pk.whatsIncluded ?? pk.inclusions).slice(0, 4).map((inc: any) => ({
+    category: s(inc.category ?? inc.title),
+    items:    a<string>(inc.items),
+  }))
+
+  // howItWorks: {title, description}
+  const howItWorks = a(pk.howItWorks ?? pk.steps).slice(0, 4).map((h: any) => ({
+    title:       s(h.title ?? h.step),
+    description: s(h.description),
+  }))
+
+  // whoIsItFor: old shape was string, new is string[]
+  const whoIsItFor = Array.isArray(pk.whoIsItFor)
+    ? a<string>(pk.whoIsItFor)
+    : typeof pk.whoIsItFor === 'string' && pk.whoIsItFor
+    ? pk.whoIsItFor.split(/[,\n]/).map((l: string) => l.trim()).filter(Boolean)
+    : []
+
+  // pricingRows: [{label, value}]
+  const pricingRows = a(pk.pricingBreakdown).map((row: any) => ({
+    label: s(row.item ?? row.label),
+    value: s(row.price ?? row.value),
+  }))
+
+  // pricingTotal
+  const pricingTotal = pk.totalPrice || pk.price
+    ? { label: 'Total Package Range', value: s(pk.totalPrice ?? pk.price) }
+    : undefined
+
+  // paymentOptions: old shape was string[], new is {title, items[]}[]
+  const paymentOptions = Array.isArray(pk.paymentOptions)
+    ? a(pk.paymentOptions).map((opt: any) =>
+        typeof opt === 'string'
+          ? { title: opt, items: [] }
+          : { title: s(opt.title), items: a<string>(opt.items) }
+      )
+    : []
+
+  // testimonials: {name, detail, text, rating}
+  const testimonials = a(pk.testimonials).slice(0, 2).map((t: any) => ({
+    name:   s(t.name),
+    detail: s(t.detail ?? t.subtitle ?? t.procedure ?? ''),
+    text:   s(t.text ?? t.review),
+    rating: typeof t.rating === 'number' ? t.rating : 5,
+  }))
 
   return {
-    name: str(pk.name),
-    slug: str(pk.slug),
-    description: str(pk.description),
-    shortDescription: str(pk.shortDescription),
-    price: str(pk.price),
-    heroImage: (photoUrl ?? str(pk.heroImage)) || null,
-
-    whatsIncluded: arr(pk.whatsIncluded).slice(0, 4),
-    howItWorks: arr(pk.howItWorks).slice(0, 4),
-    whoIsItFor: str(pk.whoIsItFor),
-    pricingBreakdown: arr(pk.pricingBreakdown),
-    exclusions: arr<string>(pk.exclusions),
-    insuranceCoverage: str(pk.insuranceCoverage),
-    estimatedTimeline: str(pk.estimatedTimeline),
-    paymentOptions: arr<string>(pk.paymentOptions),
-    testimonials: arr(pk.testimonials).slice(0, 3),
-    faqs: arr(pk.faqs).slice(0, 5),
-
-    ...clinicContext(config),
+    name:        s(pk.name ?? pk.title),
+    slug:        s(pk.slug),
+    description: stripCite(pk.description),
+    heroImage:   photoUrl ?? s(pk.heroImage) ?? null,
+    pills:       a<string>(pk.pills).slice(0, 3),
+    priceRange:  s(pk.priceRange ?? pk.price),
+    priceUnit:   s(pk.priceUnit ?? 'per procedure'),
+    inclusions,
+    howItWorks,
+    whoIsItFor,
+    pricingTitle:    s(pk.name ?? pk.title),
+    pricingSubtitle: s(pk.pricingSubtitle ?? 'Complete cost structure'),
+    pricingRows,
+    pricingTotal,
+    pricingNote:     s(pk.pricingNote),
+    paymentOptions,
+    testimonials,
+    relatedProcedures,
+    faqs: a(pk.faqs).slice(0, 5).map((f: any) => ({
+      question: s(f.question ?? f.q),
+      answer:   s(f.answer ?? f.a),
+    })),
+    ...clinicContext(rawConfig),
   }
-}
-
-// Strip <cite ...>...</cite> tags from AI-generated content
-function stripCite(val: any): string {
-  if (typeof val !== 'string') return ''
-  return val.replace(/<cite[^>]*>(.*?)<\/cite>/gs, '$1').trim()
 }
