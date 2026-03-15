@@ -31,11 +31,11 @@ export default async function ProcedureDetailPage({ params }: PageParams) {
   const mapped = mapProcedure(procedure, rawConfig, photoUrl)
   return (
     <>
-      <Header />
-      <StickyBar />
-      <ProcedureDetail procedure={mapped} config={config} />
+      <Header clinic={config.clinic} />
+      <StickyBar clinic={config.clinic} />
+      <ProcedureDetail {...mapped} />
       <CTABand cta={config.ctaBand} />
-      <Footer />
+      <Footer clinic={config.clinic} config={config} />
     </>
   )
 }

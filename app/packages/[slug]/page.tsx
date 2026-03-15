@@ -31,11 +31,11 @@ export default async function PackageDetailPage({ params }: PageParams) {
   const mapped = mapPackage(pkg, rawConfig, photoUrl)
   return (
     <>
-      <Header />
-      <StickyBar />
-      <PackageDetail pkg={mapped} config={config} />
+      <Header clinic={config.clinic} />
+      <StickyBar clinic={config.clinic} />
+      <PackageDetail {...mapped} />
       <CTABand cta={config.ctaBand} />
-      <Footer />
+      <Footer clinic={config.clinic} config={config} />
     </>
   )
 }

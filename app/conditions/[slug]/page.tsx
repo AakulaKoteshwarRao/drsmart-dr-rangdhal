@@ -31,11 +31,11 @@ export default async function ConditionDetailPage({ params }: PageParams) {
   const mapped = mapCondition(condition, rawConfig, photoUrl)
   return (
     <>
-      <Header />
-      <StickyBar />
-      <ConditionDetail condition={mapped} config={config} />
+      <Header clinic={config.clinic} />
+      <StickyBar clinic={config.clinic} />
+      <ConditionDetail {...mapped} />
       <CTABand cta={config.ctaBand} />
-      <Footer />
+      <Footer clinic={config.clinic} config={config} />
     </>
   )
 }
