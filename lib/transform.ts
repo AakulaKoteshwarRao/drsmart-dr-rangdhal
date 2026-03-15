@@ -542,155 +542,6 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
   }
 }
 
-// Auto-appended by install_final.sh
-// ─────────────────────────────────────────────────────────────
-// ADDITIONS TO transform.ts  (append after existing exports)
-// File: ~/Desktop/drsmart-website-template/lib/transform.ts
-// ─────────────────────────────────────────────────────────────
-//
-// These three functions read from the same `config` object your
-// existing transformConfig() already produces.  Call them after
-// you have a full config, or call them independently with the
-// raw Supabase JSONB.
-// ─────────────────────────────────────────────────────────────
-
-// ── Types ────────────────────────────────────────────────────
-
-export interface ConditionPageProps {
-  // Hero
-  name: string
-  slug: string
-  description: string
-  shortDescription: string
-  pills: string[]           // up to 3 keyword pills
-  heroStats: { label: string; value: string }[]  // up to 3
-  heroImage: string | null
-
-  // Content sections (AI-generated, stored in s07 per item)
-  icd10Code: string
-  prevalence: string
-  progressionType: string
-  diagnosisMethod: string
-  types: { name: string; description: string }[]       // 3 tabs
-  causes: string[]                                      // pill cloud
-  symptoms: {
-    early: string[]
-    moderate: string[]
-    advanced: string[]
-  }
-  treatments: {
-    name: string
-    description: string
-    expanded?: boolean
-  }[]                                                   // 3 cards
-  howWeHandle: { step: string; title: string; description: string }[] // 4 steps
-  recoveryPhases: { phase: string; title: string; description: string }[] // 3 tabs
-  outcomes: { title: string; description: string }[]   // 4 cards
-  ifNotTreated: string
-  whenToSeeDoctor: string
-  relatedProcedureSlugs: string[]                      // auto-linked from s08
-  faqs: { question: string; answer: string }[]         // 5 items
-
-  // Clinic context (from existing config sections)
-  clinicName: string
-  doctorName: string
-  phone: string
-  address: string
-  city: string
-  mapUrl: string | null
-}
-
-export interface ProcedurePageProps {
-  // Hero
-  name: string
-  slug: string
-  description: string
-  shortDescription: string
-  pills: string[]
-  heroImage: string | null
-
-  // Quick facts
-  anaesthesia: string
-  duration: string
-  hospitalStay: string
-  recoveryTime: string
-  costRange: string
-  insuranceCoverage: string
-  icd10Code: string
-
-  // Content sections
-  whoNeedsIt: string
-  successRate: string
-  risks: string[]
-  sideEffects: string[]
-  preParation: string[]                                 // pre-procedure steps
-  howItWorks: { step: string; title: string; description: string }[]  // 4-5 steps
-  howWeHandle: { step: string; title: string; description: string }[] // 4 steps
-  durationMilestones: {
-    label: string
-    duration: string
-  }[]                                                   // 6 milestones
-  estimatedTimeline: string
-  recoveryPhases: { phase: string; title: string; description: string }[]
-  outcomes: { title: string; description: string }[]
-  misconceptions: { myth: string; reality: string }[]
-  ifNotTreated: string
-  whenToSeeDoctor: string
-  relatedConditionSlugs: string[]
-  faqs: { question: string; answer: string }[]
-
-  // Clinic context
-  clinicName: string
-  doctorName: string
-  phone: string
-  address: string
-  city: string
-  mapUrl: string | null
-}
-
-export interface PackagePageProps {
-  // Hero
-  name: string
-  slug: string
-  description: string
-  shortDescription: string
-  price: string
-  heroImage: string | null
-
-  // Content
-  whatsIncluded: {
-    category: string
-    items: string[]
-  }[]                                                   // 4 categories
-  howItWorks: { step: string; title: string; description: string }[]
-  whoIsItFor: string
-  pricingBreakdown: {
-    item: string
-    price: string
-  }[]
-  exclusions: string[]
-  insuranceCoverage: string
-  estimatedTimeline: string
-  paymentOptions: string[]
-  testimonials: {
-    name: string
-    text: string
-    rating: number
-  }[]
-  faqs: { question: string; answer: string }[]
-
-  // Clinic context
-  clinicName: string
-  doctorName: string
-  phone: string
-  address: string
-  city: string
-  mapUrl: string | null
-}
-
-// ── Helpers ──────────────────────────────────────────────────
-
-/** Pull clinic context fields shared by all three page types */
 // ─────────────────────────────────────────────────────────────
 // REPLACE the three map functions at the bottom of lib/transform.ts
 // Replace from the line: "export function mapCondition("
@@ -729,20 +580,10 @@ function clinicContext(rawConfig: any) {
 }
 
 /** Safely get string */
-function s(val: any, fallback = ''): string {
-  return typeof val === 'string' && val.trim() ? val.trim() : fallback
-}
 
 /** Safely get array */
-function a<T = any>(val: any): T[] {
-  return Array.isArray(val) ? val : []
-}
 
 /** Strip <cite ...>...</cite> tags from AI-generated content */
-function stripCite(val: any): string {
-  if (typeof val !== 'string') return ''
-  return val.replace(/<cite[^>]*>(.*?)<\/cite>/gs, '$1').trim()
-}
 
 // ── mapCondition ─────────────────────────────────────────────
 /**
