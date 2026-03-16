@@ -28,8 +28,7 @@ const CLIENT_ID = process.env.NEXT_PUBLIC_CLIENT_ID
 const BUCKET    = 'website-assets'
 
 // Module-level cache — resolved once per build/request cycle
-let _config: ClinicConfig | null = null
-let _fetchPromise: Promise<ClinicConfig> | null = null
+// No module-level cache
 
 async function fetchFromSupabase(): Promise<ClinicConfig> {
   if (!CONFIG_ID || !SB_URL || !SB_KEY) {
@@ -137,14 +136,7 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
 
 /** Initialise config once. Safe to call multiple times. */
 export async function initConfig(): Promise<ClinicConfig> {
-  if (_config) return _config
-  if (!_fetchPromise) {
-    _fetchPromise = fetchFromSupabase().then(cfg => {
-      _config = cfg
-      return cfg
-    })
-  }
-  return _fetchPromise
+  return fetchFromSupabase()
 }
 
 /**
@@ -152,7 +144,7 @@ export async function initConfig(): Promise<ClinicConfig> {
  * Falls back to default.json if called before cache is warm.
  */
 export function getConfig(): ClinicConfig {
-  return _config ?? (defaultConfig as unknown as ClinicConfig)
+  return defaultConfig as unknown as ClinicConfig
 }
 
 /** Async convenience: init + get in one call for Server Components. */
