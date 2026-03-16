@@ -617,7 +617,8 @@ export function mapCondition(
   // treatments: map to new shape {name, description, invasiveness, invasivenessStyle, items}
   const treatments = a(c.treatments).slice(0, 4).map((t: any) => ({
     name:        s(t.name),
-    description: stripCite(t.shortDescription ?? t.description),
+    shortDescription: stripCite(t.shortDescription ?? t.description),
+    description: stripCite(t.description),
     invasiveness: s(t.invasiveness ?? t.type),
     invasivenessStyle: (() => {
       const inv = s(t.invasiveness ?? t.type).toUpperCase()

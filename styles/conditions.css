@@ -108,20 +108,22 @@
 .qf-card {
   background: #FFFFFF;
   border: 1.5px solid #E5E7EB;
+  border-left: 4px solid #3CB8AF;
   border-radius: 14px;
   overflow: hidden;
   max-width: 680px;
   margin: 0 auto;
+  box-shadow: 0 2px 12px rgba(60,184,175,0.08);
 }
 .qf-head {
   font-size: 0.7rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #6B7280;
+  color: #3CB8AF;
   padding: 0.6rem 1.1rem;
-  background: #F9FAFB;
-  border-bottom: 1px solid #E5E7EB;
+  background: #F0FDFA;
+  border-bottom: 1px solid #CCFBF1;
 }
 .qf-row {
   display: flex;
@@ -130,9 +132,10 @@
   padding: 0.75rem 1.1rem;
   border-bottom: 1px solid #F3F4F6;
 }
+.qf-row:nth-child(even) { background: #F9FAFB; }
 .qf-row:last-child { border-bottom: none; }
-.qf-label { font-size: 0.88rem; color: #9CA3AF; }
-.qf-val { font-size: 0.88rem; font-weight: 800; color: #111111; }
+.qf-label { font-size: 0.88rem; color: #6B7280; font-weight: 500; }
+.qf-val { font-size: 0.88rem; font-weight: 800; color: #0D3B5E; }
 
 /* ── Types — horizontal tabs + panel (exact reference structure) */
 .types-tabs {
@@ -217,10 +220,14 @@
 
 /* ── Symptoms — vertical timeline stepper ───────────────────── */
 .symptom-timeline {
-  max-width: 680px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
   margin: 0 auto;
+  align-items: start;
 }
-.symptom-stage { margin-bottom: 1.5rem; }
+.symptom-stage { margin-bottom: 0; }
 .stage-header {
   display: inline-flex;
   align-items: center;
@@ -258,10 +265,7 @@
 .sym-dot svg { width: 10px; height: 10px; color: #FFFFFF; }
 .symptom-row span { font-size: 0.88rem; color: #374151; line-height: 1.55; }
 .stage-divider {
-  width: 2px;
-  height: 20px;
-  margin: 0 0 0 10px;
-  background: repeating-linear-gradient(180deg,#D1D5DB 0,#D1D5DB 4px,transparent 4px,transparent 8px);
+  display: none;
 }
 
 /* ── Treatment — 2×2 accordion cards ───────────────────────── */
@@ -759,6 +763,7 @@
   .sf-arrow-v svg { width: 22px; height: 22px; color: #3CB8AF; }
 }
 @media (max-width: 768px) {
+  .symptom-timeline { grid-template-columns: 1fr; }
   .cond-hero { padding: 1.5rem 1rem 2.5rem; }
   .cond-hero-text h1 { font-size: 1.85rem; }
   .sec-title { font-size: 1.5rem; }
