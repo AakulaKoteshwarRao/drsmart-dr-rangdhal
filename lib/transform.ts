@@ -870,7 +870,7 @@ export function mapPackage(
 
   // pricingTotal
   const pricingTotal = pk.totalPrice || pk.price
-    ? { label: 'Total Package Range', value: s(pk.totalPrice ?? pk.price) }
+    ? { label: 'Total Package Range', value: (() => { const v = s(pk.totalPrice ?? pk.price); return v && !v.includes('₹') && /^[0-9,]+$/.test(v.trim()) ? '₹' + v : v; })() }
     : undefined
 
   // paymentOptions: old shape was string[], new is {title, items[]}[]
@@ -896,7 +896,7 @@ export function mapPackage(
     description: stripCite(pk.shortDescription ?? pk.shortdescription ?? pk.description),
     heroImage:   photoUrl ?? s(pk.heroImage) ?? null,
     pills:       a<string>(pk.pills).slice(0, 3),
-    priceRange:  s(pk.priceRange ?? pk.price),
+    priceRange:  (() => { const v = s(pk.priceRange ?? pk.price); return v && !v.includes('₹') && /^[0-9,]+$/.test(v.trim()) ? '₹' + v : v; })(),
     priceUnit:   s(pk.priceUnit ?? 'per procedure'),
     inclusions,
     howItWorks,
