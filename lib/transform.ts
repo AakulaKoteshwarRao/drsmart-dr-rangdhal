@@ -748,7 +748,7 @@ export function mapProcedure(
 
   // timelines (Duration cards): {label, value, description}
   const timelines = a(p.durationMilestones ?? p.timelines).slice(0, 6).map((tl: any) => ({
-    label:       s(tl.milestone ?? tl.label),
+    label:       stripCite(tl.milestone ?? tl.label),
     value:       stripCite(tl.timeframe ?? tl.duration ?? tl.value),
     description: stripCite(tl.description),
   }))
