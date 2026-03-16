@@ -652,7 +652,7 @@ export function mapCondition(
   return {
     name:        s(c.name),
     slug:        s(c.slug),
-    description: stripCite(c.description ?? c.descriptionLong),
+    description: stripCite(c.description ?? c.descriptionLong ?? c.shortDescription),
     heroImage:   photoUrl ?? s(c.heroImage) ?? null,
     pills:       a<string>(c.pills).slice(0, 3),
     heroStats:   a(c.heroStats).slice(0, 3).map((st: any) => ({
