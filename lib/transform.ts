@@ -893,7 +893,7 @@ export function mapPackage(
   return {
     name:        s(pk.name ?? pk.title),
     slug:        s(pk.slug),
-    description: stripCite(pk.description),
+    description: stripCite(pk.shortDescription ?? pk.shortdescription ?? pk.description),
     heroImage:   photoUrl ?? s(pk.heroImage) ?? null,
     pills:       a<string>(pk.pills).slice(0, 3),
     priceRange:  s(pk.priceRange ?? pk.price),
