@@ -24,7 +24,7 @@
   .nav a.active { color: #111111; font-weight: 700; }
 
   .breadcrumb { max-width: 1280px; margin: 0 auto; padding: 1.5rem 2rem 0; font-size: 0.78rem; color: #9CA3AF; display: flex; align-items: center; gap: 0.35rem; }
-  .breadcrumb a { color: var(--secondary); text-decoration: none; font-weight: 600; }
+  .breadcrumb a { color: #9CA3AF; text-decoration: none; font-weight: 400; }
   .breadcrumb a:hover { color: var(--primary); }
   .breadcrumb svg { width: 12px; height: 12px; color: #D1D5DB; }
 

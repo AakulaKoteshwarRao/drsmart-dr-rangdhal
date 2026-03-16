@@ -314,7 +314,6 @@ export default function ConditionDetail({
                         </svg>
                       </div>
                       <div className="ts-label">{t.name}</div>
-                      <div className="ts-desc">{t.shortDescription ?? t.description}</div>
                       {/* NOTE: class is "ts-invasive" not "ts-inv" */}
                       {t.invasiveness && (
                         <span className="ts-invasive" style={t.invasivenessStyle ?? { background: '#F0FDFA', color: '#3CB8AF' }}>
