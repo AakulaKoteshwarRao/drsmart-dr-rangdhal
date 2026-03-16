@@ -123,7 +123,7 @@
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 .proc-step h4 { font-size: 0.82rem; font-weight: 800; color: #111111; margin-bottom: 0.2rem; }
-.proc-step p { font-size: 0.75rem; color: #9CA3AF; line-height: 1.4; }
+.proc-step p { font-size: 0.82rem; color: #6B7280; line-height: 1.4; }
 
 /* ── Duration / Timelines — 3-col grid of cards ─────────────── */
 .duration-grid {
@@ -161,7 +161,7 @@
   margin-bottom: 0.25rem;
 }
 .dur-val {
-  font-size: 1.35rem;
+  font-size: 1rem;
   font-weight: 800;
   color: #111111;
   margin-bottom: 0.2rem;

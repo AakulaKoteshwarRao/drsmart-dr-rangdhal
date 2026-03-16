@@ -733,7 +733,7 @@ export function mapProcedure(
   const candidacy = Array.isArray(p.candidacy)
     ? a<string>(p.candidacy).map(stripCite)
     : typeof p.whoNeedsIt === 'string' && p.whoNeedsIt
-    ? [stripCite(p.whoNeedsIt)]
+    ? stripCite(p.whoNeedsIt).split(/(?<=[.!?])\s+/).map((s: string) => s.trim()).filter((s: string) => s.length > 0)
     : []
 
   // successRateItems / risksItems / sideEffectsItems
