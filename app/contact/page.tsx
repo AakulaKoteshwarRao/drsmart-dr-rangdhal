@@ -3,6 +3,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import StickyBar from '@/components/StickyBar'
 import CTABand from '@/components/home/CTABand'
+import '../styles/conditions.css'
 import '../styles/contact.css'
 
 export const dynamic = 'force-dynamic'
@@ -184,7 +185,7 @@ export default async function ContactPage() {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width="14" height="14">
                     <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
                   </svg>
-                  {area.area}
+                  {area.name}
                 </a>
               ))}
             </div>
@@ -224,12 +225,12 @@ export default async function ContactPage() {
                 Instagram
               </a>
             )}
-            {(clinic as any).socialPracto && (
-              <a href={(clinic as any).socialPracto} className="social-link" target="_blank" rel="noopener noreferrer">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z"/><path d="M12 6v6l4 2"/>
+            {(clinic as any).social?.youtube && (
+              <a href={(clinic as any).social.youtube} className="social-link" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
                 </svg>
-                Practo
+                YouTube
               </a>
             )}
           </div>
