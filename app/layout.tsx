@@ -61,7 +61,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,600;1,700&display=swap" rel="stylesheet" media="print" onLoad="this.media='all'" />
         <SchemaMarkup graphs={[coreSchemas]} />
       </head>
-      <body style={cssVars}>{children}<AppointmentModal clinic={cfg.clinic} /></body>
+      <body style={cssVars}>
+      {children}
+      <script dangerouslySetInnerHTML={{ __html: `window.__CLINIC__ = ${JSON.stringify({ whatsapp: cfg.clinic.whatsapp, name: cfg.clinic.name })}` }} />
+      <AppointmentModal />
+    </body>
     </html>
   )
 }

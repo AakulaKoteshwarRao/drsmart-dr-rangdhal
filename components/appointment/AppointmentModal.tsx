@@ -1,6 +1,5 @@
 'use client'
 import { useState, useEffect } from 'react'
-import type { ClinicInfo } from '@/lib/types'
 
 const reasons = ['Consultation', 'Follow-up', 'Second Opinion']
 const times = ['9:00 AM - 11:00 AM', '11:00 AM - 1:00 PM', '2:00 PM - 4:00 PM', '4:00 PM - 5:00 PM']
@@ -11,7 +10,7 @@ const waIcon = (
   </svg>
 )
 
-export default function AppointmentModal({ clinic }: { clinic: ClinicInfo }) {
+export default function AppointmentModal() {
   const [open, setOpen] = useState(false)
   const [form, setForm] = useState({ name: '', phone: '', age: '', reason: '', date: '', time: '', notes: '' })
 
@@ -34,7 +33,8 @@ export default function AppointmentModal({ clinic }: { clinic: ClinicInfo }) {
       form.time ? `Preferred Time: ${form.time}` : '',
       form.notes ? `Notes: ${form.notes}` : '',
     ].filter(Boolean).join('\n')
-    const num = clinic.whatsapp.replace(/\D/g, '')
+    const w = (window as any).__CLINIC__?.whatsapp || ''
+    const num = w.replace(/\D/g, '')
     window.open(`https://wa.me/${num}?text=${encodeURIComponent(msg)}`, '_blank')
     setOpen(false)
   }
@@ -64,7 +64,7 @@ export default function AppointmentModal({ clinic }: { clinic: ClinicInfo }) {
         {/* Header */}
         <div style={{ marginBottom: '1.5rem' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.4rem' }}>
-            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#22C55E' }}></div>
+            <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary)' }}></div>
             <span style={{ fontSize: '0.72rem', fontWeight: '700', color: '#6B7280', textTransform: 'uppercase', letterSpacing: '1px' }}>Quick Booking</span>
           </div>
           <h2 style={{ fontSize: '1.4rem', fontWeight: '800', color: '#111111', margin: 0 }}>Book an Appointment</h2>
@@ -100,7 +100,7 @@ export default function AppointmentModal({ clinic }: { clinic: ClinicInfo }) {
         {/* Submit */}
         <button onClick={sendWhatsApp} style={{
           width: '100%', marginTop: '1.25rem', padding: '0.9rem',
-          background: '#22C55E', color: '#FFFFFF', border: 'none', borderRadius: '12px',
+          background: 'var(--primary)', color: '#FFFFFF', border: 'none', borderRadius: '12px',
           fontSize: '1rem', fontWeight: '700', cursor: 'pointer',
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem'
         }}>
