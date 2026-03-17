@@ -12,13 +12,11 @@ export default async function LocationSpokePage({ params }: { params?: { area?: 
   const cfg = await loadConfig()
 
   const areaSlug = params?.area || ''
-  const areaName = areaSlug
-    .replace(/-/g, ' ')
-    .replace(/\b\w/g, (c: string) => c.toUpperCase())
+  // Find area from config first (has correct name), fallback to slug conversion
+  const areaFromConfig = (cfg.areas || cfg.localAreas || []).find((a: any) => a.slug === areaSlug)
+  const areaName = areaFromConfig?.name || areaSlug.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase())
 
-  const area = (cfg.areas || cfg.localAreas || []).find(
-    (a: any) => a.slug === areaSlug
-  ) || { name: areaName, slug: areaSlug, distance: '', duration: '' }
+  const area = areaFromConfig || { name: areaName, slug: areaSlug, distance: '', duration: '' }
 
   return (
     <>
@@ -28,6 +26,8 @@ export default async function LocationSpokePage({ params }: { params?: { area?: 
           clinic={cfg.clinic}
           doctor={cfg.doctor}
           area={area}
+          conditions={cfg.conditions || []}
+          areas={cfg.areas || cfg.localAreas || []}
         />
         <CTABand cta={cfg.ctaBand} />
         <Footer clinic={cfg.clinic} config={cfg} />

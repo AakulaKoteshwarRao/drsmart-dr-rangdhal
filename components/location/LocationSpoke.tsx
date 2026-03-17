@@ -1,8 +1,5 @@
 'use client'
 import { useState } from 'react'
-import defaultData from '../../data/default.json'
-
-const d = defaultData
 
 const pinIcon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
 const arrowIcon = <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -15,57 +12,68 @@ const serviceGrads = [
   'linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep))',
 ]
 
-const services = (d.services?.conditions || []).slice(0, 3).map((s: any, i: number) => ({
-  grad: serviceGrads[i % serviceGrads.length],
-  icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
-  title: s.title,
-  desc: s.description || s.title,
-  href: `/conditions/${s.slug}`,
-}))
-
-const intLinks = [
-  { label: '&larr; All Areas', href: '/locations' },
-  { label: 'Doctor Profile', href: '/doctor' },
-  { label: 'All Services', href: '/services' },
-  ...(d.services?.conditions || []).slice(0, 3).map((s: any) => ({ label: s.title, href: `/conditions/${s.slug}` })),
-  { label: 'Packages', href: '/products' },
-  { label: 'Book Appointment', href: '/appointment' },
-  { label: 'Blog', href: '/blog' },
-]
-
 export default function LocationSpoke(props?: any) {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
-  const clinicAddress = props?.clinic?.address || d.clinic.address
-  const clinicHours   = props?.clinic?.hours   || d.clinic.hours
-  const doctorName    = props?.doctor?.name    || d.doctor.name
-  const areaName      = props?.area?.name      || 'Local Area'
-  const specialty     = (d.entity as any)?.medicalSpecialty || d.doctor?.experience?.[0]?.role || 'specialist'
+  const clinic      = props?.clinic || {}
+  const doctor      = props?.doctor || {}
+  const area        = props?.area   || {}
+
+  const clinicAddress = clinic.address || ''
+  const clinicHours   = clinic.hours   || ''
+  const clinicCity    = clinic.city    || ''
+  const doctorName    = doctor.name    || 'Your Doctor'
+  const doctorDegrees = Array.isArray(doctor.degrees) ? doctor.degrees.join(', ') : (doctor.degrees || '')
+  const specialty     = clinic.medicalSpecialty || doctor.specialty || 'Specialist'
+  const areaName      = area.name || ''
+
+  // Services from props
+  const conditionsList = props?.conditions || []
+  const services = conditionsList.slice(0, 3).map((s: any, i: number) => ({
+    grad: serviceGrads[i % serviceGrads.length],
+    icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
+    title: s.title,
+    desc: s.description || s.title,
+    href: `/conditions/${s.slug}`,
+  }))
+
+  // Nearby areas from props
+  const allAreas = props?.areas || []
+  const nearbyAreas = allAreas.filter((a: any) => a.slug !== area.slug).slice(0, 5).map((a: any) => ({
+    label: a.name, href: `/specialist-near-${a.slug}`
+  }))
+
+  // Internal links
+  const intLinks = [
+    { label: '← All Areas', href: '/locations' },
+    { label: 'Doctor Profile', href: '/doctor' },
+    { label: 'All Services', href: '/services' },
+    ...conditionsList.slice(0, 3).map((s: any) => ({ label: s.title, href: `/conditions/${s.slug}` })),
+    { label: 'Packages', href: '/products' },
+    { label: 'Book Appointment', href: '/appointment' },
+    { label: 'Blog', href: '/blog' },
+  ]
 
   const qfCards = [
-    { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: pinIcon, label: 'Location', val: props?.clinic?.hospital || clinicAddress },
-    { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: clockIcon, label: 'Travel Time', val: '10-15 min' },
-    { grad: 'linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>, label: 'Distance', val: '3-5 km' },
+    { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: pinIcon, label: 'Location', val: clinic.hospital || clinicAddress },
+    { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: clockIcon, label: 'Travel Time', val: area.duration || '10-15 min' },
+    { grad: 'linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>, label: 'Distance', val: area.distance || '3-5 km' },
     { grad: 'linear-gradient(135deg,var(--primary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>, label: 'Parking', val: 'Available' },
   ]
 
   const reasons = [
-    { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: pinIcon, text: `Located at ${clinicAddress} -- easily accessible from the local area` },
-    { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: clockIcon, text: `Clinic hours ${clinicHours} -- convenient for patients in the area` },
+    { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: pinIcon, text: `Located at ${clinicAddress} — easily accessible from ${areaName}` },
+    { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: clockIcon, text: `Clinic hours ${clinicHours} — convenient for patients in the area` },
     { grad: 'linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep))', icon: checkIcon, text: `${doctorName} has extensive experience in ${specialty} and complex case management` },
-    { grad: 'linear-gradient(135deg,var(--primary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, text: 'Modern diagnostic equipment -- all under one roof' },
+    { grad: 'linear-gradient(135deg,var(--primary-dark),var(--secondary-deep))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>, text: 'Modern diagnostic equipment — all under one roof' },
     { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>, text: `Hundreds of successful outcomes for patients from ${areaName} and surrounding neighbourhoods` },
   ]
 
-  const nearbyAreas = (d.localAreas || []).slice(0, 5).map((a: any) => ({
-    label: a.name, href: `/specialist-near-${a.slug}`
-  }))
-
   const faqs = [
-    { q: `How do I reach the clinic?`, a: `${clinicAddress} -- easily accessible from most parts of the area.` },
+    { q: 'How do I reach the clinic?', a: `${clinicAddress} — easily accessible from most parts of the area.` },
     { q: 'What are the clinic hours?', a: `${doctorName} consults ${clinicHours}. Please call ahead to confirm your slot.` },
     { q: 'Is parking available at the clinic?', a: 'Yes, parking is available near the clinic. Public transport options are also within walking distance.' },
-    { q: `What conditions are treated at this location?`, a: `All major conditions are treated -- ${(d.conditions || []).slice(0, 4).map((c: any) => c.title || c.label).join(', ')}, and more. Full diagnostic workups are available on-site.` },
+    { q: 'What conditions are treated at this location?', a: `All major conditions are treated — ${conditionsList.slice(0, 4).map((c: any) => c.title).join(', ')}${conditionsList.length > 4 ? ', and more' : ''}. Full diagnostic workups are available on-site.` },
     { q: 'Can I book an appointment online?', a: 'Yes. You can book via our appointment page or WhatsApp us directly. Same-week appointments are typically available for new patients.' },
   ]
 
@@ -84,12 +92,10 @@ export default function LocationSpoke(props?: any) {
       <section className="spoke-hero">
         <div className="sec-label"><span>Location</span></div>
         <h1>{specialty} Near <em>{areaName}</em></h1>
-        <p className="spoke-hero-desc">Looking for a trusted {specialty.toLowerCase()} near {areaName}? {doctorName} consults at {clinicAddress} -- easily reachable from the surrounding area.</p>
+        <p className="spoke-hero-desc">Looking for a trusted {specialty.toLowerCase()} near {areaName}? {doctorName} consults at {clinicAddress} — easily reachable from the surrounding area.</p>
         <a href="/appointment" className="spoke-hero-cta" onClick={e => { e.preventDefault(); typeof window !== "undefined" && window.dispatchEvent(new CustomEvent("openAppointmentModal")) }}>
           Book Appointment {arrowIcon}
         </a>
-
-        {/* Quick-facts */}
         <div className="qf-grid">
           {qfCards.map((c, i) => (
             <div key={i} className="qf-card">
@@ -104,25 +110,27 @@ export default function LocationSpoke(props?: any) {
       </section>
 
       {/* S2 Services */}
-      <div className="sec-grey">
-        <div className="sec-pad">
-          <div className="sec-header" style={{ textAlign: 'center' }}>
-            <div className="sec-label" style={{ justifyContent: 'center' }}><span>Services</span></div>
-            <h2 className="sec-title">Services for {areaName} patients.</h2>
-            <p className="sec-sub" style={{ margin: '0 auto' }}>The most relevant services for patients from this area.</p>
-          </div>
-          <div className="spoke-services">
-            {services.map((s, i) => (
-              <a key={i} href={s.href} className="spoke-svc-card">
-                <div className="spoke-svc-icon" style={{ background: s.grad }}>{s.icon}</div>
-                <h3>{s.title}</h3>
-                <p>{s.desc}</p>
-                <span className="spoke-svc-link">Learn more {arrowIcon}</span>
-              </a>
-            ))}
+      {services.length > 0 && (
+        <div className="sec-grey">
+          <div className="sec-pad">
+            <div className="sec-header" style={{ textAlign: 'center' }}>
+              <div className="sec-label" style={{ justifyContent: 'center' }}><span>Services</span></div>
+              <h2 className="sec-title">Services for {areaName} patients.</h2>
+              <p className="sec-sub" style={{ margin: '0 auto' }}>The most relevant services for patients from this area.</p>
+            </div>
+            <div className="spoke-services">
+              {services.map((s: any, i: number) => (
+                <a key={i} href={s.href} className="spoke-svc-card">
+                  <div className="spoke-svc-icon" style={{ background: s.grad }}>{s.icon}</div>
+                  <h3>{s.title}</h3>
+                  <p>{s.desc}</p>
+                  <span className="spoke-svc-link">Learn more {arrowIcon}</span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* S3 Why Us */}
       <div className="sec-teal">
@@ -151,12 +159,16 @@ export default function LocationSpoke(props?: any) {
           </div>
           <div className="doc-mini">
             <div className="doc-mini-photo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: '32px', height: '32px', color: 'rgba(255,255,255,0.3)' }}><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              {doctor.photo ? (
+                <img src={doctor.photo} alt={doctorName} width={80} height={80} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '50%' }} />
+              ) : (
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" style={{ width: '32px', height: '32px', color: 'rgba(255,255,255,0.3)' }}><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              )}
             </div>
             <div className="doc-mini-info">
               <h3>{doctorName}</h3>
-              <div className="doc-spec">{d.doctor.degrees}</div>
-              <p>{doctorName} brings extensive expertise in {specialty}, consulting at {clinicAddress} -- {clinicHours}.</p>
+              <div className="doc-spec">{doctorDegrees}</div>
+              <p>{doctorName} brings extensive expertise in {specialty}, consulting at {clinicAddress} — {clinicHours}.</p>
               <a href="/doctor" className="doc-mini-link">View full profile {arrowIcon}</a>
             </div>
           </div>
@@ -164,22 +176,24 @@ export default function LocationSpoke(props?: any) {
       </div>
 
       {/* S5 Nearby Areas */}
-      <div className="sec-grey">
-        <div className="sec-pad">
-          <div className="sec-header" style={{ textAlign: 'center' }}>
-            <div className="sec-label" style={{ justifyContent: 'center' }}><span>Nearby</span></div>
-            <h2 className="sec-title">Also serving nearby areas.</h2>
-            <p className="sec-sub" style={{ margin: '0 auto' }}>We see patients from across {d.clinic.city}. Here are some nearby areas we serve.</p>
-          </div>
-          <div className="nearby-pills">
-            {nearbyAreas.map((a: any, i: number) => (
-              <a key={i} href={a.href} className="nearby-pill">
-                {pinIcon} {a.label}
-              </a>
-            ))}
+      {nearbyAreas.length > 0 && (
+        <div className="sec-grey">
+          <div className="sec-pad">
+            <div className="sec-header" style={{ textAlign: 'center' }}>
+              <div className="sec-label" style={{ justifyContent: 'center' }}><span>Nearby</span></div>
+              <h2 className="sec-title">Also serving nearby areas.</h2>
+              <p className="sec-sub" style={{ margin: '0 auto' }}>We see patients from across {clinicCity}. Here are some nearby areas we serve.</p>
+            </div>
+            <div className="nearby-pills">
+              {nearbyAreas.map((a: any, i: number) => (
+                <a key={i} href={a.href} className="nearby-pill">
+                  {pinIcon} {a.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* S6 FAQ */}
       <div className="sec-white">
