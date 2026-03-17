@@ -1,3 +1,4 @@
+'use client'
 import type { CTABand } from '@/lib/types'
 
 const ArrowIcon = () => (
@@ -19,7 +20,7 @@ export default function CTABand({ cta }: { cta: CTABand }) {
           <h2>{cta.heading}</h2>
           <p>{cta.subtext}</p>
           <div className="cta-band-actions">
-            <a href={cta.primaryHref} className="cta-primary">
+            <a href={cta.primaryHref} className="cta-primary" onClick={e => { e.preventDefault(); typeof window !== "undefined" && window.dispatchEvent(new CustomEvent("openAppointmentModal")) }}>
               {cta.primaryLabel} <ArrowIcon />
             </a>
             <a href={cta.secondaryHref} target="_blank" rel="noreferrer" className="cta-secondary">

@@ -455,7 +455,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     heading:       'Ready to take the first step?',
     subtext:       `Book an appointment with ${doctorName} today.`,
     primaryLabel:  'Book Appointment',
-    primaryHref:   '/appointment',
+    primaryHref:   '#',
     secondaryLabel:'WhatsApp Us',
     secondaryHref: `https://wa.me/${whatsapp}`,
     infoItems:     [
