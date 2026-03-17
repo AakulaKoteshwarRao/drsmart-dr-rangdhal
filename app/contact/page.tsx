@@ -200,9 +200,9 @@ export default async function ContactPage() {
             <div className="sec-label" style={{ justifyContent: 'center' }}><span>Connect</span></div>
             <h2 className="sec-title">Find us online.</h2>
           </div>
-          <div className="social-links">
+          <div className="contact-social-links">
             {(clinic as any).social?.google && (
-              <a href={(clinic as any).social.google} className="social-link" target="_blank" rel="noopener noreferrer">
+              <a href={(clinic as any).social.google} className="contact-social-link" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                   <path d="M12 11h8.533c.044.385.067.78.067 1.184 0 5.26-3.52 9-8.6 9C6.48 21.184 2 16.704 2 11S6.48.816 12 .816c2.44 0 4.48.895 6.04 2.355l-2.52 2.52C14.573 4.79 13.373 4.28 12 4.28c-3.19 0-5.76 2.71-5.76 6.72s2.57 6.72 5.76 6.72c2.69 0 4.54-1.52 5.12-3.72H12V11z"/>
                 </svg>
@@ -210,7 +210,7 @@ export default async function ContactPage() {
               </a>
             )}
             {(clinic as any).social?.facebook && (
-              <a href={(clinic as any).social.facebook} className="social-link" target="_blank" rel="noopener noreferrer">
+              <a href={(clinic as any).social.facebook} className="contact-social-link" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                   <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
                 </svg>
@@ -218,7 +218,7 @@ export default async function ContactPage() {
               </a>
             )}
             {(clinic as any).social?.instagram && (
-              <a href={(clinic as any).social.instagram} className="social-link" target="_blank" rel="noopener noreferrer">
+              <a href={(clinic as any).social.instagram} className="contact-social-link" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2">
                   <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
                 </svg>
@@ -226,7 +226,7 @@ export default async function ContactPage() {
               </a>
             )}
             {(clinic as any).social?.youtube && (
-              <a href={(clinic as any).social.youtube} className="social-link" target="_blank" rel="noopener noreferrer">
+              <a href={(clinic as any).social.youtube} className="contact-social-link" target="_blank" rel="noopener noreferrer">
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
                   <path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58 2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
                 </svg>
