@@ -18,7 +18,7 @@ export default async function LocationSpokePage({ params }: { params?: { area?: 
   const slugToName = (slug: string) => slug.split('-').map((w: string) => 
     w.length <= 2 ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)
   ).join(' ')
-  const areaName = (areaFromConfig?.name && areaFromConfig.name.length > 2) ? areaFromConfig.name : slugToName(areaSlug)
+  const areaName = areaFromConfig?.name || slugToName(areaSlug)
 
   const area = areaFromConfig || { name: areaName, slug: areaSlug, distance: '', duration: '' }
 
