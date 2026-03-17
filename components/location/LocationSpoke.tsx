@@ -24,7 +24,7 @@ const services = (d.services?.conditions || []).slice(0, 3).map((s: any, i: numb
 }))
 
 const intLinks = [
-  { label: '&larr; All Locations', href: '/locations' },
+  { label: '&larr; All Areas', href: '/locations' },
   { label: 'Doctor Profile', href: '/doctor' },
   { label: 'All Services', href: '/services' },
   ...(d.services?.conditions || []).slice(0, 3).map((s: any) => ({ label: s.title, href: `/conditions/${s.slug}` })),
@@ -58,7 +58,7 @@ export default function LocationSpoke(props?: any) {
   ]
 
   const nearbyAreas = (d.localAreas || []).slice(0, 5).map((a: any) => ({
-    label: a.name, href: `/locations/${a.slug}`
+    label: a.name, href: `/specialist-near-${a.slug}`
   }))
 
   const faqs = [
@@ -75,7 +75,7 @@ export default function LocationSpoke(props?: any) {
       <nav className="breadcrumb">
         <a href="/">Home</a>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-        <a href="/locations">Locations</a>
+        <a href="/locations">All Areas</a>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><polyline points="9 18 15 12 9 6"/></svg>
         <span>{areaName}</span>
       </nav>
