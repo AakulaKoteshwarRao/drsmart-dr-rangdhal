@@ -8,7 +8,7 @@ const medIcon = (
 
 export default function ConditionsGrid({ conditions }: { conditions: ServiceItem[] }) {
   return (
-    <section className="card-section" style={{ background: 'var(--primary-light)' }}>
+    <section id="conditions" className="card-section" style={{ background: "var(--primary-light)" }}>
       <div className="sec-header">
         <div className="sec-label"><span>Conditions We Treat</span></div>
         <h2 className="sec-title">What brings patients to us.</h2>
@@ -28,9 +28,7 @@ export default function ConditionsGrid({ conditions }: { conditions: ServiceItem
           </div>
         ))}
       </div>
-      <div className="section-cta">
-        <a href="/conditions">All conditions we treat <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-      </div>
+
     </section>
   )
 }

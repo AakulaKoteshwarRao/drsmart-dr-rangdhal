@@ -50,7 +50,7 @@ export default async function HomePage() {
           title="What we treat."
           subtitle="From common to complex conditions -- each diagnosis is approached with precision and care."
           items={cfg.conditions}
-          viewAllHref="/conditions"
+          viewAllHref="/services#conditions"
           viewAllLabel="View All Conditions"
         />
         <CardGrid
@@ -58,7 +58,7 @@ export default async function HomePage() {
           title="What we do."
           subtitle="Minimally invasive and surgical procedures performed with modern techniques and premium equipment."
           items={cfg.procedures}
-          viewAllHref="/services"
+          viewAllHref="/services#procedures"
           viewAllLabel="View All Procedures"
           bgClass="section-cool-grey"
           wrapInner={true}
