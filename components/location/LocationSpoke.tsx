@@ -20,14 +20,14 @@ const services = (d.services?.conditions || []).slice(0, 3).map((s: any, i: numb
   icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
   title: s.title,
   desc: s.description || s.title,
-  href: `/services/${s.slug}`,
+  href: `/conditions/${s.slug}`,
 }))
 
 const intLinks = [
   { label: '&larr; All Locations', href: '/locations' },
   { label: 'Doctor Profile', href: '/doctor' },
   { label: 'All Services', href: '/services' },
-  ...(d.services?.conditions || []).slice(0, 3).map((s: any) => ({ label: s.title, href: `/services/${s.slug}` })),
+  ...(d.services?.conditions || []).slice(0, 3).map((s: any) => ({ label: s.title, href: `/conditions/${s.slug}` })),
   { label: 'Packages', href: '/products' },
   { label: 'Book Appointment', href: '/appointment' },
   { label: 'Blog', href: '/blog' },

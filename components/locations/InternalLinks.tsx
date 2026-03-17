@@ -4,7 +4,7 @@ import type { AreaItem } from '@/lib/types'
 const d = defaultData
 
 const serviceLinks = [
-  ...(d.services?.conditions || []).slice(0, 3).map((s: any) => ({ label: s.title, href: `/services/${s.slug}` })),
+  ...(d.services?.conditions || []).slice(0, 3).map((s: any) => ({ label: s.title, href: `/conditions/${s.slug}` })),
   ...(d.services?.procedures || []).slice(0, 2).map((p: any) => ({ label: p.title, href: `/procedures/${p.slug}` })),
 ]
 

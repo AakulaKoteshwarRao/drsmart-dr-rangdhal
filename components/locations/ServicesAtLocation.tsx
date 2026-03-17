@@ -18,7 +18,7 @@ export default function ServicesAtLocation() {
         </div>
         <div className="services-loc-grid">
           {services.map((s, i) => (
-            <a key={i} href={`/services/${s.slug}`} className="svc-chip">
+            <a key={i} href={`/conditions/${s.slug}`} className="svc-chip">
               <span className="svc-dot" style={{ background: s.color }}></span>
               <span>{s.label}</span>
             </a>
