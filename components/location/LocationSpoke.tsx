@@ -85,7 +85,7 @@ export default function LocationSpoke(props?: any) {
         <div className="sec-label"><span>Location</span></div>
         <h1>{specialty} Near <em>{areaName}</em></h1>
         <p className="spoke-hero-desc">Looking for a trusted {specialty.toLowerCase()} near {areaName}? {doctorName} consults at {clinicAddress} -- easily reachable from the surrounding area.</p>
-        <a href="/appointment" className="spoke-hero-cta">
+        <a href="/appointment" className="spoke-hero-cta" onClick={e => { e.preventDefault(); typeof window !== "undefined" && window.dispatchEvent(new CustomEvent("openAppointmentModal")) }}>
           Book Appointment {arrowIcon}
         </a>
 
