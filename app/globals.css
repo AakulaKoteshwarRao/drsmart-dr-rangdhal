@@ -40,6 +40,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .logo { display: flex; align-items: center; text-decoration: none; }
 .logo img { height: 56px; width: auto; max-width: 200px; object-fit: contain; }
 .nav { display: flex; align-items: center; gap: 0.25rem; }
+.hamburger { display: none; }
 .nav a {
   text-decoration: none; color: #4B5563; font-size: 0.88rem; font-weight: 500;
   padding: 0.5rem 0.85rem; border-radius: 8px; transition: color 200ms, background 200ms;
@@ -646,6 +647,10 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
   .header-inner { height: 60px; padding: 0 1rem; }
   .logo img { height: 44px; }
   .nav { display: none; }
+  .hamburger { display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; color: var(--text, #111); padding: 4px; }
+  .mobile-nav { display: flex; flex-direction: column; background: #fff; border-top: 1px solid #e5e5e5; padding: 8px 0; }
+  .mobile-nav a { padding: 12px 1.5rem; font-size: 15px; color: #111; text-decoration: none; border-bottom: 1px solid #f0f0f0; }
+  .mobile-nav a.active { color: var(--secondary, #1E3A8A); font-weight: 600; }
   .hero { padding: 2rem 1rem; }
   .hero h1 { font-size: 1.85rem; }
   .hero-stats { gap: 1.5rem; flex-wrap: wrap; }

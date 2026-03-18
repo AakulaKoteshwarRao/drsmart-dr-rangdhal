@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useState } from 'react'
 import type { ClinicInfo } from '@/lib/types'
 
 const ALL_LINKS: Record<string, { href: string; label: string }> = {
@@ -30,6 +31,7 @@ const DEFAULT_MENU = ['home', 'about', 'doctor', 'services', 'blog', 'contact']
 
 export default function Header({ clinic }: { clinic: ClinicInfo }) {
   const pathname = usePathname()
+  const [menuOpen, setMenuOpen] = useState(false)
   const menuKeys = (clinic.type && MENU_BY_ENTITY[clinic.type]) || DEFAULT_MENU
   const navLinks = menuKeys.map(k => ALL_LINKS[k]).filter(Boolean)
 
@@ -54,18 +56,49 @@ export default function Header({ clinic }: { clinic: ClinicInfo }) {
             </div>
           )}
         </Link>
+
+        {/* Desktop Nav */}
         <nav className="nav">
+          {navLinks.map(link => (
+            <Link key={link.href} href={link.href} className={pathname === link.href ? 'active' : ''}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Hamburger Button */}
+        <button
+          className="hamburger"
+          onClick={() => setMenuOpen(prev => !prev)}
+          aria-label="Toggle menu"
+        >
+          {menuOpen ? (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="24" height="24">
+              <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {menuOpen && (
+        <nav className="mobile-nav">
           {navLinks.map(link => (
             <Link
               key={link.href}
               href={link.href}
               className={pathname === link.href ? 'active' : ''}
+              onClick={() => setMenuOpen(false)}
             >
               {link.label}
             </Link>
           ))}
         </nav>
-      </div>
+      )}
     </header>
   )
 }
