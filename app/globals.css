@@ -421,7 +421,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .carousel-next { right: -16px; transform: translateY(-50%); }
 
 /* -- SECTION 11: PRICING -- */
-.pricing-section { max-width: 100%; background: #1a2340; }
+.pricing-section { max-width: 100%; background: var(--secondary); }
 .pricing-inner { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem; }
 .pricing-inner .sec-label span { color: #000000; }
 .pricing-inner .sec-title { color: #ffffff; }

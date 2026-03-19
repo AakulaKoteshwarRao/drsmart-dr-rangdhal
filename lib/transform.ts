@@ -430,7 +430,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
       distance: s(ar.distance, ''),
       duration: s(ar.duration, ''),
       label:    name,
-      href:     `/location/${slug}`,
+      href:     `/specialist-near-${slug}`,
     }
   })
 
