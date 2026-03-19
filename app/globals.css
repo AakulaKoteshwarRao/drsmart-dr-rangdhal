@@ -1,14 +1,14 @@
 /* -- BRAND COLOR VARIABLES -- */
 /* Override these in layout.tsx style prop from default.json brand config */
 :root {
-  --primary:         #F97316;
-  --primary-dark:    #EA580C;
-  --primary-light:   #FFF7ED;
-  --primary-pale:    #FFE8D0;
-  --secondary:       #1E3A8A;
-  --secondary-dark:  #162E6E;
-  --secondary-deep:  #0F2259;
-  --secondary-light: #EFF6FF;
+  --primary:         #0d7a5f;
+  --primary-dark:    #0b6b53;
+  --primary-light:   rgba(13,122,95,0.08);
+  --primary-pale:    rgba(13,122,95,0.15);
+  --secondary:       #1a4ea0;
+  --secondary-dark:  #163f82;
+  --secondary-deep:  #112e5f;
+  --secondary-light: rgba(26,78,160,0.08);
 }
 
 
