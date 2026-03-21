@@ -8,7 +8,7 @@ import {
   File, MagnifyingGlass, Briefcase, Lightning, Drop,
   User, ChatCircle, House, ArrowSquareOut, Certificate,
   Medal, Stethoscope, FirstAid, Siren, Eye, Brain,
-  Heartbeat, Bandaids, Pill, Leaf, Scales, Buildings,
+  Bandaids, Pill, Leaf, Scales, Buildings,
   Clock as ClockIcon, Envelope, Globe, MapTrifold,
 } from '@phosphor-icons/react'
 import type { Icon as PhosphorIcon } from '@phosphor-icons/react'

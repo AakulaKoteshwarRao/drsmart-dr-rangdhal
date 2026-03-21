@@ -302,6 +302,7 @@ export interface AreaItem {
 }
 
 export interface TeamMember {
+  photo?: string
   name: string
   designation: string
   qualifications: string[]
