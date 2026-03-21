@@ -10,10 +10,10 @@ export const PILL_STYLES = [
 ]
 
 export const STAT_COLOURS = [
-  'var(--primary)',
-  'var(--secondary)',
-  '#D68910',
-  'var(--secondary-deep)',
-  '#1E8449',
-  '#922B21',
+  '#34D399',
+  '#60A5FA',
+  '#FBBF24',
+  '#F472B6',
+  '#A78BFA',
+  '#FB923C',
 ]
