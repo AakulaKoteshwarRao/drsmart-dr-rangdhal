@@ -23,7 +23,7 @@ export default function PackagesGrid({ packages }: { packages: PackageItem[] }) 
                 <span key={j} className="pkg-tag">{tag}</span>
               ))}
             </div>
-            <span className="learn-more">Learn more <Icon name="arrow-right" size={16} /></span>
+            <span className="learn-more">More Info <Icon name="arrow-right" size={16} /></span>
           </a>
         ))}
       </div>
