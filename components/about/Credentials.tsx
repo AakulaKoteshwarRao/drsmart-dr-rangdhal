@@ -1,3 +1,4 @@
+import { STAT_COLOURS } from '@/lib/pills'
 import type { DoctorInfo, ClinicInfo } from '@/lib/types'
 
 export default function Credentials({ doctor, clinic }: { doctor: DoctorInfo; clinic: ClinicInfo }) {
@@ -13,7 +14,7 @@ export default function Credentials({ doctor, clinic }: { doctor: DoctorInfo; cl
         <div className="creds-grid">
           {doctor.stats.map((stat, i) => (
             <div key={i} className="cred-card">
-              <div className="cred-number">{stat.number}</div>
+              <div className="cred-number" style={{ background: "none", WebkitTextFillColor: STAT_COLOURS[i % STAT_COLOURS.length], color: STAT_COLOURS[i % STAT_COLOURS.length] }}>{stat.number}</div>
               <div className="cred-label">{stat.label}</div>
               <div className="cred-sub">{subLabels[i] ?? ''}</div>
             </div>

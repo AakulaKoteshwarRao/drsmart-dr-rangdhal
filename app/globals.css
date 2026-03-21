@@ -830,3 +830,4 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
   .footer-legal { flex-wrap: wrap; justify-content: center; }
 }
 @import './styles/team.css';
+@import './styles/about.css';

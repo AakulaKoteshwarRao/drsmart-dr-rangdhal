@@ -15,7 +15,6 @@ import AboutFAQ from '@/components/about/AboutFAQ'
 import LocationStrip from '@/components/about/LocationStrip'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '../styles/about.css'
 
 export default async function AboutPage() {
   const cfg = await loadConfig()
