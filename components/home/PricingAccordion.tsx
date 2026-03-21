@@ -31,7 +31,7 @@ export default function PricingAccordion({ items }: { items: PricingItem[] }) {
                   </div>
                 </div>
                 {isOpen && (
-                  <div className="acc-panel" style={{ padding: '0 1.5rem 1.5rem' }}>
+                  <div className="acc-panel" style={{ padding: '0 1.5rem 1.5rem', maxHeight: 'none', overflow: 'visible' }}>
                     <h4>{item.title}</h4>
                     <p>{item.description}</p>
                     <ul>
