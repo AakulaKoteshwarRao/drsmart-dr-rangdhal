@@ -3,8 +3,9 @@ import { useRef } from 'react'
 import type { TeamMember } from '@/lib/types'
 import { Icon } from '@/lib/icons'
 
-export default function TeamCarousel({ members }: { members: TeamMember[] }) {
+export default function TeamCarousel({ members, showLead = false }: { members: TeamMember[]; showLead?: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
+  const visible = showLead ? members : members.filter(m => !m.isLead)
   const scroll = (dir: number) => { ref.current?.scrollBy({ left: dir * 340, behavior: 'smooth' }) }
 
   return (
@@ -15,7 +16,7 @@ export default function TeamCarousel({ members }: { members: TeamMember[] }) {
             <Icon name="arrow-left" size={20} color="#FFFFFF" />
           </button>
           <div className="team-carousel" ref={ref}>
-            {members.map((m, i) => (
+            {visible.map((m, i) => (
               <div key={i} className="team-card">
                 <div className="team-card-photo" style={{ background: m.gradient, position: 'relative', overflow: 'hidden' }}>
                   {m.photo ? (
@@ -25,7 +26,6 @@ export default function TeamCarousel({ members }: { members: TeamMember[] }) {
                   )}
                 </div>
                 <div className="team-card-body" style={{ padding: '1.5rem' }}>
-                  {m.isLead && <div className="team-card-badge">* Lead Doctor</div>}
                   <h3 className="team-card-name">{m.name}</h3>
                   <p className="team-card-desg">{m.designation}</p>
                   <div className="team-card-quals">

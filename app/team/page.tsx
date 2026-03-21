@@ -15,7 +15,7 @@ export default async function TeamPage() {
       <Header clinic={cfg.clinic} />
       <main style={{ paddingBottom: '64px' }}>
         <TeamHero />
-        <TeamCarousel members={cfg.team} />
+        <TeamCarousel members={cfg.team} showLead={true} />
         <TeamFAQ clinic={cfg.clinic} />
         <CTABand cta={cfg.ctaBand} />
         <Footer clinic={cfg.clinic} config={cfg} />
