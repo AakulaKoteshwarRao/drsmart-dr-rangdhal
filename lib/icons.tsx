@@ -1,3 +1,4 @@
+'use client'
 import {
   MapPin, Clock, Phone, GraduationCap, Trophy, ShieldCheck,
   CurrencyDollar, CreditCard, Info, Translate, Hospital,
