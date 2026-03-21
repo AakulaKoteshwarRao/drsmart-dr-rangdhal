@@ -3,7 +3,6 @@ import StickyBar from '@/components/StickyBar'
 import Footer from '@/components/Footer'
 import LegalPage from '@/components/legal/LegalPage'
 import { loadConfig } from '@/lib/config'
-import '../styles/legal.css'
 
 export default async function PrivacyPage() {
   const cfg = await loadConfig()

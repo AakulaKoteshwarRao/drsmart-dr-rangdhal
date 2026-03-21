@@ -4,8 +4,6 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import StickyBar from '@/components/StickyBar'
 import CTABand from '@/components/home/CTABand'
-import '../styles/conditions.css'
-import '../styles/contact.css'
 
 export const dynamic = 'force-dynamic'
 

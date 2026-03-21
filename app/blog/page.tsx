@@ -10,7 +10,6 @@ import FeaturedPost from '@/components/blog/FeaturedPost'
 import BlogGrid from '@/components/blog/BlogGrid'
 import { loadConfig } from '@/lib/config'
 import { getBlogs } from '@/lib/blogs'
-import '../styles/blog.css'
 
 export default async function BlogPage() {
   const cfg = await loadConfig()

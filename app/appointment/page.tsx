@@ -10,7 +10,6 @@ import ClinicStrip from '@/components/appointment/ClinicStrip'
 import WhatToExpect from '@/components/appointment/WhatToExpect'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '../styles/appointment.css'
 
 export default async function AppointmentPage() {
   const cfg = await loadConfig()

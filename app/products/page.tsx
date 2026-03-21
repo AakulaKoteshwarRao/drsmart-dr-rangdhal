@@ -9,7 +9,6 @@ import GuidanceSection from '@/components/products/GuidanceSection'
 import ProductsFAQ from '@/components/products/ProductsFAQ'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '../styles/products.css'
 
 export default async function ProductsPage() {
   const cfg = await loadConfig()

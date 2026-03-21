@@ -6,7 +6,6 @@ import VideoGrid from '@/components/success-stories/VideoGrid'
 import StoriesFAQ from '@/components/success-stories/StoriesFAQ'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '../styles/success-stories.css'
 
 export default async function SuccessStoriesPage() {
   const cfg = await loadConfig()

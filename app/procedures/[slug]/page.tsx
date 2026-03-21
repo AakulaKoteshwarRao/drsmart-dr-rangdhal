@@ -1,7 +1,5 @@
 import { notFound } from 'next/navigation'
 export const dynamic = 'force-dynamic'
-import '@/styles/conditions.css'
-import '@/styles/procedures.css'
 import { loadConfig } from '@/lib/config'
 import { mapProcedure } from '@/lib/transform'
 import ProcedureDetail from '@/components/procedure/ProcedureDetail'

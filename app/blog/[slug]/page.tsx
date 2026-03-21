@@ -7,7 +7,6 @@ import StickyBar from '@/components/StickyBar'
 import Footer from '@/components/Footer'
 import { loadConfig } from '@/lib/config'
 import { getBlogBySlug } from '@/lib/blogs'
-import '../../styles/blog-post.css'
 
 export default async function BlogPostPage({ params }: { params?: { slug?: string } }) {
   const cfg  = await loadConfig()

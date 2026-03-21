@@ -7,7 +7,6 @@ import ReviewsGrid from '@/components/testimonials/ReviewsGrid'
 import TestimonialsFAQ from '@/components/testimonials/TestimonialsFAQ'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '../styles/testimonials.css'
 
 export default async function TestimonialsPage() {
   const cfg = await loadConfig()

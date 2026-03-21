@@ -17,7 +17,6 @@ import LocationFAQ from '@/components/locations/LocationFAQ'
 import InternalLinks from '@/components/locations/InternalLinks'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '../styles/locations.css'
 
 export default async function LocationsPage() {
   const cfg = await loadConfig()

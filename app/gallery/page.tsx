@@ -5,7 +5,6 @@ import Footer from '@/components/Footer'
 import GalleryHero from '@/components/gallery/GalleryHero'
 import GalleryGrid from '@/components/gallery/GalleryGrid'
 import { loadConfig } from '@/lib/config'
-import '../styles/gallery.css'
 
 export default async function GalleryPage() {
   const cfg = await loadConfig()

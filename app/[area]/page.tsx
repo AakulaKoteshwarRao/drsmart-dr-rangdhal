@@ -4,7 +4,6 @@ import CTABand from '@/components/home/CTABand'
 import Footer from '@/components/Footer'
 import LocationSpoke from '@/components/location/LocationSpoke'
 import { loadConfig } from '@/lib/config'
-import '../styles/location-spoke.css'
 
 export const dynamic = 'force-dynamic'
 

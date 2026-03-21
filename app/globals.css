@@ -831,3 +831,20 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 }
 @import './styles/team.css';
 @import './styles/about.css';
+
+@import './styles/appointment.css';
+@import './styles/blog-post.css';
+@import './styles/blog.css';
+@import './styles/conditions.css';
+@import './styles/contact.css';
+@import './styles/doctor.css';
+@import './styles/gallery.css';
+@import './styles/legal.css';
+@import './styles/location-spoke.css';
+@import './styles/locations.css';
+@import './styles/packages.css';
+@import './styles/procedures.css';
+@import './styles/products.css';
+@import './styles/services.css';
+@import './styles/success-stories.css';
+@import './styles/testimonials.css';
