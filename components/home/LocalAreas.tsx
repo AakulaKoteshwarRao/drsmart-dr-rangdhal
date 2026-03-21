@@ -1,5 +1,6 @@
 import type { AreaItem, ClinicInfo } from "@/lib/types"
 import { Icon } from "@/lib/icons"
+import { PILL_STYLES } from "@/lib/pills"
 
 export default function LocalAreas({ areas, clinic }: { areas: AreaItem[]; clinic: ClinicInfo }) {
   return (
