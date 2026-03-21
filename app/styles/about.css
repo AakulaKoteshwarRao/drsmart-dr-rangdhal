@@ -259,15 +259,15 @@
   }
   .location-map {
     width: 100%; aspect-ratio: 4/3; border-radius: 16px; overflow: hidden;
-    background: var(--primary);
+    background: var(--neutral-100);
     display: flex; align-items: center; justify-content: center;
-    border: 1px solid #D1D5DB;
+    border: 2px dashed var(--neutral-300);
   }
   .location-map span { font-size: 0.85rem; color: #6B7280; }
   .location-details { display: flex; flex-direction: column; gap: 1.5rem; }
   .loc-item { display: flex; gap: 0.75rem; align-items: flex-start; }
   .loc-icon {
-    width: 40px; height: 40px; border-radius: 12px; background: var(--primary-light);
+    width: 40px; height: 40px; border-radius: 12px; background: var(--primary);
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .loc-icon svg { width: 20px; height: 20px; color: var(--primary); }
