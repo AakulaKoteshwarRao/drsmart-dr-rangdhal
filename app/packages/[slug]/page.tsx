@@ -24,7 +24,8 @@ async function getRawConfig() {
 
 export default async function PackageDetailPage({ params }: PageParams) {
   const [config, rawConfig] = await Promise.all([loadConfig(), getRawConfig()])
-  const rawPackages: any[] = rawConfig?.s10?.packages ?? []
+  const fallbackRaw = rawConfig ?? (await import('@/data/default.json')).default
+  const rawPackages: any[] = fallbackRaw?.s10?.packages ?? []
   const pkg = rawPackages.find((pk: any) => pk.slug === params.slug)
   if (!pkg) notFound()
   const photoUrl = (config.photos as any)?.[`package_${params.slug}`] ?? null

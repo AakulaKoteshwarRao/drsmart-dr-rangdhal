@@ -24,7 +24,7 @@ async function getRawConfig() {
 
 export default async function ConditionDetailPage({ params }: PageParams) {
   const [config, rawConfig] = await Promise.all([loadConfig(), getRawConfig()])
-  const rawConditions: any[] = rawConfig?.s07?.conditions ?? []
+  const rawConditions: any[] = rawConfig?.s07?.conditions ?? (config as any)._raw?.s07?.conditions ?? config.conditions.map((c: any) => ({ slug: c.href?.split("/").pop(), ...c }))
   const condition = rawConditions.find((c: any) => c.slug === params.slug)
   if (!condition) notFound()
   const photoUrl = (config.photos as any)?.[`condition_${params.slug}`] ?? null
