@@ -24,9 +24,8 @@ async function getRawConfig() {
 
 export default async function ProcedureDetailPage({ params }: PageParams) {
   const [config, rawConfig] = await Promise.all([loadConfig(), getRawConfig()])
-  const fallbackRaw = rawConfig ?? (await import('@/data/default.json')).default
-  const rawProcedures: any[] = fallbackRaw?.s08?.procedures ?? []
-  const procedure = rawProcedures.find((p: any) => p.slug === params.slug)
+  const rawProcedures: any[] = rawConfig?.s08?.procedures ?? (config.procedures as any[]) ?? []
+  const procedure = rawProcedures.find((p: any) => (p.slug ?? p.href?.split('/').pop()) === params.slug)
   if (!procedure) notFound()
   const photoUrl = (config.photos as any)?.[`procedure_${params.slug}`] ?? null
   const mapped = mapProcedure(procedure, rawConfig, photoUrl)
