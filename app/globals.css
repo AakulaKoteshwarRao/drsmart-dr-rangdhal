@@ -464,9 +464,9 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 }
 .acc-bar:hover { transform: translateX(4px); }
 .acc-item.open .acc-bar { border-radius: 14px 14px 0 0; }
-.acc-bar.acc-teal { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); }
-.acc-bar.acc-blue { background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%); }
-.acc-bar.acc-vibrant { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+.acc-bar.acc-teal { background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.2); }
+.acc-bar.acc-blue { background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.25); }
+.acc-bar.acc-vibrant { background: rgba(255,255,255,0.22); border: 1px solid rgba(255,255,255,0.3); }
 .acc-bar-left { display: flex; align-items: center; gap: 1rem; }
 .acc-icon {
   width: 44px; height: 44px; border-radius: 12px;
@@ -484,7 +484,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 .acc-panel {
   max-height: 0; overflow: hidden;
   transition: max-height 350ms ease, padding 350ms ease;
-  background: rgba(255,255,255,0.05); border-radius: 0 0 14px 14px;
+  background: rgba(255,255,255,0.08); border-radius: 0 0 14px 14px;
   padding: 0 1.75rem;
 }
 .acc-item.open .acc-panel { max-height: 350px; padding: 1.5rem 1.75rem 1.75rem; }
