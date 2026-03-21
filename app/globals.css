@@ -393,7 +393,7 @@ body { font-family: 'Plus Jakarta Sans', sans-serif; background: #FFFFFF; color:
 
 /* -- SECTION 10: PATIENT STORIES -- */
 .stories-section-dark { background: var(--secondary-deep); }
-.stories-section-dark .sec-label span { color: #000000; }
+.stories-section-dark .sec-label span { color: var(--primary); }
 .stories-section-dark .sec-title { color: #ffffff; }
 .stories-section-dark .sec-sub { color: #ffffff; }
 .stories-inner-dark { max-width: 1280px; margin: 0 auto; padding: 5rem 2rem; overflow: hidden; }
