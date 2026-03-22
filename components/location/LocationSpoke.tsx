@@ -47,7 +47,7 @@ export default function LocationSpoke(props?: any) {
   ]
 
   const qfCards = [
-    { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: 'location', label: 'Location', val: clinic.hospital || clinicAddress },
+    { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: 'location', label: 'Location', val: clinicCity },
     { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: 'clock', label: 'Travel Time', val: area.duration || '10-15 min' },
     { grad: 'linear-gradient(135deg,var(--secondary-dark),var(--secondary-deep))', icon: 'map', label: 'Distance', val: area.distance || '3-5 km' },
     { grad: 'linear-gradient(135deg,var(--primary-dark),var(--secondary-deep))', icon: 'buildings', label: 'Parking', val: 'Available' },
