@@ -34,7 +34,7 @@
      SECTION 2: FEATURED POST
      ============================================================ */
   .featured-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 1280px; margin: 0 auto; padding: 3rem 3rem 2rem; }
-.featured-section { max-width: 100%; padding: 0; }
+.featured-section { max-width: 100%; padding: 0 2rem; }
   .featured-card {
     display: flex; flex-direction: column;
     background: #FFFFFF; border: 1.5px solid #E5E7EB; border-radius: 20px;
@@ -76,6 +76,8 @@
   /* ============================================================
      SECTIONS 3 & 4: FILTER + BLOG GRID
      ============================================================ */
+  .blog-section { max-width: 100%; background: #F3F4F6; overflow: hidden; }
+  .blog-inner { max-width: 1280px; margin: 0 auto; padding: 4rem 3rem; }
   .blog-grid-section { max-width: 100%; background: #F3F4F6; overflow: hidden; }
   .blog-grid-inner { max-width: 1280px; margin: 0 auto; padding: 5rem 3rem; }
 
