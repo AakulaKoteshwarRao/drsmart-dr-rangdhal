@@ -425,12 +425,12 @@
     display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
     max-width: 880px; margin: 0 auto;
   }
-  .qf-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 2rem; }
+  .qf-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 2rem; align-items: stretch; }
   .qf-text { display: flex; flex-direction: column; gap: 0.15rem; }
   .qf-label { font-size: 0.72rem; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.5px; }
   .qf-card {
     background: #FFFFFF; border: 1.5px solid #E5E7EB; border-radius: 14px;
-    padding: 1.25rem; text-align: center; transition: all 200ms;
+    padding: 1.25rem; text-align: center; transition: all 200ms; display: flex; flex-direction: column; align-items: center; justify-content: center;
   }
   .qf-card:hover { border-color: var(--primary); box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
   .qf-icon {

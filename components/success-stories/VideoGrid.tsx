@@ -27,14 +27,14 @@ export default function VideoGrid({ stories }: { stories: VideoStory[] }) {
         <div className="video-grid">
           {filtered.map((s, i) => (
             <div key={i} className="video-card">
-              <div className="video-thumb">
+              <div className="video-thumb" style={{ background: s.gradient }}>
                 <div className="play-btn">
                   <Icon name="play" size={20} color="#FFFFFF" weight="fill" />
                 </div>
+                {s.duration && <span className="video-duration">{s.duration}</span>}
               </div>
               <div className="video-info">
-                <h3>{s.title}</h3>
-                <p>{(s as any).excerpt}</p>
+                <h3 style={{ fontSize: 'var(--text-sm)', fontWeight: 700 }}>{s.title}</h3>
               </div>
             </div>
           ))}
