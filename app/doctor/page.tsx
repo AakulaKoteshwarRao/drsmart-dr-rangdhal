@@ -31,7 +31,7 @@ export default async function DoctorPage() {
     <>
       <SchemaMarkup graphs={[pageSchemas]} />
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <DoctorHero doctor={cfg.doctor} clinic={cfg.clinic} />
         <CredentialsGrid doctor={cfg.doctor} clinic={cfg.clinic} />
         <DoctorFAQ faqs={cfg.doctor.faqs} />

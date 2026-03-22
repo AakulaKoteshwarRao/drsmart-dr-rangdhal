@@ -24,7 +24,7 @@ export default async function LocationSpokePage({ params }: { params?: { area?: 
   return (
     <>
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <LocationSpoke
           clinic={cfg.clinic}
           doctor={cfg.doctor}

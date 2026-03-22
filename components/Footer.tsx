@@ -59,7 +59,7 @@ export default function Footer({ clinic, config }: { clinic: ClinicInfo; config?
   ]
 
   return (
-    <footer className="footer" style={{ marginBottom: '64px' }}>
+    <footer className="footer">
       <div className="footer-inner">
         <div>
           <h3>Quick Links</h3>

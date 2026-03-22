@@ -11,7 +11,7 @@ export default async function GalleryPage() {
   return (
     <>
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <GalleryHero />
         <GalleryGrid photos={cfg.photos} />
         <CTABand cta={cfg.ctaBand} />

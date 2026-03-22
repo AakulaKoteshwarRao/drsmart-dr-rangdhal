@@ -14,7 +14,7 @@ export default async function TestimonialsPage() {
     <>
       <Header clinic={cfg.clinic} />
       {cfg.optionalPages.testimonials ? (
-        <main style={{ paddingBottom: '64px' }}>
+        <main>
           <TestimonialsHero rating={cfg.testimonials.rating} reviewCount={cfg.testimonials.reviewCount} />
           <ReviewsGrid reviews={cfg.testimonials.reviews} googleUrl={cfg.testimonials.googleUrl} />
           <TestimonialsFAQ />

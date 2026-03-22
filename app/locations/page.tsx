@@ -39,7 +39,7 @@ export default async function LocationsPage() {
     <>
       <SchemaMarkup graphs={[pageSchemas]} />
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <LocationsHero clinic={cfg.clinic} />
         <LocationIntro clinic={cfg.clinic} doctor={cfg.doctor} />
         <ClinicDetails clinic={cfg.clinic} />

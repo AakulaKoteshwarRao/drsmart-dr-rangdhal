@@ -32,7 +32,7 @@ export default async function AppointmentPage() {
     <>
       <SchemaMarkup graphs={[pageSchemas]} />
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <AppointmentHero />
         <AppointmentForm clinic={cfg.clinic} />
         <ClinicStrip clinic={cfg.clinic} />

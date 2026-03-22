@@ -9,7 +9,7 @@ export default async function TermsPage() {
   return (
     <>
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <LegalPage
           badge="Legal"
           title={'Terms & Conditions'}

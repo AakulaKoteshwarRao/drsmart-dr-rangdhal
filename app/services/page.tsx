@@ -33,7 +33,7 @@ export default async function ServicesPage() {
     <>
       <SchemaMarkup graphs={[pageSchemas]} />
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <ServicesHero />
         <ConditionsGrid conditions={cfg.services.conditions} />
         <EarlyTreatment />

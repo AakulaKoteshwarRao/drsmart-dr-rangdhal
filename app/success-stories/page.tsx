@@ -13,7 +13,7 @@ export default async function SuccessStoriesPage() {
   return (
     <>
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <StoriesHero videoCount={videoCount} conditionCount={conditionCount} rating={rating} />
         <VideoGrid stories={stories} />
         <StoriesFAQ />

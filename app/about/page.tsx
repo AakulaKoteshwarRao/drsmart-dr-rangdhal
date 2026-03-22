@@ -37,7 +37,7 @@ export default async function AboutPage() {
     <>
       <SchemaMarkup graphs={[pageSchemas]} />
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <AboutHero clinic={cfg.clinic} />
         <Approach />
         <Infrastructure />

@@ -38,7 +38,7 @@ export default async function BlogPage() {
     <>
       <SchemaMarkup graphs={[pageSchemas]} />
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <BlogHero />
         <FeaturedPost post1={featured1} post2={featured2} />
         <BlogGrid posts={rest} conditions={cfg.conditions} />

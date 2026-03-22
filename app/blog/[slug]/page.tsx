@@ -39,7 +39,7 @@ export default async function BlogPostPage({ params }: { params?: { slug?: strin
     <>
       <SchemaMarkup graphs={[pageSchemas]} />
       <Header clinic={cfg.clinic} />
-      <main style={{ paddingBottom: '64px' }}>
+      <main>
         <article className="article-wrap">
 
           {/* Breadcrumb */}
