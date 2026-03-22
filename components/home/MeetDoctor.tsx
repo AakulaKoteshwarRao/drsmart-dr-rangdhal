@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import type { DoctorInfo, ClinicInfo } from '@/lib/types'
 import { Icon } from '@/lib/icons'
-import { STAT_COLOURS, PILL_STYLES } from '@/lib/pills'
+import { STAT_COLOURS, PILL_STYLES_DARK } from '@/lib/pills'
 
 export default function MeetDoctor({ doctor, clinic }: { doctor: DoctorInfo; clinic: ClinicInfo }) {
   return (
