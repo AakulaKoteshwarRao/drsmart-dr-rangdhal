@@ -18,6 +18,15 @@ export const PILL_STYLES_DARK = [
   { background: 'rgba(185,28,28,0.25)',  color: '#ffffff', border: 'rgba(185,28,28,0.4)' },
 ]
 export const STAT_COLOURS = [
+  '#34D399',
+  '#60A5FA',
+  '#FBBF24',
+  '#F472B6',
+  '#A78BFA',
+  '#FB923C',
+]
+
+export const STAT_COLOURS_DARK = [
   '#A7F3D0',
   '#BFDBFE',
   '#FDE68A',

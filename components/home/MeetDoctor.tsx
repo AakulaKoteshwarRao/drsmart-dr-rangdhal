@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import type { DoctorInfo, ClinicInfo } from '@/lib/types'
 import { Icon } from '@/lib/icons'
-import { STAT_COLOURS, PILL_STYLES_DARK } from '@/lib/pills'
+import { STAT_COLOURS_DARK, PILL_STYLES_DARK } from '@/lib/pills'
 
 export default function MeetDoctor({ doctor, clinic }: { doctor: DoctorInfo; clinic: ClinicInfo }) {
   return (
@@ -35,7 +35,7 @@ export default function MeetDoctor({ doctor, clinic }: { doctor: DoctorInfo; cli
             <div className="doc-stats-row">
               {doctor.stats.map((stat, i) => (
                 <div key={i} className="doc-stat">
-                  <span className="doc-stat-num" style={{ color: STAT_COLOURS[i % STAT_COLOURS.length] }}>{stat.number}</span>
+                  <span className="doc-stat-num" style={{ color: STAT_COLOURS_DARK[i % STAT_COLOURS_DARK.length] }}>{stat.number}</span>
                   <span className="doc-stat-label">{stat.label}</span>
                 </div>
               ))}
