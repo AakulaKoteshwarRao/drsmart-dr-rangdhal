@@ -28,16 +28,16 @@ export default function BlogGrid({ posts, conditions = [] }: { posts: BlogPost[]
         <div className="blog-grid">
           {items.map((post, i) => (
             <a key={i} href={post.href} className="blog-card">
-              <div className="blog-thumb" style={{ background: post.image ? 'transparent' : post.grad }}>
+              <div className="blog-card-thumb" style={{ background: post.image ? 'transparent' : post.grad }}>
                 {post.image ? <img src={post.image} alt={post.title} width={400} height={250} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" /> : <Icon name="file" size={40} color="rgba(255,255,255,0.4)" />}
               </div>
-              <div className="blog-body">
+              <div className="blog-card-body">
                 <span className={`blog-tag ${post.tagClass}`}>{post.tag}</span>
-                <h3 className="blog-title">{post.title}</h3>
-                <p className="blog-excerpt">{post.excerpt}</p>
-                <div className="blog-footer">
-                  <span className="blog-date">{post.date}</span>
-                  <span className="blog-read">Read <Icon name="arrow-right" size={12} /></span>
+                <h3 className="blog-card-title">{post.title}</h3>
+                <p className="blog-card-excerpt">{post.excerpt}</p>
+                <div className="blog-card-footer">
+                  <span className="blog-card-date">{post.date}</span>
+                  <span className="blog-card-read">Read <Icon name="arrow-right" size={12} /></span>
                 </div>
               </div>
             </a>
