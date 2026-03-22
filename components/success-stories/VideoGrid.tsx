@@ -24,7 +24,7 @@ export default function VideoGrid({ stories }: { stories: VideoStory[] }) {
             <button key={f.value} className={`filter-tab${active === f.value ? ' active' : ''}`} onClick={() => setActive(f.value)}>{f.label}</button>
           ))}
         </div>
-        <div className="videos-grid">
+        <div className="video-grid">
           {filtered.map((s, i) => (
             <div key={i} className="video-card">
               <div className="video-thumb">
