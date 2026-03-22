@@ -439,7 +439,7 @@
   }
   .qf-icon svg { width: 18px; height: 18px; color: #FFFFFF; }
   .qf-card h3 { font-size: 0.78rem; font-weight: 700; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.15rem; }
-  .qf-card .qf-val { font-size: 1.1rem; font-weight: 800; color: #111111; }
+  .qf-card .qf-val { font-size: 1.1rem; font-weight: 800; color: #111111; word-break: break-word; width: 100%; }
 
   /* Directions button */
   .directions-wrap { text-align: center; margin-top: 1.5rem; }
