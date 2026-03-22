@@ -41,7 +41,7 @@ export default function Header({ clinic }: { clinic: ClinicInfo }) {
   return (
     <header className="header">
       <div className="header-inner">
-        <Link href="/" className="logo">
+        <Link href="/" className="logo" aria-label="Go to homepage">
           {clinic.logo ? (
             <img src={clinic.logo} alt={clinic.name} width={200} height={56} style={{ height: 56, width: 'auto', maxWidth: 200, objectFit: 'contain', display: 'block' }} loading="eager" />
           ) : (
