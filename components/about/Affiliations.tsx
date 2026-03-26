@@ -1,11 +1,20 @@
-import type { ClinicInfo } from '@/lib/types'
+import type { DoctorInfo, ClinicInfo } from '@/lib/types'
 
-export default function Affiliations({ clinic }: { clinic: ClinicInfo }) {
-  const affiliations = [
-    { bg: 'var(--secondary-deep)', initials: 'CH', name: (clinic.name || 'Clinic') + ' -- Consulting Hospital', type: 'Consulting Hospital' },
-    { bg: '#1E8449', initials: 'IAN', name: 'Indian Academy of Neurology', type: 'Academic Affiliation' },
-    { bg: '#D68910', initials: 'IMA', name: 'Indian Medical Association', type: 'Professional Body' },
-    { bg: 'var(--secondary)', initials: 'NMC', name: 'National Medical Commission', type: 'Regulatory Body' },
+const BG_COLORS = [
+  'var(--secondary-deep)', '#1E8449', '#D68910', 'var(--secondary)',
+  'var(--primary)', '#C0392B', '#1A5276', '#6C3483',
+]
+
+function getInitials(name: string): string {
+  return name.split(' ').filter(Boolean).map(w => w[0]).join('').toUpperCase().slice(0, 3)
+}
+
+export default function Affiliations({ doctor, clinic }: { doctor: DoctorInfo; clinic: ClinicInfo }) {
+  const memberships = doctor.memberships || []
+  if (memberships.length === 0) return null
+  const items = [
+    { bg: 'var(--secondary-deep)', initials: getInitials(clinic.name), name: clinic.name, type: 'Primary Practice' },
+    ...memberships.map((m, i) => ({ bg: BG_COLORS[(i + 1) % BG_COLORS.length], initials: getInitials(m), name: m, type: 'Professional Body' })),
   ]
   return (
     <section className="affil-section section-cool-grey">
@@ -16,7 +25,7 @@ export default function Affiliations({ clinic }: { clinic: ClinicInfo }) {
           <p className="sec-sub">Hospital ties and institutional associations that support our clinical practice.</p>
         </div>
         <div className="affil-grid">
-          {affiliations.map((a, i) => (
+          {items.map((a, i) => (
             <div key={i} className="affil-card">
               <div className="affil-logo-box" style={{ background: a.bg }}>
                 <span className="affil-logo-text">{a.initials}</span>

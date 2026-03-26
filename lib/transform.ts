@@ -141,6 +141,8 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     state:       s(s02.state, ''),
     foundingDate: s(s02.foundingDate, ''),
     geo: { lat: geoLat, lng: geoLng },
+    facilities: a(s02.facilities).filter((f: any) => f.title).map((f: any) => ({ title: f.title, description: f.description || '' })),
+    insurers: a(s02.insurers).filter((ins: any) => ins.name).map((ins: any, i: number) => ({ name: ins.name })),
     social: {
       google:    s(s02.socialGoogle ?? mapsUrl, ''),
       facebook:  s(s02.socialFacebook, ''),

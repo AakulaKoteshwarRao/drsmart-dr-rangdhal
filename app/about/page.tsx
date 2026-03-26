@@ -40,10 +40,10 @@ export default async function AboutPage() {
       <main>
         <AboutHero clinic={cfg.clinic} />
         <Approach />
-        <Infrastructure />
+        <Infrastructure clinic={cfg.clinic} />
         <Credentials doctor={cfg.doctor} clinic={cfg.clinic} />
-        <Achievements clinic={cfg.clinic} />
-        <Affiliations clinic={cfg.clinic} />
+        <Achievements doctor={cfg.doctor} clinic={cfg.clinic} />
+        <Affiliations doctor={cfg.doctor} clinic={cfg.clinic} />
         <Insurance clinic={cfg.clinic} />
         <AboutFAQ clinic={cfg.clinic} />
         <LocationStrip clinic={cfg.clinic} />
