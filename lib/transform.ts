@@ -174,11 +174,36 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     degrees:     doctorDegrees,
     photo:       s(s03.photo, ''),
     gender:      s(s03.gender, 'Male'),
+    honorificPrefix: s(s03.honorificPrefix, 'Dr'),
+    profilePath: '/doctor',
+    jobTitle:    s(s03.jobTitle, ''),
+    description: doctorName && clinic.medicalSpecialty ? `${doctorName}, ${clinic.medicalSpecialty} specialist` : '',
+    email:       s(s02.email, ''),
+    imageWidth:  800,
+    imageHeight: 800,
     specialties: a(s03.specialties),
+    knowsAbout:  a(s03.specialties).length ? a(s03.specialties) : [clinic.medicalSpecialty].filter(Boolean),
     qualifications: a(s03.degrees).length
       ? a(s03.degrees).map((d: any) => typeof d === 'object' ? (d.degree || d.title || '') : d).filter(Boolean)
       : doctorDegrees.split(/[,·\-]+/).map((d: string) => d.trim()).filter(Boolean),
+    // Degrees as objects for hasCredential schema
+    degreesObj: a(s03.degrees).filter((d: any) => d.degree || typeof d === 'string').map((d: any) => ({
+      name:        typeof d === 'object' ? s(d.degree, '') : s(d, ''),
+      level:       (() => {
+        const deg = typeof d === 'object' ? s(d.degree, '') : s(d, '')
+        const dl = deg.toLowerCase()
+        if (dl.includes('mbbs') || dl.includes('bds') || dl.includes('bams')) return 'Undergraduate'
+        if (dl.includes('ms ') || dl.includes('md ') || dl.includes('dnb') || dl.includes('mch')) return 'Postgraduate'
+        if (dl.includes('fellowship') || dl.includes('frcs') || dl.includes('mrcs')) return 'Fellowship'
+        return 'Postgraduate'
+      })(),
+      institution: typeof d === 'object' ? s(d.institution, '') : '',
+    })),
     languages:   a(s03.languages),
+    // Languages as objects for schema
+    languagesObj: typeof s03.languages === 'string'
+      ? s(s03.languages, '').split(',').map((l: string) => ({ name: l.trim(), code: l.trim().slice(0,2).toLowerCase() })).filter((l: any) => l.name)
+      : a(s03.languages).map((l: any) => typeof l === 'string' ? { name: l, code: l.slice(0,2).toLowerCase() } : l),
     nmcNumber:          s(s03.regNumber, ''),
     registrationNumber: s(s03.regNumber, ''),
     ctaLabel:    'Book Appointment',
