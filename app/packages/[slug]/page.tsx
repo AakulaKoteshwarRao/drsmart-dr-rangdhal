@@ -6,7 +6,7 @@ import PackageDetail from '@/components/package/PackageDetail'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import StickyBar from '@/components/StickyBar'
-import '@/styles/packages.css'
+import '@/app/styles/packages.css'
 
 interface PageParams { params: { slug: string } }
 

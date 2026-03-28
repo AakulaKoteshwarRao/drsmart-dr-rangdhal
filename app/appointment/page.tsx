@@ -11,7 +11,7 @@ import WhatToExpect from '@/components/appointment/WhatToExpect'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '@/styles/appointment.css'
+import '@/app/styles/appointment.css'
 
 export default async function AppointmentPage() {
   const cfg = await loadConfig()

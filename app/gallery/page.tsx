@@ -6,7 +6,7 @@ import GalleryHero from '@/components/gallery/GalleryHero'
 import GalleryGrid from '@/components/gallery/GalleryGrid'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
-import '@/styles/gallery.css'
+import '@/app/styles/gallery.css'
 
 export default async function GalleryPage() {
   const cfg = await loadConfig()

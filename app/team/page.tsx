@@ -7,7 +7,7 @@ import TeamFAQ from '@/components/team/TeamFAQ'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '@/styles/team.css'
+import '@/app/styles/team.css'
 
 export default async function TeamPage() {
   const cfg = await loadConfig()

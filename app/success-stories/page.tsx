@@ -7,7 +7,7 @@ import StoriesFAQ from '@/components/success-stories/StoriesFAQ'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '@/styles/success-stories.css'
+import '@/app/styles/success-stories.css'
 
 export default async function SuccessStoriesPage() {
   const cfg = await loadConfig()

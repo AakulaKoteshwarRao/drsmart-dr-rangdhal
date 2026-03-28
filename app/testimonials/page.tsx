@@ -8,7 +8,7 @@ import TestimonialsFAQ from '@/components/testimonials/TestimonialsFAQ'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '@/styles/testimonials.css'
+import '@/app/styles/testimonials.css'
 
 export default async function TestimonialsPage() {
   const cfg = await loadConfig()

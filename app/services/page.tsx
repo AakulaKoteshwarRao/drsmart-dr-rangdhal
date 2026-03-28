@@ -12,7 +12,7 @@ import ServicesFAQ from '@/components/services/ServicesFAQ'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '@/styles/services.css'
+import '@/app/styles/services.css'
 
 export default async function ServicesPage() {
   const cfg = await loadConfig()

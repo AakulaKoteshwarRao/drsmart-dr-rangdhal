@@ -8,7 +8,7 @@ import Footer from '@/components/Footer'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import { getBlogBySlug } from '@/lib/blogs'
-import '@/styles/blog-post.css'
+import '@/app/styles/blog-post.css'
 
 export default async function BlogPostPage({ params }: { params?: { slug?: string } }) {
   const cfg  = await loadConfig()

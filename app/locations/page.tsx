@@ -18,7 +18,7 @@ import InternalLinks from '@/components/locations/InternalLinks'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '@/styles/locations.css'
+import '@/app/styles/locations.css'
 
 export default async function LocationsPage() {
   const cfg = await loadConfig()

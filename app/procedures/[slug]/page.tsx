@@ -6,7 +6,7 @@ import ProcedureDetail from '@/components/procedure/ProcedureDetail'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import StickyBar from '@/components/StickyBar'
-import '@/styles/procedures.css'
+import '@/app/styles/procedures.css'
 
 interface PageParams { params: { slug: string } }
 

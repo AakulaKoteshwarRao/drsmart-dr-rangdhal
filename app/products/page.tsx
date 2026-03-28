@@ -10,7 +10,7 @@ import ProductsFAQ from '@/components/products/ProductsFAQ'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '@/styles/products.css'
+import '@/app/styles/products.css'
 
 export default async function ProductsPage() {
   const cfg = await loadConfig()

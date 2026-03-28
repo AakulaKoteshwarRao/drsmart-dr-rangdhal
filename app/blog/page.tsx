@@ -11,7 +11,7 @@ import BlogGrid from '@/components/blog/BlogGrid'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import { getBlogs } from '@/lib/blogs'
-import '@/styles/blog.css'
+import '@/app/styles/blog.css'
 
 export default async function BlogPage() {
   const cfg = await loadConfig()

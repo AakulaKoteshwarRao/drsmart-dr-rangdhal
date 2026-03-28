@@ -4,7 +4,7 @@ import Footer from '@/components/Footer'
 import LegalPage from '@/components/legal/LegalPage'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
-import '@/styles/legal.css'
+import '@/app/styles/legal.css'
 
 export default async function TermsPage() {
   const cfg = await loadConfig()

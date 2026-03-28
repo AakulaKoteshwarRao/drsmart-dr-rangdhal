@@ -10,7 +10,7 @@ import DoctorFAQ from '@/components/doctor/DoctorFAQ'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import Footer from '@/components/Footer'
-import '@/styles/doctor.css'
+import '@/app/styles/doctor.css'
 
 export default async function DoctorPage() {
   const cfg = await loadConfig()

@@ -6,7 +6,7 @@ import ConditionDetail from '@/components/condition/ConditionDetail'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import StickyBar from '@/components/StickyBar'
-import '@/styles/conditions.css'
+import '@/app/styles/conditions.css'
 interface PageParams { params: { slug: string } }
 async function getRawConfig() {
   const configId = process.env.NEXT_PUBLIC_CONFIG_ID
