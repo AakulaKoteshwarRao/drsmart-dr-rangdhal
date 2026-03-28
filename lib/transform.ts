@@ -488,7 +488,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
         'Our team will help verify your coverage',
       ],
     },
-  ])
+  ]
 
   // ── Reviews ───────────────────────────────────────────────────────────────
   // s13.reviews[]
