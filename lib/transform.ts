@@ -143,6 +143,12 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     geo: { lat: geoLat, lng: geoLng },
     facilities: a(s02.facilities).filter((f: any) => f.title).map((f: any) => ({ title: f.title, description: f.description || '' })),
     insurers: a(s02.insurers).filter((ins: any) => ins.name).map((ins: any, i: number) => ({ name: ins.name })),
+    parking:            s(s02.parking, ''),
+    wheelchair:         s(s02.wheelchair, ''),
+    toilets:            s(s02.toilets, ''),
+    pharmacy:           s(s02.pharmacy, ''),
+    diagnostics:        s(s02.diagnostics, ''),
+    onlineConsultation: s(s02.onlineConsultation, ''),
     social: {
       google:    s(s02.socialGoogle ?? mapsUrl, ''),
       facebook:  s(s02.socialFacebook, ''),
@@ -241,9 +247,9 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
 
   const hero: HeroSection = {
     label:       `${clinic.name} · ${clinic.city}`,
-    heading:     (s04.heroHeading as string) || `Advanced ${specialty} Care in`,
+    heading:     (s04.headingOverride as string) || (s04.heroHeading as string) || `Advanced ${specialty} Care in`,
     headingEm:   clinic.city,
-    subtext:     (s04.heroSubtext as string) || `${doctorName} provides expert diagnosis and treatment using the latest technology and a patient-first approach.`,
+    subtext:     (s04.subtextOverride as string) || (s04.heroSubtext as string) || `${doctorName} provides expert diagnosis and treatment using the latest technology and a patient-first approach.`,
     tags:        a(s03.degrees).length ? [
       (typeof a(s03.degrees)[0] === 'object' ? (a(s03.degrees)[0].degree || '') : a(s03.degrees)[0]),
       yearsExp ? `${yearsExp} Years Experience` : '',
