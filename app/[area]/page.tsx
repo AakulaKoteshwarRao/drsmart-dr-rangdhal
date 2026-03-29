@@ -1,3 +1,4 @@
+import '@/app/styles/location-spoke.css'
 import Header from '@/components/Header'
 import StickyBar from '@/components/StickyBar'
 import CTABand from '@/components/home/CTABand'
