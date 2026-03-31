@@ -9,8 +9,8 @@ export default function TrustStrip({ items }: { items: TrustItem[] }) {
         {doubled.map((item, i) => (
           <span key={i} style={{ display: 'contents' }}>
             <div className="trust-item">
-              <div className="trust-icon">
-                <Icon name={item.icon || 'shield'} size={18} />
+              <div className="trust-icon" style={{ color: item.iconColor || '#0D9488' }}>
+                <Icon name={item.icon || 'shield'} size={18} color={item.iconColor || '#0D9488'} />
               </div>
               {item.text}
             </div>

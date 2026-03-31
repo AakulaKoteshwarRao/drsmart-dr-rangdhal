@@ -163,6 +163,7 @@ export interface HeroChip {
 
 export interface TrustItem {
   icon: string
+  iconColor?: string
   text: string
 }
 

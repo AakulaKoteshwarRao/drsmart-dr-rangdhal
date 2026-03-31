@@ -272,9 +272,11 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
 
   // ── Trust Strip ───────────────────────────────────────────────────────────
   // s05.items[]
-  const trustStrip = a(s05.items).map((t: any) => ({
-    icon: s(t.icon, ''),
-    text: s(t.text || t.label || t, ''),
+  const TRUST_COLORS = ['#0D9488', '#2563EB', '#7C3AED', '#D97706', '#DC2626']
+  const trustStrip = a(s05.items).map((t: any, i: number) => ({
+    icon:      s(t.iconType ?? t.icon, 'shield'),
+    iconColor: TRUST_COLORS[i % TRUST_COLORS.length],
+    text:      s(t.text || t.label || t, ''),
   }))
 
   // ── Why Choose ────────────────────────────────────────────────────────────
