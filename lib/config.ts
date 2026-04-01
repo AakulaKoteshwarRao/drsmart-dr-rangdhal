@@ -95,6 +95,17 @@ async function fetchFromSupabase(): Promise<ClinicConfig> {
         ...p,
         image: uploadedPhotos[`procedure_${p.href.split('/').pop()}`] || '',
       }))
+      transformed.services = {
+        ...transformed.services,
+        conditions: (transformed.services?.conditions || []).map((c: any) => ({
+          ...c,
+          image: uploadedPhotos[`condition_${c.slug}`] || '',
+        })),
+        procedures: (transformed.services?.procedures || []).map((p: any) => ({
+          ...p,
+          image: uploadedPhotos[`procedure_${p.slug}`] || '',
+        })),
+      }
       transformed.team = transformed.team.map((m: any) => ({
         ...m,
         photo: uploadedPhotos[`team_member_${m.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')}`] || '',
