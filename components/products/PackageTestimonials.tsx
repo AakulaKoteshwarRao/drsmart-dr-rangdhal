@@ -20,10 +20,10 @@ export default function PackageTestimonials() {
       ]
   return (
     <section className="testimonials-section">
-      <div className="sec-header" style={ textAlign: 'center' }>
-        <div className="sec-label" style={ justifyContent: 'center' }><span>Patient Feedback</span></div>
+      <div className="sec-header" style={{ textAlign: 'center' }}>
+        <div className="sec-label" style={{ justifyContent: 'center' }}><span>Patient Feedback</span></div>
         <h2 className="sec-title">What our patients say.</h2>
-        <p className="sec-sub" style={ margin: '0 auto' }>Feedback from patients who chose our treatment packages.</p>
+        <p className="sec-sub" style={{ margin: '0 auto' }}>Feedback from patients who chose our treatment packages.</p>
       </div>
       <div className="testi-grid">
         {testimonials.map((t, i) => (
@@ -33,7 +33,7 @@ export default function PackageTestimonials() {
             </div>
             <p className="testi-quote">&quot;{t.quote}&quot;</p>
             <div className="testi-author">
-              <div className="testi-avatar" style={ background: t.grad }>{t.initials}</div>
+              <div className="testi-avatar" style={{ background: t.grad }}>{t.initials}</div>
               <div>
                 <div className="testi-name">{t.name}</div>
                 <div className="testi-pkg">{t.pkg}</div>
