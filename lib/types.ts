@@ -271,6 +271,8 @@ export interface ServiceItem {
   description: string
   slug: string
   gradient: string
+  image?: string
+  iconType?: string
 }
 
 export interface ServicesConfig {

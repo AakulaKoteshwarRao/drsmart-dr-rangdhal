@@ -355,11 +355,14 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
   const servicesConditions = conditionList.map((c: any, i: number) => {
     const label = s(c.name ?? c.title, `condition-${i}`)
     const slug = s(c.slug, slugify(label))
+    const photoKey = `condition_${slug}`
     return {
       title:       label,
       description: s(c.descriptionLong ?? c.description, ''),
       slug,
       gradient:    gs(i),
+      image:       s(photos[photoKey] ?? c.heroImage, ''),
+      iconType:    s(c.iconType, CPP_ICONS[i % CPP_ICONS.length]),
     }
   })
 
@@ -385,11 +388,14 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
   const servicesProcedures = procedureList.map((p: any, i: number) => {
     const label = s(p.name ?? p.title, `procedure-${i}`)
     const slug = s(p.slug, slugify(label))
+    const photoKey = `procedure_${slug}`
     return {
       title:       label,
       description: s(p.descriptionLong ?? p.description, ''),
       slug,
       gradient:    gs(i),
+      image:       s(photos[photoKey] ?? p.heroImage, ''),
+      iconType:    s(p.iconType, CPP_ICONS[i % CPP_ICONS.length]),
     }
   })
 
