@@ -4,7 +4,14 @@ import Footer from '@/components/Footer'
 import LegalPage from '@/components/legal/LegalPage'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
+import type { Metadata } from 'next'
+import { buildLegalMetadata } from '@/lib/seo'
 import '@/app/styles/legal.css'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cfg = await loadConfig()
+  return buildLegalMetadata(cfg, 'terms')
+}
 
 export default async function TermsPage() {
   const cfg = await loadConfig()

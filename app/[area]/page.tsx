@@ -5,8 +5,21 @@ import CTABand from '@/components/home/CTABand'
 import Footer from '@/components/Footer'
 import LocationSpoke from '@/components/location/LocationSpoke'
 import { loadConfig } from '@/lib/config'
+import type { Metadata } from 'next'
+import { buildLocationMetadata } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
+
+export async function generateMetadata({ params }: { params?: { area?: string } }): Promise<Metadata> {
+  const cfg = await loadConfig()
+  const areaSlug = params?.area || ''
+  const areaFromConfig = (cfg.areas || (cfg as any).localAreas || []).find((a: any) => a.slug === areaSlug)
+  const slugToName = (slug: string) => slug.split('-').map((w: string) =>
+    w.length <= 2 ? w.toUpperCase() : w.charAt(0).toUpperCase() + w.slice(1)
+  ).join(' ')
+  const areaName = areaFromConfig?.name || slugToName(areaSlug)
+  return buildLocationMetadata(cfg, { name: areaName, slug: areaSlug, description: areaFromConfig?.description })
+}
 
 export default async function LocationSpokePage({ params }: { params?: { area?: string } }) {
   const cfg = await loadConfig()

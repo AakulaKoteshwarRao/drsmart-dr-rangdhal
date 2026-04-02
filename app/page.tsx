@@ -1,5 +1,7 @@
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
+import type { Metadata } from 'next'
+import { buildHomeMetadata } from '@/lib/seo'
 import SchemaMarkup from '@/components/SchemaMarkup'
 import { generatePageSchemas } from '@/lib/schema/index.js'
 import { buildSchemaConfig } from '@/lib/schema/master.config.js'
@@ -23,6 +25,11 @@ import FAQ from '@/components/home/FAQ'
 import BlogPreview from '@/components/home/BlogPreview'
 import CTABand from '@/components/home/CTABand'
 import Footer from '@/components/Footer'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cfg = await loadConfig()
+  return buildHomeMetadata(cfg)
+}
 
 export default async function HomePage() {
   const cfg = await loadConfig()

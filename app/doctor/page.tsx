@@ -9,8 +9,15 @@ import CredentialsGrid from '@/components/doctor/CredentialsGrid'
 import DoctorFAQ from '@/components/doctor/DoctorFAQ'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
+import type { Metadata } from 'next'
+import { buildDoctorMetadata } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import '@/app/styles/doctor.css'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cfg = await loadConfig()
+  return buildDoctorMetadata(cfg)
+}
 
 export default async function DoctorPage() {
   const cfg = await loadConfig()

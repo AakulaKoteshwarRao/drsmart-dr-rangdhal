@@ -1,4 +1,6 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+import { buildConditionMetadata } from '@/lib/seo'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import { mapCondition } from '@/lib/transform'
@@ -20,6 +22,18 @@ async function getRawConfig() {
   const rows = await res.json()
   return rows?.[0]?.data ?? null
 }
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
+  const [config, rawConfig] = await Promise.all([loadConfig(), getRawConfig()])
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const rawJson = require('@/data/raw.json')
+  const fallback = rawConfig ?? rawJson
+  const rawConditions: any[] = fallback?.s07?.conditions ?? []
+  const condition = rawConditions.find((c: any) => c.slug === params.slug)
+  if (!condition) return { title: 'Condition Not Found' }
+  const photoUrl = (config.photos as any)?.[`condition_${params.slug}`] ?? null
+  return buildConditionMetadata(config, condition, photoUrl)
+}
+
 export default async function ConditionDetailPage({ params }: PageParams) {
   const [config, rawConfig] = await Promise.all([loadConfig(), getRawConfig()])
   // eslint-disable-next-line @typescript-eslint/no-require-imports

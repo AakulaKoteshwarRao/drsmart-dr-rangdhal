@@ -1,4 +1,3 @@
-'use client'
 import Header from '@/components/Header'
 import SchemaMarkup from '@/components/SchemaMarkup'
 import { generatePageSchemas } from '@/lib/schema/index.js'
@@ -7,8 +6,22 @@ import StickyBar from '@/components/StickyBar'
 import Footer from '@/components/Footer'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
+import type { Metadata } from 'next'
+import { buildBlogMetadata } from '@/lib/seo'
 import { getBlogBySlug } from '@/lib/blogs'
 import '@/app/styles/blog-post.css'
+
+export async function generateMetadata({ params }: { params?: { slug?: string } }): Promise<Metadata> {
+  const cfg  = await loadConfig()
+  const slug = params?.slug || ''
+  const post = await getBlogBySlug(slug)
+  return buildBlogMetadata(cfg, {
+    title:      post?.meta_title || post?.title || slug.replace(/-/g, ' ').replace(/\b\w/g, (c: string) => c.toUpperCase()),
+    slug,
+    excerpt:    post?.meta_description || post?.excerpt,
+    coverImage: post?.featured_image,
+  })
+}
 
 export default async function BlogPostPage({ params }: { params?: { slug?: string } }) {
   const cfg  = await loadConfig()

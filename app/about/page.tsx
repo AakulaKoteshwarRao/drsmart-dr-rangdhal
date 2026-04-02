@@ -15,8 +15,21 @@ import AboutFAQ from '@/components/about/AboutFAQ'
 import LocationStrip from '@/components/about/LocationStrip'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
+import type { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import '@/app/styles/about.css'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cfg = await loadConfig()
+  const clinic = cfg.clinic as any
+  return buildPageMetadata(cfg, {
+    title:       `About ${clinic?.name || 'Us'}`,
+    description: `Learn about ${clinic?.name || 'our clinic'} — our mission, infrastructure, credentials and approach to patient care in ${clinic?.city || ''}.`,
+    path:        '/about',
+    image:       clinic?.aboutImage || clinic?.heroImage,
+  })
+}
 
 export default async function AboutPage() {
   const cfg = await loadConfig()

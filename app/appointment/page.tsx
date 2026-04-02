@@ -10,8 +10,15 @@ import ClinicStrip from '@/components/appointment/ClinicStrip'
 import WhatToExpect from '@/components/appointment/WhatToExpect'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
+import type { Metadata } from 'next'
+import { buildAppointmentMetadata } from '@/lib/seo'
 import Footer from '@/components/Footer'
 import '@/app/styles/appointment.css'
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cfg = await loadConfig()
+  return buildAppointmentMetadata(cfg)
+}
 
 export default async function AppointmentPage() {
   const cfg = await loadConfig()

@@ -1,4 +1,6 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+import { buildProcedureMetadata } from '@/lib/seo'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import { mapProcedure } from '@/lib/transform'
@@ -21,6 +23,18 @@ async function getRawConfig() {
   )
   const rows = await res.json()
   return rows?.[0]?.data ?? null
+}
+
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
+  const [config, rawConfig] = await Promise.all([loadConfig(), getRawConfig()])
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const rawJson = require('@/data/raw.json')
+  const fallback = rawConfig ?? rawJson
+  const rawProcedures: any[] = fallback?.s08?.procedures ?? []
+  const procedure = rawProcedures.find((p: any) => p.slug === params.slug)
+  if (!procedure) return { title: 'Procedure Not Found' }
+  const photoUrl = (config.photos as any)?.[`procedure_${params.slug}`] ?? null
+  return buildProcedureMetadata(config, procedure, photoUrl)
 }
 
 export default async function ProcedureDetailPage({ params }: PageParams) {

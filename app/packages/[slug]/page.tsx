@@ -1,4 +1,6 @@
 import { notFound } from 'next/navigation'
+import type { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/seo'
 export const dynamic = 'force-dynamic'
 import { loadConfig } from '@/lib/config'
 import { mapPackage } from '@/lib/transform'
@@ -21,6 +23,22 @@ async function getRawConfig() {
   )
   const rows = await res.json()
   return rows?.[0]?.data ?? null
+}
+
+export async function generateMetadata({ params }: PageParams): Promise<Metadata> {
+  const [config, rawConfig] = await Promise.all([loadConfig(), getRawConfig()])
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const rawJson = require('@/data/raw.json')
+  const fallback = rawConfig ?? rawJson
+  const rawPackages: any[] = fallback?.s10?.packages ?? []
+  const pkg = rawPackages.find((pk: any) => pk.slug === params.slug)
+  if (!pkg) return { title: 'Package Not Found' }
+  const clinic = config.clinic as any
+  return buildPageMetadata(config, {
+    title:       pkg.title || pkg.name || 'Treatment Package',
+    description: pkg.description || pkg.summary || `${pkg.title || 'Treatment package'} available at ${clinic?.name || 'our clinic'} in ${clinic?.city || ''}.`,
+    path:        `/packages/${params.slug}`,
+  })
 }
 
 export default async function PackageDetailPage({ params }: PageParams) {

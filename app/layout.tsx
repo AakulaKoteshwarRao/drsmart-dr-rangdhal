@@ -13,6 +13,7 @@ import SchemaMarkup from '@/components/SchemaMarkup'
 import { generateCoreSchemas } from '@/lib/schema/index.js'
 import { buildSchemaConfig } from '@/lib/schema/master.config.js'
 import { loadConfig } from '@/lib/config'
+import { buildRootMetadata } from '@/lib/seo'
 import AppointmentModal from '@/components/appointment/AppointmentModal'
 
 // Derive dark/deep/light shades from brand hex colors
@@ -34,30 +35,7 @@ const isHex = (v: any) => typeof v === 'string' && /^#[0-9A-Fa-f]{6}$/.test(v)
 
 export async function generateMetadata(): Promise<Metadata> {
   const cfg = await loadConfig()
-  const name     = cfg.clinic?.name    || 'Clinic'
-  const specialty = cfg.clinic?.medicalSpecialty || ''
-  const city      = cfg.clinic?.city || ''
-  const tagline   = cfg.clinic?.tagline || (specialty && city ? `${specialty} in ${city}` : specialty || 'Healthcare services')
-  const image     = cfg.clinic?.heroImage || cfg.clinic?.logo || ''
-  const url       = cfg.site?.url || ''
-  return {
-    title:       name,
-    description: tagline,
-    openGraph: {
-      title:       name,
-      description: tagline,
-      url,
-      siteName:    name,
-      type:        'website',
-      images: image ? [{ url: image, width: 1200, height: 630, alt: name }] : [],
-    },
-    twitter: {
-      card:        'summary_large_image',
-      title:       name,
-      description: tagline,
-      images:      image ? [image] : [],
-    },
-  }
+  return buildRootMetadata(cfg)
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {

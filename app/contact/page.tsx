@@ -1,5 +1,6 @@
-'use client'
 import { loadConfig } from '@/lib/config'
+import type { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/seo'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import StickyBar from '@/components/StickyBar'
@@ -9,6 +10,16 @@ import '@/app/styles/contact.css'
 export const dynamic = 'force-dynamic'
 
 const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']
+
+export async function generateMetadata(): Promise<Metadata> {
+  const cfg = await loadConfig()
+  const clinic = cfg.clinic as any
+  return buildPageMetadata(cfg, {
+    title:       'Contact Us',
+    description: `Get in touch with ${clinic?.name || 'our clinic'} in ${clinic?.city || ''}. Call, WhatsApp or visit us at ${clinic?.address || 'our clinic'}.`,
+    path:        '/contact',
+  })
+}
 
 export default async function ContactPage() {
   const cfg = await loadConfig()
