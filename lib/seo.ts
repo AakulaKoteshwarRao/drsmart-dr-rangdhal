@@ -269,10 +269,11 @@ export function buildDoctorMetadata(cfg: ClinicConfig): Metadata {
   const exp    = doctor?.experience     || ''
 
   return buildPageMetadata(cfg, {
-    title:       `${name} — ${clinic?.medicalSpecialty || 'Specialist'}`,
+    title:       `${name} — ${clinic?.medicalSpecialty || 'Specialist'} in ${city}`,
     description: `${name} is an experienced ${clinic?.medicalSpecialty || 'specialist'} in ${city}. ${quals ? quals + '.' : ''} ${exp ? exp + ' of experience.' : ''}`.trim(),
     path:        '/doctor',
     image:       doctor?.photo,
+    titleSuffix: name,
   })
 }
 
@@ -362,6 +363,7 @@ export function buildLegalMetadata(
     description: `${titles[page]} for ${clinic?.name || 'this clinic'}.`,
     path:        `/${page}`,
     noindex:     true,
+    titleSuffix: clinic?.name || '',
   })
 }
 
