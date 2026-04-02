@@ -53,6 +53,10 @@ export interface ConditionDetailProps {
   ifNotTreated?: string
   whenToSeeDoctor?: { intro?: string; items?: string[] }
   relatedProcedures?: { name: string; slug: string }[]
+  relatedConditions?: { name: string; slug: string }[]
+  allConditions?: { name: string; slug: string }[]
+  allProcedures?: { name: string; slug: string }[]
+  doctorName?: string
   faqs?: { question: string; answer: string }[]
   clinicName?: string
   clinicAddress?: string
@@ -81,6 +85,10 @@ export default function ConditionDetail({
   ifNotTreated,
   whenToSeeDoctor,
   relatedProcedures = [],
+  relatedConditions = [],
+  allConditions = [],
+  allProcedures = [],
+  doctorName = '',
   faqs = [],
   clinicName = '',
   clinicAddress = '',
@@ -512,6 +520,67 @@ export default function ConditionDetail({
           </div>
         </div>
       )}
+
+      {/* Internal Links — SEO section with min 10 links */}
+      <div className="sec-white">
+        <div className="sec-pad">
+          <div className="sec-header" style={{ textAlign: 'center' }}>
+            <div className="sec-label" style={{ justifyContent: 'center' }}><span>Explore More</span></div>
+            <h2 className="sec-title">Related resources.</h2>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
+            {/* Related Procedures */}
+            {relatedProcedures.length > 0 && (
+              <div>
+                <h3 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--primary)' }}>Related Procedures</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {relatedProcedures.map((p, i) => (
+                    <a key={i} href={`/procedures/${p.slug}`} style={{ fontSize: '0.88rem', color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Icon name="arrow-right" size={12} />{p.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+            {/* Related Conditions */}
+            {(relatedConditions.length > 0 || allConditions.length > 0) && (
+              <div>
+                <h3 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--primary)' }}>Related Conditions</h3>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  {(relatedConditions.length > 0 ? relatedConditions : allConditions).slice(0, 4).map((c, i) => (
+                    <a key={i} href={`/conditions/${c.slug}`} style={{ fontSize: '0.88rem', color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                      <Icon name="arrow-right" size={12} />{c.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+            {/* Quick Links */}
+            <div>
+              <h3 style={{ fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.75rem', color: 'var(--primary)' }}>Quick Links</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                {doctorName && (
+                  <a href="/doctor" style={{ fontSize: '0.88rem', color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <Icon name="arrow-right" size={12} />Meet {doctorName}
+                  </a>
+                )}
+                <a href="/appointment" style={{ fontSize: '0.88rem', color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Icon name="arrow-right" size={12} />Book Appointment
+                </a>
+                <a href="/contact" style={{ fontSize: '0.88rem', color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Icon name="arrow-right" size={12} />Contact Us
+                </a>
+                <a href="/services" style={{ fontSize: '0.88rem', color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Icon name="arrow-right" size={12} />All Services
+                </a>
+                <a href="/blog" style={{ fontSize: '0.88rem', color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Icon name="arrow-right" size={12} />Health Articles
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* CTA Band */}
       <section className="cta-band">

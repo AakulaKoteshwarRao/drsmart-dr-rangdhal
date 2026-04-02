@@ -48,6 +48,9 @@ export interface ProcedureDetailProps {
   myths?: { myth: string; fact: string }[]
   ifDelayed?: { title?: string; intro?: string; items?: string[] }
   relatedConditions?: { name: string; slug: string }[]
+  allConditions?: { name: string; slug: string }[]
+  allProcedures?: { name: string; slug: string }[]
+  doctorName?: string
   faqs?: { question: string; answer: string }[]
   clinicName?: string
   clinicAddress?: string

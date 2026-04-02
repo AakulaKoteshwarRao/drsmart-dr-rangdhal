@@ -44,11 +44,30 @@ export default async function ConditionDetailPage({ params }: PageParams) {
   if (!condition) notFound()
   const photoUrl = (config.photos as any)?.[`condition_${params.slug}`] ?? null
   const mapped = mapCondition(condition, fallback, photoUrl)
+
+  // Build related conditions list (excluding current)
+  const allConditions = rawConditions
+    .filter((c: any) => c.slug !== params.slug)
+    .map((c: any) => ({ name: c.name || c.title || c.slug, slug: c.slug }))
+    .slice(0, 6)
+
+  // Build all procedures list for internal linking
+  const rawProcedures: any[] = fallback?.s08?.procedures ?? []
+  const allProcedures = rawProcedures
+    .map((p: any) => ({ name: p.name || p.title || p.slug, slug: p.slug }))
+    .slice(0, 4)
+
+  const doctorName = fallback?.s03?.name || ''
   return (
     <>
       <Header clinic={config.clinic} />
       <StickyBar clinic={config.clinic} />
-      <ConditionDetail {...mapped} />
+      <ConditionDetail
+        {...mapped}
+        allConditions={allConditions}
+        allProcedures={allProcedures}
+        doctorName={doctorName ? `Dr. ${doctorName}` : ''}
+      />
       <Footer clinic={config.clinic} config={config} />
     </>
   )

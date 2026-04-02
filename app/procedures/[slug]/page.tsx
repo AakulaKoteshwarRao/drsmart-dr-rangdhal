@@ -47,11 +47,25 @@ export default async function ProcedureDetailPage({ params }: PageParams) {
   if (!procedure) notFound()
   const photoUrl = (config.photos as any)?.[`procedure_${params.slug}`] ?? null
   const mapped = mapProcedure(procedure, fallback, photoUrl)
+
+  const rawConditions: any[] = fallback?.s07?.conditions ?? []
+  const rawProcedures2: any[] = fallback?.s08?.procedures ?? []
+  const allConditionsP = rawConditions.map((c: any) => ({ name: c.name || c.slug, slug: c.slug })).slice(0, 4)
+  const allProceduresP = rawProcedures2
+    .filter((p: any) => p.slug !== params.slug)
+    .map((p: any) => ({ name: p.name || p.slug, slug: p.slug }))
+    .slice(0, 4)
+  const doctorNameP = fallback?.s03?.name || ''
   return (
     <>
       <Header clinic={config.clinic} />
       <StickyBar clinic={config.clinic} />
-      <ProcedureDetail {...mapped} />
+      <ProcedureDetail
+        {...mapped}
+        allConditions={allConditionsP}
+        allProcedures={allProceduresP}
+        doctorName={doctorNameP ? `Dr. ${doctorNameP}` : ''}
+      />
       <Footer clinic={config.clinic} config={config} />
     </>
   )
