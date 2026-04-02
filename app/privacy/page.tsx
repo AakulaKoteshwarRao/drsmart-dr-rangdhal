@@ -24,7 +24,7 @@ export default async function PrivacyPage() {
           title="Privacy Policy"
           updated="March 1, 2026"
           sections={[
-            { title: 'Overview', content: '{cfg.clinic.name} is committed to protecting your privacy. This policy explains how we collect, use, store, and protect your personal information when you use our website or services.' },
+            { title: 'Overview', content: `${cfg.clinic.name} is committed to protecting your privacy. This policy explains how we collect, use, store, and protect your personal information when you use our website or services.` },
             { title: 'Information We Collect', content: [
               'Personal information: Name, phone number, age, and reason for visit submitted through the appointment form',
               'Health information: Medical history, symptoms, and treatment details shared during consultations',
@@ -45,7 +45,7 @@ export default async function PrivacyPage() {
               'With your explicit consent',
             ]},
             { title: 'Cookies', content: 'This website uses cookies to improve user experience and analyse website traffic. You can choose to disable cookies through your browser settings. Disabling cookies may affect certain features of the website.' },
-            { title: 'Patient Data & Consent', content: 'Patient testimonials, reviews, success stories, and before/after images are published only with explicit written consent from the patient. Patients may request removal of their content at any time by contacting {cfg.clinic.name}.' },
+            { title: 'Patient Data & Consent', content: `Patient testimonials, reviews, success stories, and before/after images are published only with explicit written consent from the patient. Patients may request removal of their content at any time by contacting ${cfg.clinic.name}.` },
             { title: 'Data Retention', content: 'We retain personal information for as long as necessary to fulfil the purposes outlined in this policy, or as required by law. Medical records are retained in accordance with applicable healthcare regulations.' },
             { title: 'Your Rights', content: [
               'Request access to your personal information',
@@ -54,7 +54,7 @@ export default async function PrivacyPage() {
               'Withdraw consent for communications at any time',
             ]},
             { title: 'Changes to This Policy', content: 'We may update this privacy policy from time to time. Changes will be posted on this page with an updated revision date.' },
-            { title: 'Contact', content: 'For any privacy-related queries, please contact us at our clinic or via WhatsApp at {clinic phone}.' },
+            { title: 'Contact', content: 'For any privacy-related queries, please contact us at our clinic or via WhatsApp at ${(cfg.clinic as any)?.phone || ""}.` },
           ]}
         />
         <Footer clinic={cfg.clinic} config={cfg} />
