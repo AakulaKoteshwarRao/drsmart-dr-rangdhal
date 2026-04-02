@@ -136,7 +136,8 @@ export function buildRootMetadata(cfg: ClinicConfig): Metadata {
   const city       = clinic?.city             || ''
   const specialty  = clinic?.medicalSpecialty || ''
   const doctorName = getDoctorName(cfg)
-  const baseUrl    = (clinic?.website || (cfg.site as any)?.url || '').replace(/\/$/, '')
+  const raw = clinic?.website || (cfg.site as any)?.url || ''
+  const baseUrl = raw ? (raw.startsWith('http') ? raw : `https://${raw}`).replace(/\/$/, '') : ''
   const image      = clinic?.heroImage || clinic?.logo || ''
 
   // Root title: "Specialty in City | Dr. Name"
@@ -202,7 +203,8 @@ export function buildPageMetadata(cfg: ClinicConfig, input: PageSEOInput): Metad
   const clinic     = cfg.clinic as any
   const city       = clinic?.city             || ''
   const doctorName = getDoctorName(cfg)
-  const baseUrl    = (clinic?.website || (cfg.site as any)?.url || '').replace(/\/$/, '')
+  const raw = clinic?.website || (cfg.site as any)?.url || ''
+  const baseUrl = raw ? (raw.startsWith('http') ? raw : `https://${raw}`).replace(/\/$/, '') : ''
   const clinicName = clinic?.name             || ''
 
   const title       = buildTitle(input.title, city, doctorName, input.titleSuffix)
