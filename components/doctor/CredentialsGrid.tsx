@@ -27,7 +27,7 @@ export default function CredentialsGrid({ doctor, clinic }: { doctor: DoctorInfo
         <p className="sec-sub">A complete view of qualifications, experience, and clinical expertise.</p>
       </div>
       <div className="cred-grid">
-        {sections.map((s, i) => (
+        {sections.filter(s => s.items.length > 0).map((s, i) => (
           <div key={i} className="cred-item" onClick={() => setOpen(open === i ? null : i)} style={{ cursor: 'pointer' }}>
             <div className="cred-header">
               <div className="cred-num" style={{ background: s.grad }}>{s.num}</div>
