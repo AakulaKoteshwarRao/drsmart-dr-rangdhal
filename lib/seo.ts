@@ -300,15 +300,16 @@ export function buildConditionMetadata(
 /** Procedure slug page metadata */
 export function buildProcedureMetadata(
   cfg: ClinicConfig,
-  procedure: { title: string; slug: string; summary?: string; description?: string },
+  procedure: { title?: string; name?: string; slug: string; summary?: string; description?: string },
   photoUrl?: string | null
 ): Metadata {
   const clinic = cfg.clinic as any
   const city   = clinic?.city || ''
-  const desc   = procedure.summary || procedure.description || `Expert ${procedure.title} procedure in ${city}.`
+  const procTitle = procedure.title || procedure.name || ''
+  const desc   = procedure.summary || procedure.description || `Expert ${procTitle} procedure in ${city}.`
 
   return buildPageMetadata(cfg, {
-    title:       procedure.title,
+    title:       procTitle,
     description: desc,
     path:        `/procedures/${procedure.slug}`,
     image:       photoUrl,
