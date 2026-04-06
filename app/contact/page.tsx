@@ -38,8 +38,8 @@ export default async function ContactPage() {
       isToday: day === today,
     }))
 
-  const mapSrcMatch = clinic.mapEmbedUrl?.match(/src="([^"]+)"/)
-  const mapSrc = mapSrcMatch ? mapSrcMatch[1] : ''
+  const mapSrcMatch = null
+  const mapSrc = (clinic as any).mapEmbedUrl || ''
 
   const whatsappNum = (clinic as any).whatsapp ?? clinic.phone
   const waLink = `https://wa.me/${whatsappNum?.replace(/\D/g,'')}`
