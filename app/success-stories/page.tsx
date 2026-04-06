@@ -17,7 +17,7 @@ export default async function SuccessStoriesPage() {
       <Header clinic={cfg.clinic} />
       <main>
         <StoriesHero videoCount={videoCount} conditionCount={conditionCount} rating={rating} />
-        <VideoGrid stories={stories} />
+        <VideoGrid stories={stories} conditions={cfg.conditions} />
         <StoriesFAQ />
         <CTABand cta={cfg.ctaBand} />
         <Footer clinic={cfg.clinic} config={cfg} />

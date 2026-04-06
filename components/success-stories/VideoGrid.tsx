@@ -1,12 +1,10 @@
 "use client"
 import { useState } from 'react'
-import { getConfig } from '@/lib/config'
 import type { VideoStory } from '@/lib/types'
 import { Icon } from '@/lib/icons'
 
-export default function VideoGrid({ stories }: { stories: VideoStory[] }) {
-  const cfg = getConfig()
-  const conditions = (cfg.conditions || []).slice(0, 5)
+export default function VideoGrid({ stories, conditions: conditionsProp }: { stories: VideoStory[], conditions?: any[] }) {
+  const conditions = (conditionsProp || []).slice(0, 5)
   const conditionFilters = conditions.map((c: any) => ({ label: c.title || c.label, value: c.slug || (c.label || '').toLowerCase().replace(/\s+/g, '-') }))
   const filters = [{ label: 'All Stories', value: 'all' }, ...conditionFilters]
   const [active, setActive] = useState('all')
