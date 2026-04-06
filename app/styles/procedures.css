@@ -526,3 +526,11 @@
   }
 
 
+
+/* Quick Facts */
+.qf-card { background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 16px; padding: 2rem; max-width: 560px; margin: 0 auto; }
+.qf-head { font-size: 0.78rem; font-weight: 700; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; }
+.qf-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding: 0.65rem 0; border-bottom: 1px solid #F3F4F6; }
+.qf-row:last-child { border-bottom: none; }
+.qf-label { font-size: 0.78rem; font-weight: 600; color: #6B7280; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+.qf-val { font-size: 0.92rem; font-weight: 600; color: #111111; text-align: right; }
