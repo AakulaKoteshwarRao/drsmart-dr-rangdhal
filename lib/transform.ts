@@ -129,7 +129,14 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     area:        s(s02.area ?? s02.street, ''),
     street:      s(s02.street, ''),
     hospital:    s(s02.buildingName, ''),
-    hours: typeof s02.hours === 'string' ? s02.hours : (s02.hours && typeof s02.hours === 'object' ? 'Mon–Sat: 9:00 AM – 8:00 PM' : ''),
+    hours: typeof s02.hours === 'string' ? s02.hours : (s02.hours && typeof s02.hours === 'object' ? (() => {
+      const h = s02.hours as Record<string, { open: string; close: string }>
+      const openDays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'].filter(d => h[d]?.open && h[d]?.close)
+      if (!openDays.length) return ''
+      const first = openDays[0]; const last = openDays[openDays.length - 1]
+      const short = (d: string) => d.slice(0, 3)
+      return `${short(first)}–${short(last)}: ${h[first].open} – ${h[first].close}`
+    })() : ''),
     hoursSchema,
     hoursObj: (s02.hours && typeof s02.hours === 'object') ? s02.hours : {},
     languages:   s(s02.languages, ''),
