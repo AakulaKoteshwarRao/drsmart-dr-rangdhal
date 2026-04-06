@@ -257,7 +257,7 @@ export function transformConfig(raw: Record<string, any>): ClinicConfig {
     headingEm:   clinic.city,
     subtext:     (s04.subtextOverride as string) || (s04.heroSubtext as string) || `${doctorName} provides expert diagnosis and treatment using the latest technology and a patient-first approach.`,
     tags:        a(s03.degrees).length ? [
-      s(s03.jobTitle, s(s03.designation, (typeof a(s03.degrees)[0] === 'object' ? (a(s03.degrees)[0].degree || '') : a(s03.degrees)[0]))),
+      (s03.jobTitle || s03.designation || (typeof a(s03.degrees)[0] === 'object' ? (a(s03.degrees)[0]?.degree || '') : (a(s03.degrees)[0] || ''))),
       yearsExp ? `${yearsExp} Years Experience` : '',
       patientCount ? `${patientCount} Patients Treated` : '',
     ].filter(Boolean) : [],
