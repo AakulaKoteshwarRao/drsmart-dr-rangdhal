@@ -35,7 +35,10 @@ const isHex = (v: any) => typeof v === 'string' && /^#[0-9A-Fa-f]{6}$/.test(v)
 
 export async function generateMetadata(): Promise<Metadata> {
   const cfg = await loadConfig()
-  return buildRootMetadata(cfg)
+  return {
+    ...buildRootMetadata(cfg),
+    icons: { icon: '/favicon.svg', shortcut: '/favicon.svg', apple: '/favicon.svg' },
+  }
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
