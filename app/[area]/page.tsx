@@ -5,6 +5,7 @@ import CTABand from '@/components/home/CTABand'
 import Footer from '@/components/Footer'
 import LocationSpoke from '@/components/location/LocationSpoke'
 import { loadConfig } from '@/lib/config'
+import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { buildLocationMetadata } from '@/lib/seo'
 
@@ -33,6 +34,7 @@ export default async function LocationSpokePage({ params }: { params?: { area?: 
   ).join(' ')
   const areaName = areaFromConfig?.name || slugToName(areaSlug)
 
+  if (!areaFromConfig) notFound()
   const area = areaFromConfig || { name: areaName, slug: areaSlug, distance: '', duration: '' }
 
   return (
