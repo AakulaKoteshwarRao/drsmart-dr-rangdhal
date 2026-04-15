@@ -46,7 +46,7 @@ export default async function LocationsPage() {
         <LocationIntro clinic={cfg.clinic} doctor={cfg.doctor} />
         <ClinicDetails clinic={cfg.clinic} />
         <MapEmbed clinic={cfg.clinic} />
-        <HowToReach />
+        <HowToReach config={cfg} />
         <ServicesAtLocation />
         <LocalAreas areas={cfg.localAreas} clinic={cfg.clinic} />
         <DoctorAuthority doctor={cfg.doctor} />

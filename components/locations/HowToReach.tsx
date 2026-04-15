@@ -1,6 +1,11 @@
 import { Icon } from '@/lib/icons'
+import type { ClinicConfig } from '@/lib/types'
 
-export default function HowToReach() {
+interface Props {
+  config: ClinicConfig
+}
+
+export default function HowToReach({ config }: Props) {
   const cards = [
     { grad: 'linear-gradient(135deg,var(--primary),var(--primary-dark))', icon: 'location', title: 'Nearby Landmarks', body: config?.clinic?.address || 'Contact us for our address.' },
     { grad: 'linear-gradient(135deg,var(--secondary),var(--secondary-dark))', icon: 'map', title: 'By Public Transport', body: 'Local buses, metro, and cabs are available nearby. Contact us for the most convenient route from your location.' },
